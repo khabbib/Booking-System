@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="angular" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1920 1080" style="enable-background:new 0 0 1920 1080;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#E5E5E5;}
+	.st1{opacity:0.24;fill:#E5E5E5;enable-background:new    ;}
+	.st2{opacity:0.18;fill:#E5E5E5;enable-background:new    ;}
+	.st3{opacity:0.3;fill:#E5E5E5;enable-background:new    ;}
+	.st4{opacity:0.22;fill:#E5E5E5;enable-background:new    ;}
+	.st5{opacity:0.5;fill:#E5E5E5;enable-background:new    ;}
+	.st6{opacity:0.36;fill:#E5E5E5;enable-background:new    ;}
+	.st7{opacity:7.000000e-02;fill:#81E0FF;enable-background:new    ;}
+	.st8{fill:#F8FDFF;}
+</style>
+<circle id="line" class="st0" cx="625.2" cy="237.1" r="29.5"/>
+<path id="line_4_" class="st0" d="M1450.1,702.4c-28.7,25.3-72.5,22.5-97.8-6.3s-22.5-72.5,6.3-97.8"/>
+<circle id="line_3_" class="st0" cx="1599.6" cy="325" r="87.9"/>
+<ellipse id="angular-2" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -296.3817 465.0714)" class="st1" cx="413.2" cy="590.3" rx="45.2" ry="45.2"/>
+<ellipse id="angular-2_2_" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -202.2675 911.5463)" class="st1" cx="999.2" cy="699.9" rx="19.1" ry="19.1"/>
+<ellipse id="angular-2_1_" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -139.4182 632.0146)" class="st2" cx="693.2" cy="484.3" rx="31.6" ry="31.6"/>
+<circle id="html-2" class="st3" cx="820.5" cy="285.5" r="28.5"/>
+<circle id="js-2" class="st4" cx="1364.8" cy="347.6" r="27.8"/>
+<circle id="php-2" class="st5" cx="1541" cy="794" r="29"/>
+<circle id="css-2" class="st6" cx="1084.5" cy="110.7" r="23.5"/>
+<path id="lines-4" class="st7" d="M1217.1,634.7L1217.1,634.7c5.5,0,10,4.5,10,10v99c0,5.5-4.5,10-10,10l0,0c-5.5,0-10-4.5-10-10
+	v-99C1207.1,639.2,1211.5,634.7,1217.1,634.7z"/>
+<path class="st8" d="M1587.6,1178.1"/>
+</svg>

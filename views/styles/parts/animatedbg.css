@@ -1,0 +1,72 @@
+.animated-things .shapes{
+    position: absolute;
+    border-radius: 50%;
+    overflow: hidden;
+    opacity: 0.2;
+    width: 20px;
+    height: 20px;
+    background: var(--whiteTableCC);
+    box-shadow: 0 0 15px white;
+    background: url(../../source/parts/subscribe-widget-bg.svg) no-repeat center, linear-gradient(90deg, #F073C8 0%, #FF6A95 99%);
+  }
+  
+  .shape1{
+    animation: shapeAroundHomw 15s infinite;
+    opacity: 0.5;
+    top: -10%;
+    left: 16%;
+    width: 20px;
+    height: 00px;
+  }
+  .shape2{
+    opacity: 1;
+    animation: shapeAroundHomw 7s infinite;
+    right: 2%;
+    bottom: 5%;
+    width: 500px;
+    height: 500px;
+  }
+  .shape3{
+    opacity: 0.6;
+    animation: shapeAroundHomw 9s infinite;
+    top: 50%;
+    left: 30%;
+    width: 100px;
+    height: 100px;
+  }
+  .shape4{
+    opacity: 0.4;
+    animation: shapeAroundHomw 5s infinite;
+    right: 30%;
+    width: 40px;
+    height: 40px;
+  }
+  .shape5{
+    opacity: 0.8;
+    animation: shapeAroundHomw 7s infinite;
+    bottom: 10%;
+    width: 350px;
+    height: 350px;
+  }
+  .shape6{
+    opacity: 0.5;
+    animation: shapeAroundHomw 8s infinite;
+    top: 0;
+    right: 2%;
+    width: 250px;
+    height: 250px;
+  }
+  
+  @keyframes shapeAroundHomw {
+    0%{
+      transform: translateX(-20px);
+    }
+    50%{
+      transform: translateX(20px);
+    }
+    100%{
+      transform: translateX(-20px);
+    }
+  
+  }
+  

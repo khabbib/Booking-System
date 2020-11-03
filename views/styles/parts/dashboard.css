@@ -1,0 +1,289 @@
+
+.bg-dash{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: url(/source/dashbordbg.svg)no-repeat var(--darkblue);
+    background-size: cover;
+    background-position: center;
+}
+/*
+
+    main contents
+
+*/
+
+
+#name-cc{
+    color: var(--pinky2);
+    font-weight: bold;
+}
+
+.profile-title{
+  font-size: 2rem;
+  text-align: center;
+  margin: 4rem auto;
+  color: var(--whiteTableCC);
+}
+.body-dash{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+
+
+/*
+
+    profile contents
+
+*/
+
+
+.profile {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+  
+    }
+  
+    /* Profile sidebar */
+    
+  
+  .profile-sidebar { 
+    background: url(../../source/parts/subscribe-widget-bg.svg) no-repeat center, var(--lightblue);
+      border-top: 4px solid var(--meddleblue);
+      padding: 20px 10px;
+      box-shadow: 0 30px 50px -12px rgba(7, 114, 255, 0.075);
+  
+    }
+    .profile-userpic{
+      width: 100px;
+      height: 100px;
+      margin: auto;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid var(--darkgray);
+      display: flex;
+      justify-content: center;
+    }
+    .profile-userpic img {
+      height: 100%;
+      margin: auto;
+
+    }
+    
+    .profile-usertitle {
+      text-align: center;
+      margin-top: 20px;
+    }
+    
+    .profile-usertitle-name {
+      color: var(--whiteTableCC);
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 7px;
+    }
+    
+    .profile-usertitle-job {
+      text-transform: uppercase;
+      color: var(--lightblue);
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+    
+    .profile-userbuttons {
+      text-align: center;
+      margin-top: 10px;
+    }
+    
+    .profile-userbuttons .btn {
+      text-transform: uppercase;
+      font-size: auto;
+      font-family: 'Poppins', sans-serif;
+      padding: 6px 15px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: var(--whiteTableCC);
+      margin-right: 5px;
+      transition: 0.3s;
+    }
+    .btnBooklist:hover,
+    .btnEdit:hover{
+      background: var(--meddleblue);
+      border-radius: 50px;
+      transition: 0.3s;
+    }
+    .btnBooklist{
+      border-radius: 50px;
+      background: var(--darkblue);
+
+    }
+    
+    .btnEdit{
+      background: var(--lightblue);
+    }
+   
+    
+    .profile-userbuttons .btn:last-child {
+      margin-right: 0px;
+    }
+        
+    .profile-usermenu {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+    }
+   
+  .profile-usermenu a{
+    border-bottom: 1px solid var(--meddleblue);
+    padding: 0.5rem 0 0.5rem 0.8rem;
+    color: var(--whiteTableCC);
+  }
+  
+  .profile-usermenu a:last-child {
+      border-bottom: none;
+  }
+  
+    
+    .profile-usermenu a:hover {
+      background-color: var(--meddleblue);
+    }
+    
+    .profile-usermenu a.active {
+      border-bottom: none;
+    }
+    
+    .profile-usermenu a.active {
+      color: var(--white);
+      background-color: var(--meddleblue);
+      border-left: 2px solid var(--darkblue);
+      margin-left: -2px;
+    }
+    
+    /* ////////Profile Content ////////////////////////////// */
+
+
+    .profile-content {
+      position: relative;
+      border-top: 4px solid var(--meddleblue);
+      padding: 20px;
+      background: url(../../source/parts/subscribe-widget-bg.svg) no-repeat center, var(--lightblue);
+      box-shadow: 0 30px 50px -12px rgba(7, 114, 255, 0.075);
+      min-height: 460px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      width: 100%;
+      overflow: auto;
+      margin-bottom: 4rem;
+    }
+    
+    .title-bookningInfo{
+      color: var(--whiteTableCC);
+      font-weight: 600;
+      font-size: 2rem;
+      margin: 2rem 0;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--lightblue);
+    }
+
+    /*//////////////  table  //////////////////*/
+    
+    
+/*//////////////  table  //////////////////*/
+
+.edits-btn-AP{
+  display: flex;
+  width: fit-content;
+  height: 100%;
+  width: 100%;
+  border-top: 2px solid var(--darkblue);
+}
+
+.deleteBtn{
+  background: none;
+  border: none;
+  color: white;
+  background: var(--darkwarning);
+  padding: 10px 20px;
+  border-radius: 50px;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.deleteBtn:hover{
+  transition: 0.3s;
+  background: var(--warning);
+}
+
+
+  /* //////// warning for delete ////////////////////////////// */
+
+
+.warning-delete-ap{
+  position: absolute;
+  background: black;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+
+}
+.bgw-warning{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bgw-warning h1{
+  color: var(--whiteTableCC);
+}
+
+#cancelBtn{
+  background: none;
+  border: none;
+  color: white;
+  background: var(--darkgreen);
+  padding: 10px 20px;
+  border-radius: 50px;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.btnsss{
+  display: flex;
+}
+
+#open-warning-btn-delete{
+  background: none;
+  border: none;
+  color: var(--darkfont);
+  background: var(--whiteTableCC);
+  padding: 10px 20px;
+  border-radius: 50px;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+

@@ -1,0 +1,60 @@
+/*
+
+    login
+
+*/
+
+.login-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+.reg-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+.card{
+    padding: 2rem 2rem;
+    box-shadow: 0 30px 50px -12px rgba(11, 198, 255, 0.096);
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    background: var(--lightblue);
+}
+
+.mb-3{
+    color: var(--whiteTableCC);
+}
+
+.mt-4{
+    color: var(--whiteTableCC);
+}
+
+.mt-4 a{
+    color: var(--pinky2);
+}
+
+
+.btn-primary{
+    background: var(--whiteTableCC);
+    color: var(--darkfont);
+    border: none;
+}
+
+.btn-primary:hover{
+    outline: none;
+    background: var(--whiteTableCC);
+    opacity: 0.8;
+    color: var(--darkfont);
+}
+
+

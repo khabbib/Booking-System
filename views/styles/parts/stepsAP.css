@@ -1,0 +1,74 @@
+.steps-container{
+    position: absolute;
+    top: 5%;
+    left: 0;
+    right: 0;
+    width: 50%;
+    z-index: 4;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: var(--meddleblue);
+    height: 4px;
+    border-radius: 50px;
+}
+
+.steps-container .shapes{
+    width: 90px;
+    height: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    transition: 0.2s;
+    background: none;
+    border: none;
+}
+.steps-container .shapes:hover{
+    opacity: 1;
+    transform: scale(1.1);
+    transition: 0.2s;
+}
+
+
+.shape{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    margin: auto;
+    border-radius: 50%;
+    background: var(--lightblue);
+    box-shadow: 0 0 15px var(--lightblue);
+    transition: 0.2s;
+}
+.steps-container .shapes:hover > span{
+    background: var(--lightgreen);
+    box-shadow: 0 0 25px white;
+    transition: 0.2s;
+}
+.shapes h1{
+    color: var(--whiteTableCC);
+    font-size: 0.8rem;
+    font-weight: 400;
+    opacity: 0.5;
+    position: absolute;
+    bottom: 0;
+    transition: 0.2s;
+}
+
+.steps-container .shapes:hover > h1{
+    opacity: 1;
+    transition: 0.2s;
+}
+/*   -  if its active = box shadow */
+/*   -  if its finished = box shadow off and green background  */
+/*   -  if its not finished = box shadow off and gray background  */
+
+
+/* .steps-container .step-one{
+    background: none;
+} */

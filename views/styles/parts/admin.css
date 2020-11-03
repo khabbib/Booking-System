@@ -1,0 +1,85 @@
+.header-admin{
+    width: 100%;
+    height: 10vh;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+}
+
+.header-admin h1{
+    margin-left: 10%;
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+}
+.header-admin a{
+    margin-right: 10%;
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+
+.admin-pages-container{
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.register-admin-page{
+    display: flex;
+    flex-direction: column;
+    background: white;
+    padding: 10rem;
+}
+
+.register-admin-page h1{
+    margin-bottom: 1rem;
+}
+
+.register-admin-page input{
+    background: none;
+    border: none;
+    border-bottom: 2px solid #2222 ;
+    margin-bottom: 1rem;
+}
+
+.register-admin-page button{
+    background: #f2f2f2;
+    border: none;
+    padding: 1rem 2rem;
+}
+
+.login-admin-page{
+    display: flex;
+    flex-direction: column;
+    background: white;
+    padding: 10rem;
+}
+
+.login-admin-page h1{
+    margin-bottom: 1rem;
+}
+
+.login-admin-page input{
+    background: none;
+    border: none;
+    border-bottom: 2px solid #2222 ;
+    margin-bottom: 1rem;
+}
+
+.login-admin-page button{
+    background: #f2f2f2;
+    border: none;
+    padding: 1rem 2rem;
+}
+
+
+.linkedBtnAdmin{
+    background: #f2f2f2;
+    padding: 1rem 2rem;
+}

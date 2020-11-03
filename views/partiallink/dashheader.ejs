@@ -1,0 +1,23 @@
+<div class="header-dash">
+    
+        <div class="headmt-4">
+            <h1><%= title %></h1>
+        </div>
+    <div class="head-uninfo">
+        <div class="hamburger">
+            <div class="lines"></div>
+            <div class="lines"></div>
+            <div class="lines"></div>
+            <span class="setting-list">
+                <li <% if (title == 'Dashboard') { %> class="active" <% } %>><a href="/dashboard" > Dashboard</a></li>
+                <li <% if (title == 'info') { %>class="active" <% } %>><a href="/posts" > Mina tider</a></li>
+                <li <% if (title == 'table') { %>class="active" <% } %>><a href="/table" > Lediga tider</a></li>
+                <li><a href="/users/logout" class="list-s" id="logoutbtn"> Loga ut</a></li>
+            </span>
+        </div>
+    </div>
+    <div id="blackscreen"></div>
+    
+</div>
+
+<script src="../apps/parts/dashheader.js"></script>

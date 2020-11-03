@@ -1,0 +1,147 @@
+
+<div class="bg-dash">
+    <%- include('partiallink/dashheader');-%>
+    
+    
+	<p class="profile-title">Welcome | <span id="name-cc"><%= user.name %></span></p>
+	
+	
+    <div class="profile">
+		<div class="col-md-2">
+			<div class="profile-sidebar">
+				<!-- SIDEBAR USERPIC -->
+				<div class="profile-userpic">
+					<img src="source/userProf.jpg" class="img-responsive" alt="">
+				</div>
+				<!-- END SIDEBAR USERPIC -->
+				<!-- SIDEBAR USER TITLE -->
+				<div class="profile-usertitle">
+					<div class="profile-usertitle-name">
+						<%= user.name%> / <%= user.Lastname%>
+					</div>
+					<div class="profile-usertitle-job">
+						Designer & Developer
+					</div>
+				</div>
+				<!-- END SIDEBAR USER TITLE -->
+				<!-- SIDEBAR BUTTONS -->
+				<div class="profile-userbuttons">
+					<button type="button" class="btn btnEdit btn-sm">Edit</button>
+					<a href="/users/logout" class="btn btnBooklist btn-sm" id="logoutbtn"> Logout <i class="fas fa-long-arrow-alt-right"></i></a>
+				</div>
+				<!-- END SIDEBAR BUTTONS -->
+				<!-- SIDEBAR MENU -->
+				<div class="profile-usermenu">
+					
+						
+							<a href="/dashboard" id="menus-link" class="active">
+							Appointments </a>
+						
+                        <a href="/dashboard" id="menus-link">
+						
+                        Information </a>
+						
+							<a href="/dashboard" id="menus-link">
+							Setting </a>
+						
+					
+							<a href="https://www.youtube.com/channel/UCLXL7GBZMhDZv3GyfQZ2pDg?view_as=subscriber" target="_blank" id="menus-link">
+							Help </a>
+				
+				
+				</div>
+				<!-- END MENU -->
+			</div>
+		</div>
+
+		<div class="col-md-9">
+			<div class="profile-content">
+				<div class="bookningInfo">
+					<%- include('partials/messages');-%>
+					<h1 class="title-bookningInfo">Your Appointments</h1>
+					<div class="container-table100">
+						<div class="wrap-table100">
+							<div class="table100 ver3 m-b-110">
+								<div class="table100-head">
+									<table>
+											<tr class="row100 head">
+												<th></th>
+												<th>Name</th>
+												<th>Appointment</th>
+												<th>PhoneNo</th>
+												<th>User mail</th>
+												<th>Bookning Email</th>
+												<th>Address</th>
+												<th>PostNo</th>
+												<th>Date</th>
+												<th style="display: none;"></th>
+											</tr>
+									</table>
+								</div>
+				
+								<div class="table100-body js-pscroll ps ps--active-y">
+
+								<form action="/delete" method="POST">
+										<table>
+											<tbody>
+												
+												<% for(let i = 0; i < item.length; i++){ %>
+												 <tr class="Rownm rowOnClick">
+													
+													<% if(item[i]){ %>
+														<% if(item[i].timeAP || item[i].nameAP || item[i].lastnameAP || item[i].emailAP || item[i].numberAP || item[i].addressAP || item[i].postAdressAP || item[i].streatAP || item[i].idAP || item[i].date){ %>
+														  <td id="existent"><%= i+1%></td>
+														  <td><%= item[i].nameAP %> / <%= item[i].lastnameAP %></td>
+														  <td id="mentionCC"><%= item[i].timeAP %></td>
+														  <td><%= item[i].numberAP %></td>
+														  <td><%= item[i].useremailAP %></td>
+														  <td><%= item[i].emailAP %></td>
+														  <td><%= item[i].addressAP %></td>
+														  <td><%= item[i].postAdressAP %></td>
+														  <td><%= item[i].date %></td>
+														  <td style="display: none;" class="idTakenFrom"> <input id="idTakenFrom"+i name="uniqueid<%= i %>" type="text" value="<%= item[i]._id %>"></td>
+														  <td style="display: none;" > <input id="bool<%= i %>" type="text" name="uniqueid<%= i %>" type="text" value="false"></td>
+														  <%}} else{%>
+															
+														<%}%>
+															
+													</tr>
+												<%}%>
+														
+														
+														
+													</tbody>
+												</table>
+												<div class="edits-btn-AP">
+													<!-- <input id="transferValueForDeleteBtn" name="uniqueid" style="display: none;" value="" /> -->
+													<a id="open-warning-btn-delete">Delete</a>
+												</div>
+												<div class="warning-delete-ap">
+													<div class="bgw-warning">
+														<h1>Are you sure you want to delete the appointment?</h1>
+														<div class="icon-warning"></div>
+														<div class="btnsss">
+															<button id="deleteBtn" class="deleteBtn" type="submit" name="delete" value="delete" style="display: block;"><i class="fas fa-trash-alt"></i><span> Yes</span></button>
+															<a id="cancelBtn">No</a>
+														</div>	
+													</div>
+												</div>
+										</form>
+							</div>
+				
+						</div>
+					</div>
+					
+				</div>
+				</div>
+				<h1 style="display: none;" id="ifNoAP"> <span id="userNameDisplay"> <i class="fas fa-exclamation-circle"></i></span> <span id="mellanDivider"> | </span> <span> You have no appointment.<br> Would you like to book one?</span></h1>
+				<div class="btns-link-AP">
+					<a style="display: none;" href="/table" id="btn-link-AP">Yes <i class="fas fa-long-arrow-alt-right"></i></a>
+					<a style="display: block;" href="/table" id="btn-link-AP-s">BOOK A NEW APPOINTMENT <i class="fas fa-long-arrow-alt-right"></i></a>
+				</div>
+		</div>
+	</div>
+
+</div>
+
+<script type="text/javascript" src="apps/script.js"></script>

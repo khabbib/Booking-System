@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="491px" height="282px" viewBox="0 0 491 282" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>subscribe-widget-bg</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Main-Mockups" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="subscribe-widget-bg" transform="translate(-20.000000, -14.000000)" fill="url(#linearGradient-1)" fill-rule="nonzero">
+            <circle id="right-circle" opacity="0.429594494" transform="translate(418.157174, 107.157174) rotate(-100.000000) translate(-418.157174, -107.157174) " cx="418.157174" cy="107.157174" r="92.5"></circle>
+            <path d="M135.395213,297.669053 C173.570132,297.669053 216.273407,265.418625 216.273407,227.188467 C216.273407,188.95831 177.615893,152.669053 139.440973,152.669053 C101.266054,152.669053 66.273407,190.217072 66.273407,228.447229 C66.273407,266.677387 97.2202936,297.669053 135.395213,297.669053 Z" id="Oval-Copy-5" opacity="0.22" transform="translate(141.273407, 225.169053) rotate(20.000000) translate(-141.273407, -225.169053) "></path>
+            <path d="M75.1840514,228 C103.220535,228 140.610173,214.558274 140.610173,186.648709 C140.610173,158.739144 110.182576,120 82.1460928,120 C54.1096094,120 20.6101731,153.347788 20.6101731,181.257352 C20.6101731,209.166917 47.147568,228 75.1840514,228 Z" id="Oval-Copy-6" opacity="0.09" transform="translate(80.610173, 174.000000) rotate(-225.000000) translate(-80.610173, -174.000000) "></path>
+        </g>
+    </g>
+</svg>

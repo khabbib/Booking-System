@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title><%= title %></title>
+</head>
+<body>
+
+    <!-- dont forget that the home css file is as same as the about! -->
+   
+            <%- include('partiallink/header'); -%>
+            <%- include('partials/messages'); -%>
+            
+            <div class="popUpWindow-container">
+                <%- include('partiallink/pop/subscribe'); -%>
+            </div>
+            <section id="one-home">
+                <%- include('partiallink/animatedbg'); -%>
+            <div class="bg-home">
+                <div class="introduce-home-content">
+                    <div class="intro-text-home">
+                        <div class="texts-details-home">
+                            <h1 id="title-home">YOUR NEXT <br>APPOINTMENT
+                                BOOKER</h1>
+                            <p>Här kan du göra ekelt en bookning hos oss.</p>
+                        </div>
+                        <div class="btn-details-home">
+                            <a href="/table">Avalibe times <i class="fas fa-long-arrow-alt-right"></i></a>
+                            <a href="/users/login">Login <i class="fas fa-long-arrow-alt-right"></i></a>
+                        </div>
+                    </div>
+                
+            </div>
+            </div>
+        </section>
+        <section id="ss">
+            <div class="bg-ss">
+                <div class="introduction-ss">
+                    <div class="presentation-ss">
+                        <div class="contents">
+                          <div class="left-window">
+                            <span class="first-icon"><i class="fas fa-bullhorn" aria-hidden="true"></i></span>
+                            <h4>Marketing</h4>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.<br>Distinctio laborum temporibus ratione.
+                            </p>
+                            <a class="learn-more" href="#"><i class="fas fa-long-arrow-alt-right" aria-hidden="true"></i></a>
+                          </div>
+                          <div class="middle-window">
+                            <span class="second-icon"><i class="fas fa-assistive-listening-systems" aria-hidden="true"></i></span>
+                            <h4>Engagement</h4>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.<br>Distinctio laborum temporibus ratione.
+                            </p>
+                            <a class="learn-more" href="#"><i class="fas fa-long-arrow-alt-right" aria-hidden="true"></i></a>
+                          </div>
+                          <div class="right-window">
+                            <span class="third-icon"><i class="far fa-thumbs-up" aria-hidden="true"></i></span>
+                            <h4>Rating</h4>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.<br>Distinctio laborum temporibus ratione.
+                            </p>
+                            <a class="learn-more" href="#"><i class="fas fa-long-arrow-alt-right" aria-hidden="true"></i></a>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </section>
+        <section id="two-home">
+            <div class="bg-thome">
+                <div class="intro-text-thome">
+                    <div class="texts-details-thome">
+                        <h1>What is a User Id??.</h1>
+                        <p>Unix-like operating systems identify a user by a value called
+                            <br>a user identifier, often abbreviated to user ID or UID.
+                             <br>The UID, along with the group identifier and other access control criteria,
+                              <br> is used to determine which system resources a user can access.</p>
+                    </div>
+                    
+                </div>
+                <div class="intro-img-thome">
+                    <img src="source/iconeFingerTrick.svg" alt="img">
+                </div>
+            </div>
+        </section>
+
+    </body>
+
+</html>

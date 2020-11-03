@@ -1,0 +1,49 @@
+<%- include('partiallink/animatedbg'); -%>
+<div class="container-done">
+    <h1>Thanks for your bookning!</h1>
+    <p>Now, we have recived your appointment details.</p>
+    <p class="warning">We have sent information about your bookning to your email address.<br> Make sure to check your e-post!</p>
+    <h3>Appointments details:</h3>
+    <p></p>
+    <div class="btnss">
+        
+        <a href="/" class="homeRedirect">Go to Home</a>
+        <a href="/users/login" class="homeRedirect">Print Out the time</a>
+        <a href="/table" class="homeRedirect">Book another time </a>
+        
+    </div>
+
+</div>
+
+<style>
+    .warning{
+        color: var(--warning);
+        text-align: center;
+    }
+    .homeRedirect{
+        background: #f2f2f2;
+        border-radius: 50px;
+        border: none;
+        padding: 1rem 2rem;
+    }
+    .homeRedirect:hover{
+        background: #ffff;
+        color: #333;
+    }
+    .container-done{
+        color: var(--whiteTableCC);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        width: 90%;
+        margin: auto;
+
+   }
+   .container-done h1{
+       color: var(--lightgreen);
+       font-weight: 500;
+   }
+
+</style>

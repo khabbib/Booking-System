@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="angular" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1920 1080" style="enable-background:new 0 0 1920 1080;" xml:space="preserve">
+<style type="text/css">
+	.st0{opacity:8.000000e-02;fill:#FFFFFF;}
+	.st1{fill:none;stroke:#E5E5E5;}
+	.st2{opacity:0.5;fill:#E5E5E5;enable-background:new    ;}
+	.st3{opacity:0.1;fill:#E5E5E5;enable-background:new    ;}
+	.st4{opacity:0.67;fill:#E5E5E5;enable-background:new    ;}
+	.st5{opacity:0.56;fill:#E5E5E5;enable-background:new    ;}
+	.st6{opacity:0.1;fill:#81E0FF;enable-background:new    ;}
+	.st7{opacity:0.15;fill:#81E0FF;enable-background:new    ;}
+	.st8{opacity:0.17;fill:#E5E5E5;enable-background:new    ;}
+	.st9{opacity:0.36;}
+	.st10{fill:#FFFFFF;}
+</style>
+<title>Rityta 1</title>
+<path class="st0" d="M738.9,1409.4c5.8-8.5,8.6-18.7,8-29c-3.7-57.3-5.4-263.5,140.3-441.2c171.2-208.6,337.5-292,299.7-603.4
+	c-27.5-226.4,38.1-407.9,190.6-555.6c187.8-181.9,485.9-182.2,675.7-2.4c74.1,70.2,45.8,125.6,92.2,189.6
+	c30.9,42.6-86.3,143-136.2,190.3c-44,41.8-51.8,96.6-29.8,147.9c11.6,27,8.9,58-7.7,82.2l-0.4,0.6
+	c-120.5,186.6-236,118.3-284.8,134.7c-11.9,4-24.4,24.2-32.8,81.3c-51,344.6-210.6,53.7-375.3,276.6
+	c-121.7,164.8-103.5,665.2-104.6,666.9c-4.9,6.9-99.4,107-152.1,162.6c-18.6,19.6-50.1,19-67.8-1.4l-211.8-243.5
+	C728.4,1449.7,727.1,1426.7,738.9,1409.4L738.9,1409.4z"/>
+<circle id="line" class="st1" cx="396.4" cy="566.8" r="117.2"/>
+<circle id="angular-2" class="st2" cx="413.2" cy="590.3" r="45.2"/>
+<circle id="html-2" class="st3" cx="820.5" cy="296.3" r="28.5"/>
+<circle id="js-2" class="st4" cx="1364.8" cy="347.6" r="27.8"/>
+<circle id="php-2" class="st2" cx="1541" cy="794" r="29"/>
+<circle id="css-2" class="st5" cx="1236.5" cy="801.5" r="23.5"/>
+<path id="lines-3" class="st6" d="M1531,801.5L1531,801.5c5.5,0,10,4.5,10,10v99c0,5.5-4.5,10-10,10l0,0c-5.5,0-10-4.5-10-10v-99
+	C1521,806,1525.5,801.5,1531,801.5z"/>
+<path id="lines-4" class="st7" d="M1728,480.5L1728,480.5c5.5,0,10,4.5,10,10v99c0,5.5-4.5,10-10,10l0,0c-5.5,0-10-4.5-10-10v-99
+	C1718,485,1722.5,480.5,1728,480.5z"/>
+<circle id="vinkel" class="st8" cx="478.7" cy="767.5" r="52"/>
+<g id="Form_1" class="st9">
+	<g>
+		<path class="st10" d="M1016,577.7c-29.3,56.4-111.7,155-319.9,109.8c-4.2-0.9-6.1,5-2.2,6.7c75.6,33.5,274.3,98.4,328.8-114
+			C1023.7,576.2,1018,574,1016,577.7z M1047.5,568.5c-11.8-38.6-37.1-20.9-51.6-6.5c-1,1,0.4,2.6,1.5,1.8c25.8-18.3,41-4.4,47.9,5.8
+			C1046.2,570.6,1047.9,569.8,1047.5,568.5z M693.3,673.8c2.9-0.4,2.6-4.7-0.3-4.7c-51.7-0.6-3.9,39.2-3.9,39.2
+			C663,684.7,675.2,676.3,693.3,673.8z"/>
+	</g>
+</g>
+</svg>

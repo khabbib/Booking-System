@@ -1,0 +1,174 @@
+<script defer src="apps/parts/formvalidation.js"></script>
+
+<div class="gluble-cont">
+  <!-- range included -->
+  
+
+  <!-- finished page -->
+
+
+  <!-- form information -->
+  <div id="formAPC" class="info-collector-AP">
+    <div class="bg-size-container">
+    <form id="formAP" action="/table" method="POST">
+      <div class="todisplay" style="display: flex; flex-direction: column;">
+      <div class="part-one-time">
+        <input
+          type="name"
+          id="timeAP"
+          name="time"
+          class="form-kontrol hiddedInput"
+          placeholder=""
+          value=""
+        />
+        <h1 id="change-size-h"></h1>
+      </div>
+      <div class="part-two-info">
+        <div class="form-group">
+          <label for="name">Name</label>
+      
+          <input
+            type="name"
+            id="name"
+            name="name"
+            class="form-kontrol"
+            placeholder="Enter Name"
+            value=""
+          />
+              <span id="valName"></span>
+        </div>
+        <div class="form-group">
+          <label for="name">Last Name</label>
+      
+          <input
+            type="Lastname"
+            id="Lastname"
+            name="Lastname"
+            class="form-kontrol"
+            placeholder="Enter Last Name"
+            value=""
+          />
+              <span id="valLast"></span>
+        </div>
+        <div class="form-group">
+          <label for="eamil">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-kontrol"
+            placeholder="email"
+            value=""
+          />
+          <span id="valEmail"></span>
+        </div>
+        
+      </div>
+      <div class="part-three-info">
+        <div class="form-group">
+          <label for="address">Address</label>
+         
+          <input
+            type="address"
+            id="address"
+            name="address"
+            class="form-kontrol"
+            placeholder="Address"
+            value="<%= typeof addressAP != 'undefined' ? addressAP : '' %>"
+          />
+           <span id="valAddress"></span>
+        </div>
+        <div class="form-group">
+          <label for="PostAddress">Post Address</label>
+      
+          <input
+            type="postadress"
+            id="postAdress"
+            name="postAdress"
+            class="form-kontrol"
+            placeholder="Post Address"
+            value="<%= typeof postAdressAP != 'undefined' ? postAdressAP : '' %>"
+          />
+              <span id="valPost"></span>
+        </div>
+        <div class="form-group">
+          <label for="number">Number</label>
+        
+          <input
+            type="text"
+            id="number"
+            name="number"
+            class="form-kontrol"
+            placeholder="Number"
+            value="<%= typeof numberAP != 'undefined' ? numberAP : '' %>"
+          />
+            <span id="valNumber"></span>
+        </div>
+      </div>
+      <p id="varning-msg"></p>
+      <div class="btn-formAP"">
+        <button type="submit" id="submit-AP" class="submit-AP" >Book Appointment </button>
+      </div>
+    </div>
+    </form>
+  </div>
+    
+  </div> 
+    
+  <div class="table-container">
+      <!-- just a dive to free space -->
+      <div class="freespace"></div>
+      <!-- date now -->
+      <div id="inputs">
+        <div class="times">
+          
+          <p id="year"></p>
+        </div>
+        <%- include('partials/messages');-%>
+        <div class="change-year-btn">
+          <div class="div btnFarward"><i class="fas fa-chevron-right"></i></div>
+          <div class="div btnBackward"><i class="fas fa-chevron-left"></i></div>
+          <!-- <p id="guid">change the time here</p> -->
+          
+
+        </div>
+        
+      </div>
+
+      <!-- time table -->
+      <div class="table">
+        <div class="weeks-table" id="weekDays">
+          
+        </div>
+        <div class="table-dtl"> 
+          
+        <div class="devss">
+            <span class="nums">1</span>
+            <span class="nums">2</span>
+            <span class="nums">3</span>
+            <span class="nums">4</span>
+            <span class="nums">5</span>
+            <span class="nums">6</span>
+            <span class="nums">7</span>
+            <span class="nums">8</span>
+            <span class="nums">9</span>
+            <span class="nums">10</span>
+            <span class="nums">11</span>
+            <span class="nums">12</span>
+            <span class="nums">13</span>
+            <span class="nums">14</span>
+            <span class="nums">15</span>
+            <span class="nums">16</span>
+        </div>
+        <div class="partet-time">
+          
+        </div>
+      </div>
+      
+      </div>
+      
+  </div>
+  
+
+</div>
+<script src="apps/parts/table.js"></script>

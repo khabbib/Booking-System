@@ -1,0 +1,98 @@
+
+header{
+    position: fixed;
+    left: 0;
+    right: 0;
+    display: flex;
+    width: 90%;
+    margin: auto;
+    height: 10vh;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    z-index: 2;
+}
+
+/* logo */
+.logo-container{
+    flex: 1;
+}
+.logo-container img{
+    height: 80px;
+    margin: auto;
+
+}
+
+/* menu header */
+.menu-container{
+    flex: 1;
+    margin: auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items:center;
+    height: 100%;
+}
+#link-menu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    font-size: 1rem;
+    margin-right: 10%;
+    border-bottom: 1px solid #eee0;
+    text-decoration:none;
+    font-weight: 500;
+    color: #999;
+    transition: 0.2s;
+}
+
+#link-menu:hover{
+    color: greenyellow;
+    transition: 0.3s;
+}
+
+.active{
+    color: red;
+}
+
+
+
+
+/* shop icone top right side qorner*/
+#toggle{
+    position: absolute;
+    display: flex;
+    top: -10rem;
+    right: 1rem;
+}
+.shop-container{
+    flex: 10%;
+    display: flex;
+    justify-content: flex-end;
+    align-items:center;
+}
+.login{
+    transition: 0.2s;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #555;
+    position: relative;
+}
+
+.login:hover{
+    color: white;
+    transition: 0.3s;
+}
+.login::before{
+    content: "";
+    position: absolute;
+    width: 10px;
+    height:10px;
+    background:lightcoral;
+    border-radius: 50%;
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 0 0 20px;
+    border: 3px solid rgb(100, 82, 82);
+}

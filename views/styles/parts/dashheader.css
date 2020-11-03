@@ -1,0 +1,113 @@
+
+.header-dash{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 10vh;
+    width: 90%;
+    margin: auto;
+    border-bottom: 1px solid var(--lightblue);
+}
+
+.headmt-4{
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex: 1;
+    color: var(--whiteTableCC);
+    padding: 12px 20px;
+    border-radius: 5px;
+    width: fit-content;
+}
+.headmt-4 h1{
+    color: var(--whiteTableCC);
+    font-size: 1.5rem;
+}
+
+.head-uninfo{
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+}
+
+/*
+
+    menu open logout
+
+*/
+
+.hamburger{
+    margin: 0 2rem;
+    cursor: pointer;
+}
+.hamburger .lines{
+    width: 40px;
+    height: 4px;
+    border-radius: 50px;
+    background:var(--whiteTableCC);
+    margin: 6px 0;
+    transition: 0.2s;
+}
+.hamburger:hover > div,
+.hamburger:focus > div,
+.hamburger:active > div,
+.hamburger:visited > div{
+    background: var(--lightblue);
+    transition: 0.2s;
+}
+
+.setting-list{
+    padding: 2rem 0;
+    position: absolute;
+    height: 100vh;
+    top: 0;
+    right: 0;
+    width:20%;
+    display: none;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
+    background:var(--lightblue);
+    border-radius: 5px;
+    box-shadow: 0 10px 20px -12px rgba(0, 0, 0, 0.075);
+    z-index: 1000;
+    list-style: none;
+
+}
+#logoutbtn{
+    border-bottom: none;
+}
+.setting-list li{
+    width: 100%;
+    border-bottom: 1px solid var(--meddleblue);
+    padding: 5px;
+}
+.setting-list li a{
+    color: var(--whiteTableCC);
+}
+
+.setting-list li:hover{
+    text-decoration: none;
+    background-color: var(--meddleblue);
+    color: var(--darkgreen);
+}
+.active {
+    color: var(--white);
+    background-color: var(--darkblue);
+    border-left: 2px solid #999;
+    margin-right: -2px;
+  }
+#blackscreen{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: black;
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
+    opacity: 0.4;
+    display: none;
+}
