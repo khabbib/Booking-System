@@ -7,8 +7,12 @@ const passport = require('passport');
 
 const Admin = require('../models/admin');
 const { forwardAuthenticated } = require('../config/auth');
-
-
+const { collection, find } = require('../models/admin');
+const db = require('../config/keys').mongoURI;
+const mongoose = require('mongoose');
+const { response } = require('express');
+const { password } = require('../config/emailkey');
+const { has } = require('browser-sync');
 
 // Register
 router.post('/registerA', (req, res) => {
@@ -79,14 +83,25 @@ router.post('/registerA', (req, res) => {
 });
 
 // Login
-router.post('/loginA', (req, res, next) => {
-  passport.authenticate('local', {
-    successRedirect: '/adminDash',
-    failureRedirect: '/admin',
-    failureFlash: true
-  })(req, res, next);
+router.post('/loginA', (req, res) => {
+    var password = req.body.password;
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(password, salt, (err, hash) => {
+        if (err) throw err;
+        password = hash;
+        console.log(password)
+      
+      });
+    });
+    // const admin = Admin.findOne({password: req.body.password2});
+    // console.log(email);
+    // const pass = Admin.findOne({password: req.body.password});
+    // if(pass)   
+    
+    
+    
+    
 });
-
 // Logout
 router.get('/logout', (req, res) => {
   req.logout();

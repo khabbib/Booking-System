@@ -6,7 +6,6 @@ const db = require('../config/keys').mongoURI;
 ObjectID = require('mongodb').ObjectID;
 const Appointment = require('../models/appointment');
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
-const { adminensureAuthenticated, adminforwardAuthenticated } = require('../config/admin/autha');
 const nodemailer = require('nodemailer');
 const Pass = require('../config/emailkey');
 
@@ -209,8 +208,8 @@ router.get('/dashboard', ensureAuthenticated, (req, res) =>{
 
 // admin dashboard
 
-router.get('/adminDash', adminensureAuthenticated, (req, res)=>{
- 
+router.get('/adminDash', (req, res)=>{
+  
   mongoose.connect(db, (err, db)=> {
     if(err){
       console.log(err)
@@ -219,6 +218,7 @@ router.get('/adminDash', adminensureAuthenticated, (req, res)=>{
     }
 
     var adminCollection = db.collection('admins');
+    
     adminCollection.findOne({email: email},(err, find)=>{
       if(err){
         console.log(err);
