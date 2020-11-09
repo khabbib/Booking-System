@@ -10,6 +10,7 @@
 @import 'parts/pop/subscribe.css';
 @import 'parts/stepsAP.css';
 @import 'parts/admin.css';
+@import 'parts/adminDash.css';
 
 
 :root{
@@ -36,6 +37,7 @@
     --meddledblue: #342e68;
     --whiteTableCC: #f2f2f2;
   }
+  
 *{
     outline: none;
     scroll-behavior: smooth;

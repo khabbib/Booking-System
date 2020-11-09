@@ -7,6 +7,7 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const path = require('path');
 const app = express();
+const cookieParser = require('cookie-parser');
 
 // expressdesign1121@gmail.com
 
@@ -29,7 +30,7 @@ mongoose.connect( db, { useNewUrlParser: true ,useUnifiedTopology: true})
 app.use(expressLayouts); 
 app.set('view engine', 'ejs');
 app.use(express.static('views'))
-
+app.use(cookieParser());
 // Express body parser
 app.use(express.urlencoded({ extended: false }));
 

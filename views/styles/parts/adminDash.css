@@ -1,0 +1,85 @@
+.admin-container{
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.admin-title{
+    margin-top: 100px;
+}
+.admin-title h1{
+    font-weight: 300;
+
+}
+.admin-name-ttl{
+    color: var(--pink);
+}
+
+.ttls-data{
+    display: flex;
+    width: 80%;
+    margin: auto;
+    justify-content: space-around;
+}
+
+.data-collection{
+    width: 80%;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: scroll;
+    background: var(--lightblue);
+}
+
+.alluser{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 100%;
+    margin: auto;
+}
+.each-list{
+    background: var(--meddleblue);
+    margin: 1rem 0;
+    border-radius: 5px;
+    padding: 1rem;
+}
+#existent{
+    color: white;
+}
+.user-nr{
+    color: white;
+}
+
+.bold{
+    font-weight: 600;
+    color: var(--darkfont);
+}
+.user-dtl{
+    color: #999;
+}
+
+
+.allappns{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 100%;
+    margin: auto;
+}
+.each-appns{
+    background: var(--meddleblue);
+    margin: 1rem 0;
+    border-radius: 5px;
+    padding: 1rem;
+}
+
+.each-appns div{
+    color: #999;
+}

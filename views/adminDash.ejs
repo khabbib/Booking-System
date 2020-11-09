@@ -1,5 +1,55 @@
-Admin dashboard
+<%- include('partiallink/animatedbg'); -%>
+<div class="admin-container">
+    <div class="admin-title">
+        <h1> Welcom | <span class="admin-name-ttl"><%= admin.name %></span></h1>
+    </div>
+    <div class="ttls-data">
+        <h1>Users</h1>
+        <h1>Appointments</h1>
+    </div>
+    <%- include('partials/messages');-%>
+    <div class="data-collection">
+        <div class="alluser">
+            <% for(let i = 0; i < user.length; i++){ %>
+                <div class="user-nr"><%= [i+1] %></div>
+                <div class="each-list">
+                    <div class="user-dtl"> <span class="bold"> Name: </span><%= user[i].name %></div>
+                    <div class="user-dtl"> <span class="bold"> Last Name: </span><%= user[i].Lastname %></div>
+                    <div class="user-dtl"> <span class="bold"> Email: </span><%= user[i].email %></div>
+                </div>
+            <%}%>
+        </div>
+        <div class="allappns">
+            <form action="/deleteA" method="POST">
+            <button id="deleteBtn" class="deleteBtn" type="submit" name="deleteA" value="deleteA" style="display: block;"><i class="fas fa-trash-alt"></i><span> Delete</span></button>
 
-<a href="/admin/logout" class="btn btnBooklist btn-sm" id="logoutbtn"> Logout <i class="fas fa-long-arrow-alt-right"></i></a>
+            <% for(let i = 0; i < item.length; i++){ %>
+                <div id="row" class="each-appns">
+                   
+                    <% if(item[i]){ %>
+                    <% if(item[i].timeAP || item[i].nameAP || item[i].lastnameAP || item[i].emailAP || item[i].numberAP || item[i].addressAP || item[i].postAdressAP || item[i].streatAP || item[i].idAP || item[i].date){ %>
+                        <div id="existent"><%= i+1%></div>
+                        <div><span class="bold"> Name: </span><%= item[i].nameAP %> / <%= item[i].lastnameAP %></div>
+                        <div id="mentionCC"><span class="bold"> Appointment: </span><%= item[i].timeAP %></div>
+                        <div><span class="bold"> User Email: </span><%= item[i].numberAP %></div>
+                        <div><span class="bold"> : </span><%= item[i].useremailAP %></div>
+                        <div><span class="bold"> Appointments Email: </span><%= item[i].emailAP %></div>
+                        <div><span class="bold"> Address: </span><%= item[i].addressAP %></div>
+                        <div><span class="bold"> Post Address: </span><%= item[i].postAdressAP %></div>
+                        <div><span class="bold"> Date: </span><%= item[i].date %></div>
+                        <div style="display: none;" class="idTakenFrom"> <input id="idTakenFrom"+i name="uniqueid<%= i %>" type="text" value="<%= item[i]._id %>"></div>
+                        <div style="display: none;" > <input id="bool<%= i %>" type="text" name="uniqueid<%= i %>" type="text" value="false"></div>
+                        <%}} else{%>
+                        
+                    <%}%>
+                        
+                </div>
+            <%}%>
+        </form>
+        </div>
+    </div>
+    <a href="/admin/logoutA" class="btn btnBooklist btn-sm" id="logoutbtn"> Logout <i class="fas fa-long-arrow-alt-right"></i></a>
+</div>
 
 
+<script src="apps/parts/adminDash.js"></script>

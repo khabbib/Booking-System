@@ -5,9 +5,13 @@ const md5encrypt = require('md5');
 const db = require('../config/keys').mongoURI;
 ObjectID = require('mongodb').ObjectID;
 const Appointment = require('../models/appointment');
+const Admin = require('../models/admin');
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 const nodemailer = require('nodemailer');
 const Pass = require('../config/emailkey');
+const Session = require('../models/session');
+const { find } = require('../models/appointment');
+
 
 // Welcome Page
 router.get('/', (req, res) => res.render('home',{
@@ -17,10 +21,17 @@ router.get('/', (req, res) => res.render('home',{
 
 
 // Login Page
-router.get('/admin', (req, res) => 
-res.render('admin',{
-  title: 'Admin'
-}));
+router.get('/admin', (req, res) => {
+  var active = Session.ActivSession;
+  if(req.cookies.AdminSess){
+    res.redirect('/adminDash')
+    console.log("admin dash run ")
+  }
+  else{
+    console.log("admin run ")
+    res.render('admin');
+  }
+});
 
 router.get('/done', (req, res) => 
 res.render('done',{
@@ -179,7 +190,58 @@ router.post('/delete',  function(req, res){
  }    
     
 })
+ 
+
+router.post('/deleteA',  function(req, res){
+  console.log(req.body)
+  var GoneThrough = true;
+  try {
+     // define the id 
+      var todelete = [];
+      for (var el in req.body) {
+        if (el.includes("unique")) {
+          if (req.body[el][1] == "true") {
+            todelete.push(req.body[el][0])
+          }
+        }
+      }
+      mongoose.connect(db, (err, db)=>{
+
+        if(err) {
+          console.log("Cannot connect to database");
+        } else {
+            for (let x = 0; x <= todelete.length; x++) {
+              // console.log(todelete[x])
+              var obj = ObjectID(todelete[x])
+              var collection = db.collection('appointments')
+              collection.deleteOne({_id: obj});
+            }
+            
+          }
+          
+        })
+        GoneThrough = true;
+  } catch (err) {
+    GoneThrough = false;
+  }
   
+ if (GoneThrough) {
+  req.flash(
+    'success_msg',
+    `Successfully, the appointment deleted.`
+  );
+  res.setHeader("Content-Type", "text/html");
+  res.redirect("/adminDash");
+ }else{
+  req.flash(
+    'error_msg',
+    `Unsuccessfully, the appointment not deleted.`
+  );
+  res.setHeader("Content-Type", "text/html");
+  res.redirect("/adminDash");
+ }    
+    
+})
   
 
 // Dashboard
@@ -209,30 +271,41 @@ router.get('/dashboard', ensureAuthenticated, (req, res) =>{
 // admin dashboard
 
 router.get('/adminDash', (req, res)=>{
-  
-  mongoose.connect(db, (err, db)=> {
-    if(err){
-      console.log(err)
-    }else{
-      console.log("Admin dash database connected")
-    }
-
-    var adminCollection = db.collection('admins');
-    
-    adminCollection.findOne({email: email},(err, find)=>{
+  if ((req.cookies.AdminSess) || (Session[1] === req.cookies.AdminSess)) {
+    mongoose.connect(db, (err, db)=> {
       if(err){
-        console.log(err);
-        res.redirect('/admin')
+        console.log(err)
+      }else{
+        console.log("Admin dash database connected")
       }
-      
-      console.log(find)
-      res.render('adminDash',{
-        title: 'Admin dashboard',
-        admin: find,
-        user: req.user
+      var adminCollection = db.collection('admins');
+     
+      adminCollection.findOne({password: req.cookies.AdminSess},(err, find)=>{
+        if(err){
+          console.log(err);
+          res.redirect('/')
+        }
+        else{
+          var uses = db.collection('users');
+          uses.find({}).toArray(function(err, usr){
+              var appointment = db.collection('appointments');
+              appointment.find({}).toArray((err, appns)=>{
+                res.render('adminDash',{
+                  title: 'Admin dashboard',
+                  user: usr,
+                  item: appns,
+                  admin: adminCollection
+                })
+              })
+              
+          });
+        } 
+        
       })
     })
-  })
+  }else{
+    res.redirect('/')
+  }
 
 
 })

@@ -2,8 +2,10 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
+const md5encrypt = require('md5');
 // Load User model
 
+const Session = require('../models/session');
 
 const Admin = require('../models/admin');
 const { forwardAuthenticated } = require('../config/auth');
@@ -13,6 +15,11 @@ const mongoose = require('mongoose');
 const { response } = require('express');
 const { password } = require('../config/emailkey');
 const { has } = require('browser-sync');
+const sessions = require('../models/session');
+
+function random(low, high) {
+  return Math.random() * (high - low) + low
+}
 
 // Register
 router.post('/registerA', (req, res) => {
@@ -84,27 +91,54 @@ router.post('/registerA', (req, res) => {
 
 // Login
 router.post('/loginA', (req, res) => {
-    var password = req.body.password;
-    bcrypt.genSalt(10, (err, salt) => {
-      bcrypt.hash(password, salt, (err, hash) => {
-        if (err) throw err;
-        password = hash;
-        console.log(password)
-      
-      });
-    });
-    // const admin = Admin.findOne({password: req.body.password2});
-    // console.log(email);
-    // const pass = Admin.findOne({password: req.body.password});
-    // if(pass)   
+  mongoose.connect(db, (err, db)=>{
+    if(err) {
+      console.log("Cannot connect to database");
+    } else {
+        console.log("Connected to database");
+    }
     
+    var collection = db.collection('admins');
+    collection.find({}).toArray(function(err, item) {
+      var list_of_client = [];
+      for (x in item) {
+        if (req.body.email === item[x].email) {
+          list_of_client.push(item[x]);
+          break;
+        }
+      }
+      if (list_of_client.length == 1) {
+        bcrypt.compare(req.body.password, list_of_client[0].password, (err, isMatch)=>{
+          if (isMatch) {
+          var rand = random(10, 1000);
+          var hashed = md5encrypt(list_of_client[0].password+rand)
+          Session["ActivSession"] = [list_of_client[0], hashed];
+          res.cookie('AdminSess', hashed,{ maxAge: 900000, httpOnly: true });
+          res.redirect('/adminDash')
+          console.log(Session.ActivSession)
+          }else{
+            
+            res.render('admin');
+          }
+          // res.cookie('AdminSess', '');
+          
+          
+        })  
+      }else{
+        
+        res.render('admin');
+      }
+    }); 
     
-    
+  })
+ 
     
 });
 // Logout
-router.get('/logout', (req, res) => {
+router.get('/logoutA', (req, res) => {
   req.logout();
+  res.cookie('AdminSess', '');
+  Session.ActivSession = [];
   req.flash('success_msg', 'You are logged out');
   res.redirect('/admin');
 });
