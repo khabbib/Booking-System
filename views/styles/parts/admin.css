@@ -14,17 +14,12 @@
     display: flex;
     justify-content: flex-start;
 }
-.header-admin a{
-    margin-right: 10%;
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
-}
+
 
 
 
 .admin-pages-container{
-    height: 90vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,57 +28,39 @@
 .register-admin-page{
     display: flex;
     flex-direction: column;
-    background: white;
-    padding: 10rem;
+    background: var(--lightblue);
+    width: fit-content;
+    border-radius: 5px;
+    padding: 2rem;
 }
 
 .register-admin-page h1{
     margin-bottom: 1rem;
+    text-align: center;
 }
 
-.register-admin-page input{
-    background: none;
-    border: none;
-    border-bottom: 2px solid #2222 ;
-    margin-bottom: 1rem;
-}
 
-.register-admin-page button{
-    background: #f2f2f2;
-    border: none;
-    padding: 1rem 2rem;
-}
+
 
 .login-admin-page{
     display: flex;
     flex-direction: column;
-    background: white;
-    padding: 10rem;
+    background: var(--lightblue);
+    width: fit-content;
+    border-radius: 5px;
+    padding: 2rem;
 }
 
 .login-admin-page h1{
     margin-bottom: 1rem;
 }
 
-.login-admin-page input{
-    background: none;
-    border: none;
-    border-bottom: 2px solid #2222 ;
-    margin-bottom: 1rem;
+
+
+.login-admin-page h1{
+    text-align: center;
+    font-weight: 500;
 }
-
-.login-admin-page button{
-    background: #f2f2f2;
-    border: none;
-    padding: 1rem 2rem;
-}
-
-
-.linkedBtnAdmin{
-    background: #f2f2f2;
-    padding: 1rem 2rem;
-}
-
 
 .admin-container{
     display: flex;
@@ -93,12 +70,37 @@
     flex-direction: column; 
 }
 
-.admin-container a{
-    background: var(--whiteTableCC);
-    padding: 1rem 2rem;
-    margin: 0;
-    
+
+
+.linkToReg{
+    margin: 1rem 0;
+    color: var(--whiteTableCC);
+    background: var(--pinky);
+    width: fit-content;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
 }
 
 
+/*
+/////// 
+///////////
 
+            login page for admin
+
+/////////// 
+/////// 
+*/
+
+
+
+
+/*
+/////// 
+///////////
+
+            reg page for admin 
+
+/////////// 
+/////// 
+*/

@@ -91,6 +91,7 @@ router.post('/registerA', (req, res) => {
 
 // Login
 router.post('/loginA', (req, res) => {
+  let errors = [];
   mongoose.connect(db, (err, db)=>{
     if(err) {
       console.log("Cannot connect to database");
@@ -112,21 +113,25 @@ router.post('/loginA', (req, res) => {
           if (isMatch) {
           var rand = random(10, 1000);
           var hashed = md5encrypt(list_of_client[0].password+rand)
-          Session["ActivSession"] = [list_of_client[0], hashed];
+          Session[hashed] = [list_of_client[0], hashed];
           res.cookie('AdminSess', hashed,{ maxAge: 900000, httpOnly: true });
           res.redirect('/adminDash')
           console.log(Session.ActivSession)
           }else{
+            errors.push({ msg: 'Email or password' });
+            res.render('admin', {
+              title: 'Admin',
+              errors
+            });
             
-            res.render('admin');
           }
           // res.cookie('AdminSess', '');
           
           
         })  
       }else{
-        
         res.render('admin');
+        
       }
     }); 
     
@@ -137,9 +142,17 @@ router.post('/loginA', (req, res) => {
 // Logout
 router.get('/logoutA', (req, res) => {
   req.logout();
+  console.log(Session);
+  try {
+    delete Session[req.cookies.AdminSess];
+    
+  } catch (err) {
+    console.log(err)
+  }
   res.cookie('AdminSess', '');
-  Session.ActivSession = [];
   req.flash('success_msg', 'You are logged out');
+  console.log(Session);
+
   res.redirect('/admin');
 });
 

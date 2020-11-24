@@ -12,7 +12,10 @@
     main contents
 
 */
-
+.msgdisplay{
+  margin: auto;
+  width: fit-content;
+}
 
 #name-cc{
     color: var(--pinky2);

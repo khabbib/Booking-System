@@ -1,11 +1,14 @@
 <% if(typeof errors != 'undefined'){ %> <% errors.forEach(function(error) { %>
-<div class="alert alert-warning alert-dismissible fade show" role="alert">
+<div id="shouldclose" class="alert alert-warning alert-dismissible fade show" role="alert">
   <%= error.msg %>
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-<% }); %> <% } %> <% if(success_msg != ''){ %>
+<% }); %><% } %> 
+
+
+<% if(success_msg != ''){ %>
 <div class="alert alert-success alert-dismissible fade show" role="alert">
   <%= success_msg %>
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -27,3 +30,14 @@
   </button>
 </div>
 <% } %>
+
+<script>
+  console.log("bad ass")
+  var closeBtn = document.querySelector(".close");
+  var closeError = document.querySelector(".alert");
+  closeBtn.addEventListener("click", ()=>{
+    console.log("inside function");
+    closeError.style.display = "none";
+  })
+
+</script>

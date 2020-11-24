@@ -1,55 +1,193 @@
 <%- include('partiallink/animatedbg'); -%>
+
 <div class="admin-container">
+    <div class="meno-admin">
+        <div class="logout-men">
+            <a href="/admin/logoutA"> Logout </a>
+        </div>
+        <div class="logo-admin">
+            <a class="admin-logo" href="/"><img src="/source/booker.svg" alt=""></a>
+        </div>
+    </div>
     <div class="admin-title">
-        <h1> Welcom | <span class="admin-name-ttl"><%= admin.name %></span></h1>
+        <h1> Admin Page <span class="admin-name-ttl"></span></h1>
     </div>
-    <div class="ttls-data">
-        <h1>Users</h1>
-        <h1>Appointments</h1>
-    </div>
-    <%- include('partials/messages');-%>
-    <div class="data-collection">
-        <div class="alluser">
-            <% for(let i = 0; i < user.length; i++){ %>
-                <div class="user-nr"><%= [i+1] %></div>
-                <div class="each-list">
-                    <div class="user-dtl"> <span class="bold"> Name: </span><%= user[i].name %></div>
-                    <div class="user-dtl"> <span class="bold"> Last Name: </span><%= user[i].Lastname %></div>
-                    <div class="user-dtl"> <span class="bold"> Email: </span><%= user[i].email %></div>
-                </div>
-            <%}%>
+    <div class="admin-panel">
+        <%- include('partials/messages');-%>
+        <div class="ttls-data">
+            <button class="styled dashboardBtn" style="background: var(--lightblue);">Dashboard</button>
+            <button class="styled users">Users</button>
+            <button class="styled appns">Appointments</button>
+            <button class="styled admins">Admins</button>
+            <button class="styled searchBtn"><i class="fas fa-search"></i></button>
+            <div class="searchMenu">
+                <label for="search">What are you searching for?</label>
+                <input type="text" name="search" id="searchInput" placeholder="Search users informations">
+            </div>
         </div>
-        <div class="allappns">
-            <form action="/deleteA" method="POST">
-            <button id="deleteBtn" class="deleteBtn" type="submit" name="deleteA" value="deleteA" style="display: block;"><i class="fas fa-trash-alt"></i><span> Delete</span></button>
+        
+        <div class="data-collection" >
+            
+            <div class="alladmin" style="display: none;">
+                
+                <div class="add-new-admin">
+                    <a href="/adminReg">
+                        <button type="button" class="addNewAdmin" id="addNewAdmin">Add New Admin</button>
+                    </a>
+                </div>
+                <div class="current-admin-container">
+                    <div class="current-admin">
+                        <div class="admin-infos">
+                            <h1 id="openPrg">Current Admin is: <span id="current-admin-name"> Admin.name</span></h1>
+                            <div class="admin-info">
+                                <form class="update-form-admin-info" action="/updateA" method="POST">
+                                    <div>
+                                        <label for="name">Name:</label>
+                                        <input class="admin-info-input" type="text" value="admin.name" name="name" disabled>
+                                    </div>
+                                    <div>
+                                        <label for="name">Last Name: </label>
+                                        <input class="admin-info-input" type="text" value="admin.lastname" name="lastname" disabled>
+                                    </div>
+                                    <div>
+                                        <label for="name">Number: </label>
+                                        <input class="admin-info-input" type="text" value="admin.number" name="number" disabled>
+                                    </div>
+                                    <div>
+                                        <label for="name">Rul: </label>
+                                        <input class="admin-info-input" type="text" value="admin.rul" name="rul" disabled>
+                                    </div>
+                                    <div>
+                                        <label for="name">Id: </label>
+                                        <input class="admin-info-input" type="text" value="admin.id" name="id" disabled>
+                                    </div>
+                                    <div>
+                                        
+                                        <button type="button" id="edit-admin-info">Edit</button>
+                                        <div class="btns-edits">
+                                            <button type="button" id="cle-edit-admin-info" style="display: none;">Cancel</button>
+                                            <button type="submit" id="save-admin-info" style="display: none;">Save</button>
+                                        </div>
+                                    </div>
 
-            <% for(let i = 0; i < item.length; i++){ %>
-                <div id="row" class="each-appns">
-                   
-                    <% if(item[i]){ %>
-                    <% if(item[i].timeAP || item[i].nameAP || item[i].lastnameAP || item[i].emailAP || item[i].numberAP || item[i].addressAP || item[i].postAdressAP || item[i].streatAP || item[i].idAP || item[i].date){ %>
+                                </form>    
+                            </div>
+                        </div>
+                        <div class="admin-img">
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="welcomeAdmin" style="display: none;">
+                <h1>Welcome to Admin Page, <br>Here you can do the following things:</h1>
+                <div class="infoa">
+                    <div> User
+                        <li>Delete User</li>
+                        <li>Upadate User</li>
+                        <li>Add User</li>
+                    </div>
+                    <div> Appointment
+                        <li>Delete </li>
+                        <li>Upadate </li>
+                        <li>Add </li>
+                    </div>
+                </div>
+                <div class="admin-dash-btns">
+                    <button class="styled users">Schedule</button>
+                    <button class="styled users">Close</button>
+                </div>
+
+            </div>
+            <div class="add-time-container">
+                <form action="/addTime" method="POST">
+                    <p class="ttl-add-time">Fill all the work hours in each day</p>
+                    <div class="add-days-hours">
+                        <div class="mon">
+                            <label for="mondag">Mån</label>
+                            <input class="add-hours-input" type="number" name="monday" value="0" required>
+                        </div>
+                        <div class="tis">
+                            <label for="tisdag">Tis</label>
+                            <input class="add-hours-input" type="number" name="tuesday" value="0" required>
+                        </div>
+                        <div class="ons">
+                            <label for="onsdag">Öns</label>
+                            <input class="add-hours-input" type="number" name="wednesday" value="0" required>
+                        </div>
+                        <div class="tur">
+                            <label for="tursdag">Tur</label>
+                            <input class="add-hours-input" type="number" name="thursday" value="0"  required>
+                        </div>
+                        <div class="fre">
+                            <label for="fredag">Fre</label>
+                            <input class="add-hours-input" type="number" name="friday" value="0" required>
+                        </div>
+                        <div class="lor">
+                            <label for="lordag">Lör</label>
+                            <input class="add-hours-input" type="number" name="saturday" value="0" required>
+                        </div>
+                        <div class="son">
+                            <label for="sondag">Sön</label>
+                            <input class="add-hours-input" type="number" name="sunday" value="0" required>
+                        </div>
+                        
+                    </div>
+                    <input type="date" name="beginWork">
+                    <input type="date" name="endWork">
+                    <button type="submit" id="add-time">Add the new times</button>
+                </form>
+            </div>
+            <div class="alluser" style="display: none;">
+                <form action="/deleteUser" method="POST">
+                <% for(let i = 0; i < user.length; i++){ %>
+                    <div class="each-item">
+                        <div class="user-nr"><%= [i+1] %></div>
+                        <div class="each-list">
+                            <div class="user-dtl"> <span class="bold"> Name: </span><%= user[i].name %></div>
+                            <div class="user-dtl"> <span class="bold"> Last Name: </span><%= user[i].Lastname %></div>
+                            <div class="user-dtl"> <span class="bold"> Email: </span><%= user[i].email %></div>
+                            <div style="display: none;" class="idTakenFrom"> <input id="idTakenFrom"+i name="uniqueid<%= i %>" type="text" value="<%= user[i]._id %>"></div>
+                            <div style="display: none;" > <input id="boolu<%= i %>" type="text" name="uniqueid<%= i %>" type="text" value="false"></div>
+                                
+                        </div>
+                    </div>
+                <%}%>
+                <button id="adminDeleteUserBtn" class="deleteBtn" type="submit" name="deleteA" value="deleteA"><i class="fas fa-trash-alt"></i><span> Delete</span></button>
+            </form>
+            </div>
+            <div class="allappns" style="display: none;">
+                <form action="/deleteA" method="POST">
+                <% for(let i = 0; i < item.length; i++){ %>
+                    <div class="each-item">
                         <div id="existent"><%= i+1%></div>
-                        <div><span class="bold"> Name: </span><%= item[i].nameAP %> / <%= item[i].lastnameAP %></div>
-                        <div id="mentionCC"><span class="bold"> Appointment: </span><%= item[i].timeAP %></div>
-                        <div><span class="bold"> User Email: </span><%= item[i].numberAP %></div>
-                        <div><span class="bold"> : </span><%= item[i].useremailAP %></div>
-                        <div><span class="bold"> Appointments Email: </span><%= item[i].emailAP %></div>
-                        <div><span class="bold"> Address: </span><%= item[i].addressAP %></div>
-                        <div><span class="bold"> Post Address: </span><%= item[i].postAdressAP %></div>
-                        <div><span class="bold"> Date: </span><%= item[i].date %></div>
-                        <div style="display: none;" class="idTakenFrom"> <input id="idTakenFrom"+i name="uniqueid<%= i %>" type="text" value="<%= item[i]._id %>"></div>
-                        <div style="display: none;" > <input id="bool<%= i %>" type="text" name="uniqueid<%= i %>" type="text" value="false"></div>
-                        <%}} else{%>
-                        
-                    <%}%>
-                        
-                </div>
-            <%}%>
-        </form>
+                        <div id="row" class="each-appns">
+                            <% if(item[i]){ %>
+                            <% if(item[i].timeAP || item[i].nameAP || item[i].lastnameAP || item[i].emailAP || item[i].numberAP || item[i].addressAP || item[i].postAdressAP || item[i].streatAP || item[i].idAP || item[i].date){ %>
+                                
+                                <div><span class="bold"> Name: </span><%= item[i].nameAP %> / <%= item[i].lastnameAP %></div>
+                                <div id="mentionCC"><span class="bold"> Appointment: </span><%= item[i].timeAP %></div>
+                                <div><span class="bold"> User Email: </span><%= item[i].numberAP %></div>
+                                <div><span class="bold"> : </span><%= item[i].useremailAP %></div>
+                                <div><span class="bold"> Appointments Email: </span><%= item[i].emailAP %></div>
+                                <div><span class="bold"> Address: </span><%= item[i].addressAP %></div>
+                                <div><span class="bold"> Post Address: </span><%= item[i].postAdressAP %></div>
+                                <div><span class="bold"> Date: </span><%= item[i].date %></div>
+                                <div style="display: none;" class="idTakenFrom"> <input id="idTakenFrom"+i name="uniqueid<%= i %>" type="text" value="<%= item[i]._id %>"></div>
+                                <div style="display: none;" > <input id="bool<%= i %>" type="text" name="uniqueid<%= i %>" type="text" value="false"></div>
+                                <%}} else{%>
+                                
+                            <%}%>
+                                
+                        </div>
+                    </div>
+                <button id="adminDeleteBtn" class="deleteBtn" type="submit" name="deleteA" value="deleteA"><i class="fas fa-trash-alt"></i><span> Delete</span></button>
+
+                <%}%>
+            </form>
+            </div>
         </div>
     </div>
-    <a href="/admin/logoutA" class="btn btnBooklist btn-sm" id="logoutbtn"> Logout <i class="fas fa-long-arrow-alt-right"></i></a>
 </div>
-
 
 <script src="apps/parts/adminDash.js"></script>

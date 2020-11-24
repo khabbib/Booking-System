@@ -1,48 +1,4 @@
-.admin-container{
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-.admin-title{
-    margin-top: 100px;
-}
-.admin-title h1{
-    font-weight: 300;
 
-}
-.admin-name-ttl{
-    color: var(--pink);
-}
-
-.ttls-data{
-    display: flex;
-    width: 80%;
-    margin: auto;
-    justify-content: space-around;
-}
-
-.data-collection{
-    width: 80%;
-    top: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    overflow: scroll;
-    background: var(--lightblue);
-}
-
-.alluser{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    height: 100%;
-    margin: auto;
-}
 .each-list{
     background: var(--meddleblue);
     margin: 1rem 0;
@@ -58,28 +14,488 @@
 
 .bold{
     font-weight: 600;
-    color: var(--darkfont);
+    color: var(--whiteTableCC);
 }
 .user-dtl{
     color: #999;
 }
 
 
-.allappns{
+
+
+.each-appns div{
+    color: var(--whiteTableCC);
+    font-weight: 200;
+}
+
+
+#adminDeleteBtn{
+    position: absolute;
+    right: 11%;
+    bottom: 12%;
+    color: white;
+    background:var(--warning);
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    display: none;
+    position: fixed;
+}
+#adminDeleteUserBtn{
+    position: absolute;
+    right: 11%;
+    bottom: 12%;
+    color: white;
+    background:var(--warning);
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    display: none;
+    position: fixed;
+}
+
+
+
+.admin-container {
     display: flex;
     flex-direction: column;
+    height: 100%;
+
+}
+/*////////
+
+    admin panel
+
+////////*/
+
+.admin-panel{
+    position: relative;
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/*  panel buttons */
+
+.ttls-data{
+    display: flex;
     justify-content: flex-start;
     align-items: flex-start;
+    width: 100%;
+}
+.styled{
+    color: var(--whiteTableCC);
+    margin: 5px;
+    border-radius: 5px;
+    background: none;
+    padding: 0.5rem 1rem;
+    border: none;
+}
+
+.styled:hover{
+    background: var(--meddledblue);
+}
+
+
+/*  pamel items */
+
+.data-collection{
+    width: 100%;
+    height: 70vh;
+    top: 0;
+    background: url(/source/adminIcon.svg)no-repeat var(--lightblue);
+    display: flex;
+    justify-content: flex-start;
+    background-position: right;
+    position: relative;
+    overflow: scroll;
+    border-radius: 5px;
+    
+}
+
+
+
+
+.allappns{
+    display: flex;
+    width: 95%;
     height: 100%;
     margin: auto;
+}
+.alluser{
+    display: flex;
+    width: 95%;
+    height: 100%;
+    margin: auto;
+}
+.alluser form{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr; 
+    column-gap: 1rem;
+    row-gap: 1rem;
+}
+
+.each-item{
+    cursor: pointer;
+    transition: 0.3s;
+}
+.each-list{
+    border-top: 2px solid var(--meddleblue);
+    transition: 0.3s;
+    
+}
+
+.each-list:hover{
+    box-shadow: 0 30px 30px -12px var(--darkblue);
+    background: var(--meddledblue);
+    transition: 0.3s;
 }
 .each-appns{
     background: var(--meddleblue);
     margin: 1rem 0;
     border-radius: 5px;
     padding: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.each-appns:hover{
+    box-shadow: 0 30px 30px -12px var(--darkblue);
+    background: var(--meddledblue);
+    transition: 0.3s;
+}
+.allappns form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(); 
+    column-gap: 1rem;
+    row-gap: 1rem;
 }
 
-.each-appns div{
-    color: #999;
+
+
+/*////////
+
+    meno bar (logo) (logout)
+
+////////*/
+
+.meno-admin{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 10vh;
+    margin: 0;
 }
+.logout-men{
+    width: 100%;
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+.logout-men a{
+    color: white;
+    background: var(--lightblue);
+    padding: 1rem;
+    border-radius: 5px;
+    display: flex;
+    justify-content: flex-end;
+}
+.logo-admin{
+    flex: 1;
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+}
+.logo-admin a{
+    display: flex;
+    justify-content: flex-start;
+}
+
+
+
+.admin-logo img{
+    width: 150px;
+}
+
+/*////////
+
+    Default welcome page admin
+
+////////*/
+
+.welcomeAdmin{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: auto;
+    text-align: left;
+}
+.welcomeAdmin h1{
+    margin-bottom: 1rem;
+}
+.infoa{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    color: var(--whiteTableCC);
+    background: var(--meddleblue);
+    padding: 1rem;
+
+}
+
+
+
+
+/*////////
+
+    search bar
+
+////////*/
+
+.searchBtn i{
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--whiteTableCC);
+}
+.searchMenu{
+    position: absolute;
+    z-index: 4;
+    left: 0;
+    right: 0;
+    top:10%;
+    background: var(--meddleblue);
+    padding: 1rem;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    border-radius: 5px;
+    width: 95%;
+    margin: auto;
+}
+.searchMenu label{
+    width: 100%;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    opacity: 0.6;
+}
+#searchInput{
+    padding: 1rem;
+    border-radius: 5px;
+    border: 2px solid var(--meddledblue);
+    width: 100%;
+    background: var(--lightblue);
+    margin-bottom: 1rem;
+    color: var(--whiteTableCC);
+}
+#searchInput:hover,
+#searchInput:focus,
+#searchInput:active{
+    border-color: var(--lightblue);
+    box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.11);
+}
+#tosearch{
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    background: var(--lightblue);
+    width: fit-content;
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+/*////////
+
+    Alladmin information
+
+////////*/
+
+.alladmin{
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    align-items:center;
+    flex-direction: column;
+}
+.add-new-admin{
+    width: 100%;
+    height: 10%;
+    margin: 1rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+}
+.addNewAdmin{
+    background: var(--whiteTableCC);
+    color: var(--meddleblue);
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+}
+.addNewAdmin:hover{
+    background: var(--meddleblue);
+    color: var(--whiteTableCC);
+}
+
+.current-admin-container{
+    display: flex;
+    width: 90%;
+    justify-content: flex-start;
+}
+
+#current-admin-name{
+    color: var(--pink);
+}
+
+
+.update-form-admin-info{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background: var(--meddleblue);
+    border-radius: 5px;
+}
+.admin-info-input{
+    padding: 0.4rem;
+    font-weight: 400;
+    color: var(--whiteTableCC);
+    background: none;
+    border: none;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    line-height: 0.5rem;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+#save-admin-info{
+    background: var(--lightgreen);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    border: none;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+#edit-admin-info
+{
+    background: var(--whiteTableCC);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    border: none;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    transition: 0.3s;
+
+}
+#cle-edit-admin-info
+{
+    margin-right: 1rem;
+    background: var(--pink);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    border: none;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    color: var(--whiteTableCC);
+    width: fit-content;
+    transition: 0.3s;
+
+}
+
+.btns-edits{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin: auto;
+    transition: 0.3s;
+
+}
+
+#cle-edit-admin-info:hover,
+#edit-admin-info:hover,
+#save-admin-info:hover{
+    transition: 0.3s;
+    transform: translateY(-2px);
+}
+
+/*////////
+
+    add days hours
+
+////////*/
+
+.add-time-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.add-days-hours{
+    display: flex;
+}
+.add-days-hours div{
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 5px;
+    background: var(--meddledblue);
+    padding: 1rem;
+}
+.add-hours-input{
+    width: 60px;
+    height: 60px;
+    margin: 1rem 0;
+    padding: 0.5rem;
+    background: var(--lightblue);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border: 1px solid var(--lightgreen);
+    box-shadow: 0 0 3px var(--lightgreen);
+    color: var(--whiteTableCC);
+    font-size: 1rem;
+}
+
+#add-time{
+    background: var(--lightgreen);
+    border: none;
+    color: var(--darkfont);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+
+}
+
+/*////////
+
+    scrollbar 
+
+////////*/
+::-webkit-scrollbar{
+    width: 6px;
+    height: 0px;
+    background: none;
+}
+
+::-webkit-scrollbar-track{
+    box-shadow: inset 0 0 20px #3333;
+}
+::-webkit-scrollbar-thumb{
+    background: #fb3585;
+    border-radius: 50px;
+    box-shadow: 0 0 10px #ff0b6d;
+}
+

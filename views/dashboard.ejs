@@ -4,6 +4,10 @@
     
     
 	<p class="profile-title">Welcome | <span id="name-cc"><%= user.name %></span></p>
+	<div class="msgdisplay">
+		<%- include('partials/messages');-%>
+
+	</div>
 	
 	
     <div class="profile">
@@ -57,7 +61,6 @@
 		<div class="col-md-9">
 			<div class="profile-content">
 				<div class="bookningInfo">
-					<%- include('partials/messages');-%>
 					<h1 class="title-bookningInfo">Your Appointments</h1>
 					<div class="container-table100">
 						<div class="wrap-table100">

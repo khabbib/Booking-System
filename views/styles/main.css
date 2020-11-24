@@ -19,7 +19,7 @@
     --lightgray: #f0f0f0;
     --darkgray: #dbdbdb;
     --darkfont: #222831;
-    --white: white;
+    --white: rgba(255, 255, 255, 0.541);
     --gradient: 230deg, #f073c8, #ff6a95;
     --warning: #ec0101;
     --darkwarning: #cd0a0a;
