@@ -202,53 +202,91 @@ label{
 }
 
 #inputs{
-    padding: 1rem 0;
-    margin: 0 auto 1rem auto;
+    padding: 0 0 1rem 0;
     width: 70%;
     display: flex;
     justify-content:center;
     align-items: center;
-    height: 6vh;
+    height: 8vh;
+    margin: 0 auto 1rem auto;
     border-bottom: 1px solid var(--meddleblue);
 }
 
 .times{
-    height: 100%;
+    width: 100%;
+    flex: 1;
     display: flex;
     justify-content: flex-start;
-    flex: 1;
-    width: fit-content;
     align-items: center;
 }
 #year{
-    margin: 0;
+    position: relative;
+    margin-left: 1rem;
     color: var(--whiteTableCC);
+}
+#year::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 10px;
+    height:10px;
+    border-radius: 50px;
+    background: var(--whiteTableCC);
+}
+.btnRestweek{
+    background: var(--lightblue);
+    padding: 0.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--whiteTableCC);
+}
+.btnRestweek:hover{
+    text-decoration: none;
+    background: var(--meddleblue);
 }
 
 .change-year-btn{
-    display: flex;
-    justify-content: flex-start;
     flex: 1;
+    display: flex;
     flex-direction: row-reverse;
+    width: 100%;
+    margin: auto;
 }
-.change-year-btn div{
+.change-year-btn .div{
     background: var(--lightblue);
     padding: 0.5rem;
     margin: 2px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    color: var(--darkfont);
 }
 
-.change-year-btn div:hover{
+.div:hover{
+    color: var(--whiteTableCC);
     background: var(--meddleblue);
+    transition: 0.3s;
 }
+
 .div i{
+    margin: 0 5px;
     color: var(--darkfont);
     font-size: 1.5rem;
 }
 .div:hover > i{
-    color: #eee;
+    color: var(--whiteTableCC);
 }
 .span{
     cursor: pointer;
@@ -338,7 +376,8 @@ label{
 }
 .parttimes{
     cursor: pointer;
-    width: 50%;
+    width: 70%;
+    text-align: center;
     margin: auto;
     display: flex;
     justify-content: center;
@@ -347,7 +386,7 @@ label{
     background: var(--darkgreen);
     border: 4px solid var(--lightgreen);
     box-shadow: 0 0px 5px var(--lightgreen);
-    border-radius: 50px;
+    
     margin-bottom: 5px ;
 }
 

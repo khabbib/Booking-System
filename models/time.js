@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const timeSchema = new mongoose.Schema({
+    
     time: Object, dic: {
         monday: {
         type: Number,
@@ -51,10 +52,17 @@ const timeSchema = new mongoose.Schema({
             required: false
         }
     },
-    date: {
+    meeTing: Object, dic:{
+        meeting:{
+            type: Number
+        }
+    },
+    
+    Date:{
         type: Date,
-        default: Date.now
+        default: Date.now,
     }
+    
 });
 
 const Time = mongoose.model('time', timeSchema);

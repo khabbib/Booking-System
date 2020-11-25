@@ -10,6 +10,7 @@ const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 const nodemailer = require('nodemailer');
 const Pass = require('../config/emailkey');
 const Session = require('../models/session');
+const { updateOne } = require('../models/appointment');
 
 
 // Welcome Page
@@ -49,9 +50,9 @@ router.get('/admin', (req, res) => {
 
 // add days of weeks work time
 router.post('/addTime', (req, res)=>{
+  
   var postTime = {
     time:{
-
       monday: parseInt(req.body.monday),
       tuesday: parseInt( req.body.tuesday),
       wednesday: parseInt(req.body.wednesday),
@@ -67,13 +68,39 @@ router.post('/addTime', (req, res)=>{
     postedBy:{
       UserName: Session[req.cookies.AdminSess][0].name,
       LastName: Session[req.cookies.AdminSess][0].Lastname,
+    },
+    meeTing: {
+      meeting: parseInt(req.body.meetingTime)
     }
   }
-  new Time(postTime)
-  .save()
-  .then(
-    res.redirect('/adminDash')
-  )
+ 
+  Time.find({},(function(err, items) {
+    if (items.length > 0) {
+      Time.find({}, function(err, findd){
+          console.log(findd);
+          Time.updateOne(findd[0], postTime, function(err, finddd){
+            if(err){
+              console.log(err)
+            }else{
+              console.log("updated");
+              res.redirect('/adminDash')
+            }
+          });
+      
+        });
+    }else{
+      console.log("added");
+      new Time(postTime)
+      .save()
+      .then(
+        res.redirect('/adminDash')
+      )
+    }
+    
+  }));
+  
+  
+
 })
 
 router.get('/adminReg', (req, res) => 
@@ -97,107 +124,77 @@ router.get('/table', (req, res) => {
   
     
   
-  mongoose.connect(db, (err, db)=>{
-    if(err) {
-      console.log("Cannot connect to database");
-    } else {
-        console.log("Connected to database");
-    }
-  var collection = db.collection('times');
-    collection.find({}).toArray(function(err, item) {
-      if(err) {
-        console.log(err)
-      }else{
+  
+    
+        // year
+  Time.find({},function(err, infos){
+    if (err) {
+      console.log(err)
+    }else{
+      if (infos.length > 0) {
         var outPut = '';
 
-
         var time = new Date();
-      //var newTime = time.getFullYear() + "/" + time.getMonth() + "/" + time.getDay()
         var timeYMD = [time.getFullYear(), time.getMonth()+1, time.getDate()];
-
-        var maxDays = [31,28,31,30,31,30,31,31,30,31,30,31];
-        var eachWeek = 7;
-        var maxMonth = 12;    
-        var minDays = 0;    
-        var minMonth = 0;   
-        var changeWeeks = 0; 
-
-        // year
-        var workYear = 1;
         var meetingT = 30;
-
-        // months
-        var workMonth = 12;
-        var totalWorkMonth = workYear*workMonth;
-
-        // days
-        var workDays = 5;
-        var totalWorkDays = workDays*totalWorkMonth;
-
-        // our
-
         var workTime2 = [7,6,2,4,7,0,3];
-        var workTime2inmin = []; // [8*60, 4*60....]
+        var workTime2inmin = [];
+        // console.log(infos);
+        meetingT = infos[0]["meeTing"]["meeting"];
+        workTime2 = [
+          infos[0]["time"]["monday"], 
+          infos[0]["time"]["tuesday"],
+          infos[0]["time"]["wednesday"],
+          infos[0]["time"]["friday"],
+          infos[0]["time"]["saturday"],
+          infos[0]["time"]["sunday"]
+      ];
 
-          // change week to minuts
-        for (let i = 0; i < workTime2.length; i++) {
-          const element = workTime2[i];
-          workTime2inmin.push(element*60);
-        };
-
-
-        // testing weeks work times per minuts
-        for (let i = 0; i < workTime2inmin.length; i++) {
-            const element = workTime2inmin[i];
-            console.log(element);
-            
-        };
+    // change week to minuts
+    for (let i = 0; i < workTime2.length; i++) {
+      const element = workTime2[i];
+      workTime2inmin.push(element*60);
+    };
+    // testing weeks work times per minuts
+    for (let i = 0; i < workTime2inmin.length; i++) {
+        const element = workTime2inmin[i];
         
-        for (let o = 0; o < workTime2.length; o++) {
-          var html = '<div class="eachDay" >';
-          var unikTime = new Date(timeYMD[0], timeYMD[1], timeYMD[2], 8, 0, 0);
-          var uniktime2 = new Date(timeYMD[0], timeYMD[1], timeYMD[2], 8, 0, 0);
-          for(let i = 0;i < (workTime2inmin[o]/meetingT); i++){
-              uniktime2.setTime(uniktime2.getTime()+(30 * 60 * 1000));
-              html += `<input class="parttimes" name="eachtime" value="${unikTime.getHours()}:${unikTime.getMinutes()} - ${uniktime2.getHours()}:${uniktime2.getMinutes()}"> <input type="text" id="" value="" style="display: none;"/>`
-              unikTime.setTime(unikTime.getTime()+(30 * 60 * 1000));
-              
-          }
-          html+= '</div>';
-          outPut+= html;
-        }
-        console.log(item);
-        var items = item[0]["postedBy"]["UserName"];
-        
-
-        // check the appointments from MongodDb Dataabse
-        var appointmentCol = db.collection('appointments');
-        var htmlInputs = req.body.eachtime;
-        
-        appointmentCol.find({}).toArray(function(err, appointmentFind){
-
-          if(err){
-            console.log(err);
-          }else{
-            console.log("appointments connected and finded")
-            // console.log(appointmentFind)
-            res.render('table', {
-              title: 'Appointmen',
-              user: req.user,
-              class: 'active',
-              divs: outPut,
-              sclass: 'timeTaken'
-            })
-          }
-        });
+    };
+    // divider times
+    for (let o = 0; o < workTime2.length; o++) {
+      var html = '<div class="eachDay" >';
+      var unikTime = new Date(timeYMD[0], timeYMD[1], timeYMD[2], 8, 0, 0);
+      var uniktime2 = new Date(timeYMD[0], timeYMD[1], timeYMD[2], 8, 0, 0);
+      for(let i = 0;i < (workTime2inmin[o]/meetingT); i++){
+          uniktime2.setTime(uniktime2.getTime()+(meetingT * 60 * 1000));
+          html += `<input class="parttimes" name="eachtime" value="${unikTime.getHours()}:${unikTime.getMinutes()} - ${uniktime2.getHours()}:${uniktime2.getMinutes()}"> `
+          unikTime.setTime(unikTime.getTime()+(meetingT * 60 * 1000));
+          
       }
-    }); 
-
-
-     
-  });
-
-})
+      html+= '</div>';
+      outPut+= html;
+    }
+    
+    Appointment.find({}, function(err, AppFined){
+      if(err){
+        console.log("Appointments not found!");
+      }else{
+          console.log(AppFined)
+      
+          // render final step
+          res.render('table', {
+            title: 'Appointmen',
+            user: req.user,
+            class: 'active',
+            divs: outPut,
+            booked: '',
+            sclass: 'timeTaken'
+          })
+        }
+      });
+    }}
+  })
+});
 
 
 
@@ -214,40 +211,30 @@ router.post('/table',  function(req, res){
   const newAppointment = new Appointment();
   let user = req.user;
   let errors = [];
-  Appointment.findOne({timeAP: req.body.time}, (err, finded)=>{
-    console.log(finded)
-    if(finded){
-      req.flash(
-        'error_msg',
-        'The time is already booked! Please try some of our other times'
-      );
-      res.redirect('/table')
-      return
+  
+  if(user){
+    console.log("user");
+    newAppointment.timeAP = req.body.time;
+    newAppointment.nameAP = req.body.name;
+    newAppointment.lastnameAP = req.body.Lastname; 
+    newAppointment.uniqueID = md5encrypt(req.user.id);
+    newAppointment.useremailAP = req.user.email;
+    newAppointment.emailAP = req.body.email;
+    newAppointment.numberAP = req.body.number;
+    newAppointment.addressAP = req.body.address;
+    newAppointment.postAdressAP = req.body.postAdress;
     }
-    else{
-      if(user){
-        console.log("user");
-        newAppointment.timeAP = req.body.time;
-        newAppointment.nameAP = req.body.name;
-        newAppointment.lastnameAP = req.body.Lastname; 
-        newAppointment.uniqueID = md5encrypt(req.user.id);
-        newAppointment.useremailAP = req.user.email;
-        newAppointment.emailAP = req.body.email;
-        newAppointment.numberAP = req.body.number;
-        newAppointment.addressAP = req.body.address;
-        newAppointment.postAdressAP = req.body.postAdress;
-        }
-        newAppointment.timeAP = req.body.time;
-        newAppointment.nameAP = req.body.name;
-        newAppointment.lastnameAP = req.body.Lastname; 
-        // newAppointment.uniqueID = md5encrypt(req.user.id);
-        // newAppointment.useremailAP = req.user.email;
-        newAppointment.emailAP = req.body.email;
-        newAppointment.numberAP = req.body.number;
-        newAppointment.addressAP = req.body.address;
-        newAppointment.postAdressAP = req.body.postAdress;
-          
-        newAppointment.save(function(err, sent){
+    newAppointment.timeAP = req.body.time;
+    newAppointment.nameAP = req.body.name;
+    newAppointment.lastnameAP = req.body.Lastname; 
+    // newAppointment.uniqueID = md5encrypt(req.user.id);
+    // newAppointment.useremailAP = req.user.email;
+    newAppointment.emailAP = req.body.email;
+    newAppointment.numberAP = req.body.number;
+    newAppointment.addressAP = req.body.address;
+    newAppointment.postAdressAP = req.body.postAdress;
+      
+    newAppointment.save(function(err, sent){
           if(err){
             req.flash(
               'error_msg',
@@ -308,9 +295,7 @@ router.post('/table',  function(req, res){
 
           }
         })
-    }    
 
-  })
 })
    
 

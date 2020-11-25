@@ -120,15 +120,16 @@
       <!-- just a dive to free space -->
       <div class="freespace"></div>
       <!-- date now -->
+      <%- include('partials/messages');-%>
       <div id="inputs">
         <div class="times">
-          
-          <p id="year"></p>
+          <a href="/table" class=" btnRestweek">This Week</a>
+          <p id="year">4</p>
         </div>
-        <%- include('partials/messages');-%>
+        
         <div class="change-year-btn">
-          <div class="div btnFarward"><i class="fas fa-chevron-right"></i></div>
-          <div class="div btnBackward"><i class="fas fa-chevron-left"></i></div>
+          <div class="div btnFarward"> Next Week <i class="fas fa-chevron-right"></i></div>
+          <div class="div btnBackward"><i class="fas fa-chevron-left"></i> Pre Week</div>
           <!-- <p id="guid">change the time here</p> -->
           
 
