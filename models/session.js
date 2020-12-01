@@ -1,4 +1,7 @@
 var sessions = {};
+var tabletime = [];
 
-
-module.exports = sessions;
+module.exports = {
+    Session: sessions,
+    TimeTable: tabletime
+};

@@ -5,11 +5,13 @@ function ss(){
     var dashPage = document.querySelector(".welcomeAdmin");
     var searchPage = document.querySelector(".searchMenu");
     var adminPage = document.querySelector(".alladmin");
+    var addTimePage = document.querySelector(".add-time-container");
     //user panel
     var userBtn = document.querySelector(".users");
     //appointment panel
     var appnBtn = document.querySelector(".appns");
     var adminBtn = document.querySelector(".admins");
+    var chnageHBtn = document.querySelector(".workhours");
     //dashboard panel
     var dashBtn = document.querySelector(".dashboardBtn");
     //dashboard panel
@@ -18,16 +20,19 @@ function ss(){
         dashMenu[i].addEventListener("click", (e)=>{
             var target = e.currentTarget;
             if(target.innerHTML === "Users"){
-                userPage.style.display = "flex";
                 userBtn.style.cssText = "background: var(--lightblue);";
                 appnBtn.style.cssText = "background: none;";
                 dashBtn.style.cssText = "background: none;";
                 adminBtn.style.cssText = "background: none;";
                 searchBtn.style.cssText = "background: none;";
+                chnageHBtn.style.cssText = "background: none;";
+                
                 appnPage.style.display = "none";
                 dashPage.style.display = "none";
                 adminPage.style.display = "none";
                 searchPage.style.display = "none";
+                userPage.style.display = "flex";
+                addTimePage.style.display = "none";
             }
             if(target.innerHTML === "Dashboard"){
                 userBtn.style.cssText = "background: none;";
@@ -35,12 +40,15 @@ function ss(){
                 dashBtn.style.cssText = "background: var(--lightblue);";
                 adminBtn.style.cssText = "background: none;";
                 searchBtn.style.cssText = "background: none;";
+                chnageHBtn.style.cssText = "background: none;";
+
                 userPage.style.display = "none";
                 appnPage.style.display = "none";
                 adminPage.style.display = "none";
-
                 dashPage.style.display = "flex";
                 searchPage.style.display = "none";
+                addTimePage.style.display = "none";
+
             }
             if(target.innerHTML === "Appointments"){
                 userBtn.style.cssText = "background: none;";
@@ -48,11 +56,15 @@ function ss(){
                 dashBtn.style.cssText = "background: none;";
                 adminBtn.style.cssText = "background: none;";
                 searchBtn.style.cssText = "background: none;";
+                chnageHBtn.style.cssText = "background: none;";
+
                 userPage.style.display = "none";
                 appnPage.style.display = "flex";
                 dashPage.style.display = "none";
                 adminPage.style.display = "none";
                 searchPage.style.display = "none";
+                addTimePage.style.display = "none";
+
             }
             if(target.innerHTML === "Admins"){
                 userBtn.style.cssText = "background: none;";
@@ -60,11 +72,15 @@ function ss(){
                 dashBtn.style.cssText = "background: none;";
                 adminBtn.style.cssText = "background: var(--lightblue);";
                 searchBtn.style.cssText = "background: none;";
+                chnageHBtn.style.cssText = "background: none;";
+
                 userPage.style.display = "none";
                 appnPage.style.display = "none";
                 dashPage.style.display = "none";
                 adminPage.style.display = "flex";
                 searchPage.style.display = "none";
+                addTimePage.style.display = "none";
+
             }
             console.log(target.innerHTML)
             if(target.innerHTML === '<i class="fas fa-search"></i>'){
@@ -73,12 +89,33 @@ function ss(){
                 dashBtn.style.cssText = "background: none;";
                 adminBtn.style.cssText = "background: none;";
                 searchBtn.style.cssText = "background: var(--lightblue);";
+                chnageHBtn.style.cssText = "background: none;";
+
                 userPage.style.display = "none";
                 appnPage.style.display = "none";
                 dashPage.style.display = "none";
                 adminPage.style.display = "none";
                 searchPage.style.display = "flex";
+                addTimePage.style.display = "none";
+
             }
+            if(target.innerHTML === 'Change Work Hours'){
+                userBtn.style.cssText = "background: none;";
+                appnBtn.style.cssText = "background: none;";
+                dashBtn.style.cssText = "background: none;";
+                adminBtn.style.cssText = "background: none;";
+                searchBtn.style.cssText = "background: none;";
+                chnageHBtn.style.cssText = "background: var(--lightblue);";
+
+                userPage.style.display = "none";
+                appnPage.style.display = "none";
+                dashPage.style.display = "none";
+                adminPage.style.display = "none";
+                searchPage.style.display = "none";
+                addTimePage.style.display = "flex";
+
+            }
+            
             
         })
         

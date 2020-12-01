@@ -5,7 +5,7 @@ const passport = require('passport');
 const md5encrypt = require('md5');
 // Load User model
 
-const Session = require('../models/session');
+const Session = require('../models/session').Session;
 
 const Admin = require('../models/admin');
 const { forwardAuthenticated } = require('../config/auth');

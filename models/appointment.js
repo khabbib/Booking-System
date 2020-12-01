@@ -8,6 +8,10 @@ const bookedSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  dateAP: {
+    type: String,
+    required: true
+  },
   nameAP: {
     type: String,
     required: false

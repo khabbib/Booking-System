@@ -9,8 +9,66 @@ const Time = require('../models/time');
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 const nodemailer = require('nodemailer');
 const Pass = require('../config/emailkey');
-const Session = require('../models/session');
-const { updateOne } = require('../models/appointment');
+const { TimeTable } = require('../models/session');
+const Session = require('../models/session').Session;
+const TableTime = require('../models/session').TableTime;
+
+
+// variables for time table
+  var days = [];
+  var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+  ];
+  var daysName = ["Mön", "Tis", "Ons", "Tur", "Fre", "Lör", "Son"];
+
+
+  var today = new Date();
+  var todaysDay = today.getDate();
+  var firstDayinWeek =  todaysDay - today.getDay()+1;
+  newdate = new Date(today.getFullYear(), today.getMonth(), firstDayinWeek);
+  var maxDays = [31,28,31,30,31,30,31,31,30,31,30,31];
+
+  router.post('/nextWeek', (req, res)=>{
+    console.log("nextWeek");
+    if (firstDayinWeek > maxDays[newdate.getMonth()])  {
+      newdate.setDate(firstDayinWeek - maxDays[newdate.getMonth()] );  
+      firstDayinWeek = 1;
+      newdate.setMonth(newdate.getMonth()+1);
+      
+    }
+    if(firstDayinWeek <= 0){
+      
+      // newdate.setMonth(newdate.getMonth()+1);
+      firstDayinWeek = newdate.getDate();
+    }
+    newdate.setDate(firstDayinWeek++)
+    res.redirect('/table');
+
+
+  });
+
+
+
+  router.post('/prevWeek', (req, res)=>{
+    console.log("prevWeek");
+    res.redirect('/table')
+  
+  });
+
+
+function formatDate(date) {
+  var d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+
+  if (month.length < 2) 
+      month = '0' + month;
+  if (day.length < 2) 
+      day = '0' + day;
+
+  return [year, month, day].join('-');
+}
 
 
 // Welcome Page
@@ -114,25 +172,30 @@ res.render('done',{
 }));
 
 
-
-
-
-
-
-
 router.get('/table', (req, res) => {
-  
-    
-  
-  
-    
-        // year
+  // year
   Time.find({},function(err, infos){
     if (err) {
       console.log(err)
     }else{
       if (infos.length > 0) {
+        
+        
         var outPut = '';
+        var days = [];
+        var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+      ];
+      var daysName = ["Mön", "Tis", "Ons", "Tur", "Fre", "Lör", "Son"];
+
+
+        var today = new Date();
+        var todaysDay = today.getDate();
+        var firstDayinWeek =  todaysDay - today.getDay()+1;
+        newdate = new Date(today.getFullYear(), today.getMonth(), firstDayinWeek);
+        var maxDays = [31,28,31,30,31,30,31,31,30,31,30,31];
+
+
 
         var time = new Date();
         var timeYMD = [time.getFullYear(), time.getMonth()+1, time.getDate()];
@@ -145,33 +208,54 @@ router.get('/table', (req, res) => {
           infos[0]["time"]["monday"], 
           infos[0]["time"]["tuesday"],
           infos[0]["time"]["wednesday"],
+          infos[0]["time"]["thursday"],
           infos[0]["time"]["friday"],
           infos[0]["time"]["saturday"],
           infos[0]["time"]["sunday"]
       ];
-
     // change week to minuts
     for (let i = 0; i < workTime2.length; i++) {
       const element = workTime2[i];
       workTime2inmin.push(element*60);
     };
-    // testing weeks work times per minuts
-    for (let i = 0; i < workTime2inmin.length; i++) {
-        const element = workTime2inmin[i];
-        
-    };
+   
+    
+  
     // divider times
     for (let o = 0; o < workTime2.length; o++) {
+      if (firstDayinWeek > maxDays[newdate.getMonth()])  {
+        newdate.setDate(firstDayinWeek - maxDays[newdate.getMonth()] );  
+        firstDayinWeek = 1;
+        newdate.setMonth(newdate.getMonth()+1);
+        
+      }
+      if(firstDayinWeek <= 0){
+        
+        // newdate.setMonth(newdate.getMonth()+1);
+        firstDayinWeek = newdate.getDate();
+      }
+      newdate.setDate(firstDayinWeek++)
       var html = '<div class="eachDay" >';
+      html += `<div class="tabled">${daysName[o]} / ${newdate.getDate()} / ${monthNames[newdate.getMonth()]}</div>`;
+
+
+      // TableTime.push(Date.now().toLocaleString('en-GB'));
       var unikTime = new Date(timeYMD[0], timeYMD[1], timeYMD[2], 8, 0, 0);
       var uniktime2 = new Date(timeYMD[0], timeYMD[1], timeYMD[2], 8, 0, 0);
       for(let i = 0;i < (workTime2inmin[o]/meetingT); i++){
           uniktime2.setTime(uniktime2.getTime()+(meetingT * 60 * 1000));
-          html += `<input class="parttimes" name="eachtime" value="${unikTime.getHours()}:${unikTime.getMinutes()} - ${uniktime2.getHours()}:${uniktime2.getMinutes()}"> `
+          var nowDate = new Date();
+          if(nowDate > newdate){
+            html += `<input style="background: gray; opacity: 0.3;" class="expertTime" data-date="${newdate}" name="eachtime" value="${unikTime.getHours()}:${unikTime.getMinutes()} - ${uniktime2.getHours()}:${uniktime2.getMinutes()}" disabled> `;
+          }else{
+            html += `<input class="parttimes" data-date="${newdate}" name="eachtime" value="${unikTime.getHours()}:${unikTime.getMinutes()} - ${uniktime2.getHours()}:${uniktime2.getMinutes()}"> `;
+            
+          }
           unikTime.setTime(unikTime.getTime()+(meetingT * 60 * 1000));
-          
       }
+      
       html+= '</div>';
+
       outPut+= html;
     }
     
@@ -179,15 +263,14 @@ router.get('/table', (req, res) => {
       if(err){
         console.log("Appointments not found!");
       }else{
-          console.log(AppFined)
-      
+        
+
           // render final step
           res.render('table', {
             title: 'Appointmen',
             user: req.user,
             class: 'active',
             divs: outPut,
-            booked: '',
             sclass: 'timeTaken'
           })
         }
@@ -197,24 +280,17 @@ router.get('/table', (req, res) => {
 });
 
 
-
-
-
-
-
-
-
-
-
-
 router.post('/table',  function(req, res){
   const newAppointment = new Appointment();
   let user = req.user;
   let errors = [];
-  
+  var choosenDate = new Date(req.body.datadate);
+  var formatDate = choosenDate.getFullYear()+"/"+choosenDate.getMonth()+"/"+choosenDate.getDate();
   if(user){
     console.log("user");
     newAppointment.timeAP = req.body.time;
+    newAppointment.dateAP = formatDate;
+    
     newAppointment.nameAP = req.body.name;
     newAppointment.lastnameAP = req.body.Lastname; 
     newAppointment.uniqueID = md5encrypt(req.user.id);
@@ -223,7 +299,8 @@ router.post('/table',  function(req, res){
     newAppointment.numberAP = req.body.number;
     newAppointment.addressAP = req.body.address;
     newAppointment.postAdressAP = req.body.postAdress;
-    }
+  }
+    newAppointment.dateAP = formatDate;
     newAppointment.timeAP = req.body.time;
     newAppointment.nameAP = req.body.name;
     newAppointment.lastnameAP = req.body.Lastname; 

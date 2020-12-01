@@ -374,8 +374,7 @@ label{
     flex-direction: column;
     border-right: 1px solid var(--lightblue);
 }
-.parttimes{
-    cursor: pointer;
+.parttimes, .expertTime{
     width: 70%;
     text-align: center;
     margin: auto;
@@ -388,6 +387,9 @@ label{
     box-shadow: 0 0px 5px var(--lightgreen);
     
     margin-bottom: 5px ;
+}
+.parttimes{
+    cursor: pointer;
 }
 
 
@@ -682,3 +684,6 @@ label{
     }
 }
 
+
+
+/*  expert time */

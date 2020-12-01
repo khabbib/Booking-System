@@ -116,3 +116,13 @@ td:last-child{
   color: var(--pinky2);
 }
   
+
+.tabled{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 1rem;
+  border: none;
+  background: red;
+}

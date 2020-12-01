@@ -19,6 +19,7 @@
             <button class="styled users">Users</button>
             <button class="styled appns">Appointments</button>
             <button class="styled admins">Admins</button>
+            <button class="styled workhours">Change Work Hours</button>
             <button class="styled searchBtn"><i class="fas fa-search"></i></button>
             <div class="searchMenu">
                 <label for="search">What are you searching for?</label>
@@ -79,7 +80,7 @@
                     </div>
                 </div>
             </div>
-            <div class="welcomeAdmin" style="display: none;">
+            <div class="welcomeAdmin" style="display: flex;">
                 <h1>Welcome to Admin Page, <br>Here you can do the following things:</h1>
                 <div class="infoa">
                     <div> User
@@ -99,7 +100,7 @@
                 </div>
 
             </div>
-            <div class="add-time-container">
+            <div class="add-time-container" style="display: none;">
                 <form action="/addTime" method="POST">
                     <p class="ttl-add-time">Fill all the work hours in each day</p>
                     <div class="add-days-hours">
@@ -167,9 +168,10 @@
                             <% if(item[i].timeAP || item[i].nameAP || item[i].lastnameAP || item[i].emailAP || item[i].numberAP || item[i].addressAP || item[i].postAdressAP || item[i].streatAP || item[i].idAP || item[i].date){ %>
                                 
                                 <div><span class="bold"> Name: </span><%= item[i].nameAP %> / <%= item[i].lastnameAP %></div>
-                                <div id="mentionCC"><span class="bold"> Appointment: </span><%= item[i].timeAP %></div>
+                                <div id="mentionCC"><span class="bold"> Time: </span><%= item[i].timeAP %></div>
+                                <div id="mentionCC"><span class="bold"> Date: </span><%= item[i].dateAP %></div>
                                 <div><span class="bold"> User Email: </span><%= item[i].numberAP %></div>
-                                <div><span class="bold"> : </span><%= item[i].useremailAP %></div>
+                                <div><span class="bold"> </span><%= item[i].useremailAP %></div>
                                 <div><span class="bold"> Appointments Email: </span><%= item[i].emailAP %></div>
                                 <div><span class="bold"> Address: </span><%= item[i].addressAP %></div>
                                 <div><span class="bold"> Post Address: </span><%= item[i].postAdressAP %></div>
