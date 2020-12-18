@@ -131,53 +131,37 @@
       <%- include('partials/messages');-%>
       <div id="inputs">
         <div class="times">
-          <a href="/table" class=" btnRestweek">This Week</a>
+          <a href="/changeD/?change=thisweek" class=" btnRestweek">This Week</a>
           <p id="year">4</p>
         </div>
         <!-- change week buttons -->
+
         <div class="change-year-btn">
-          <form action="/nextWeek" method="POST">
-            <button type="submit" class="div btnFarward"> Next Week <i class="fas fa-chevron-right"></i></button>
-          </form>
-          <form action="/prevWeek" method="POST">
-            <button type="submit" class="div btnBackward"><i class="fas fa-chevron-left"></i> Pre Week</button>
-          </form>          
+          
+            <a href="/changeD/?change=nextweek" >
+              <button type="submit" class="div btnFarward"> Next Week <i class="fas fa-chevron-right"></i></button>
+            </a>
+            
+              <a href="/changeD/?change=prevweek" >
+                <button type="submit" class="div btnBackward"><i class="fas fa-chevron-left"></i> Pre Week</button>
+              </a>
+          
         </div>
         
       </div>
 
       <!-- time table -->
       <div class="table">
-        <div class="weeks-table" id="weekDays">
-          
-        </div>
+        
         <div class="table-dtl"> 
-          
-        <div class="devss">
-            <span class="nums">1</span>
-            <span class="nums">2</span>
-            <span class="nums">3</span>
-            <span class="nums">4</span>
-            <span class="nums">5</span>
-            <span class="nums">6</span>
-            <span class="nums">7</span>
-            <span class="nums">8</span>
-            <span class="nums">9</span>
-            <span class="nums">10</span>
-            <span class="nums">11</span>
-            <span class="nums">12</span>
-            <span class="nums">13</span>
-            <span class="nums">14</span>
-            <span class="nums">15</span>
-            <span class="nums">16</span>
-        </div>
-        <div class="partet-time">
-          <%- divs %>
+          <div class="devss">
+            
           </div>
+          <div class="partet-time">
+            <%- divs %>
+          </div>
+        </div>
       </div>
-      
-      </div>
-      
   </div>
 
 </div>

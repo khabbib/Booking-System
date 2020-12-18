@@ -339,8 +339,7 @@ label{
 .devss{
     background: var(--darkblue);
     display: flex;
-    justify-content: space-between;
-    flex-direction: column;
+    justify-content: flex-start;
     padding: 1rem 0;
 }
 
@@ -356,11 +355,9 @@ label{
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    margin-bottom: 1rem;
     width: 100%;
-    margin: 1rem auto;
 }
-
-
 
 .divess:first-child{
     padding-top: 1rem;

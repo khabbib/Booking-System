@@ -9,27 +9,49 @@ const Time = require('../models/time');
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 const nodemailer = require('nodemailer');
 const Pass = require('../config/emailkey');
-const { TimeTable } = require('../models/session');
 const Session = require('../models/session').Session;
-const TableTime = require('../models/session').TableTime;
 
 
-// variables for time table
-  var days = [];
-  var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+var outPut = '';
+
+function getInfos(today, todaysDay, firstDayinWeek, newdate, infos, AppFined){
+  
+  if (infos.length > 0) {
+    // next prev week condition
+    
+    var days = [];
+    var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    ];
+    var daysName = ["Mön", "Tis", "Ons", "Tur", "Fre", "Lör", "Son"];
+
+    var maxDays = [31,28,31,30,31,30,31,31,30,31,30,31];
+
+    var time = new Date();
+    var timeYMD = [time.getFullYear(), time.getMonth()+1, time.getDate()];
+    var meetingT = 30;
+    var workTime2 = [7,6,2,4,7,0,3];
+    var workTime2inmin = [];
+    // console.log(infos);
+    meetingT = infos[0]["meeTing"]["meeting"];
+    workTime2 = [
+      infos[0]["time"]["monday"], 
+      infos[0]["time"]["tuesday"],
+      infos[0]["time"]["wednesday"],
+      infos[0]["time"]["thursday"],
+      infos[0]["time"]["friday"],
+      infos[0]["time"]["saturday"],
+      infos[0]["time"]["sunday"]
   ];
-  var daysName = ["Mön", "Tis", "Ons", "Tur", "Fre", "Lör", "Son"];
+// change week to minuts
+  for (let i = 0; i < workTime2.length; i++) {
+    const element = workTime2[i];
+    workTime2inmin.push(element*60);
+  };
 
 
-  var today = new Date();
-  var todaysDay = today.getDate();
-  var firstDayinWeek =  todaysDay - today.getDay()+1;
-  newdate = new Date(today.getFullYear(), today.getMonth(), firstDayinWeek);
-  var maxDays = [31,28,31,30,31,30,31,31,30,31,30,31];
-
-  router.post('/nextWeek', (req, res)=>{
-    console.log("nextWeek");
+// divider times
+  for (let o = 0; o < workTime2.length; o++) {
     if (firstDayinWeek > maxDays[newdate.getMonth()])  {
       newdate.setDate(firstDayinWeek - maxDays[newdate.getMonth()] );  
       firstDayinWeek = 1;
@@ -41,34 +63,92 @@ const TableTime = require('../models/session').TableTime;
       // newdate.setMonth(newdate.getMonth()+1);
       firstDayinWeek = newdate.getDate();
     }
-    newdate.setDate(firstDayinWeek++)
-    res.redirect('/table');
+      newdate.setDate(firstDayinWeek++)
+      var html = '<div class="eachDay" >';
+      html += `<div class="tabled">${daysName[o]} / ${newdate.getDate()} / ${monthNames[newdate.getMonth()]} <input type="hidden" value="${newdate}" /></div>`;
 
+      // TableTime.push(Date.now().toLocaleString('en-GB'));
+      
+      var unikTime = new Date(timeYMD[0], timeYMD[1], timeYMD[2], 8, 0, 0);
+      var uniktime2 = new Date(timeYMD[0], timeYMD[1], timeYMD[2], 8, 0, 0);
+      for(let i = 0;i < (workTime2inmin[o]/meetingT); i++){
+          
+          uniktime2.setTime(uniktime2.getTime()+(meetingT * 60 * 1000));
+          var nowDate = new Date();
+          var compareDate = newdate.getFullYear() + "/" + newdate.getMonth() + "/" + newdate.getDate()
+                            + " " + unikTime.getHours() + ":"+ unikTime.getMinutes()+ " - " + uniktime2.getHours() + ":"+ uniktime2.getMinutes();
+          
+          var addedInput = false;
 
-  });
+          for (let b = 0; b < AppFined.length; b++) {
+            var exportedTime = AppFined[b]["dateAP"] + " " + AppFined[b]["timeAP"];
+            if(compareDate == exportedTime){
+              html += `<input style="background: gray; opacity: 0.3;" class="expertTime" data-date="${newdate}" name="eachtime" value="${unikTime.getHours()}:${unikTime.getMinutes()} - ${uniktime2.getHours()}:${uniktime2.getMinutes()}" disabled> `;
+              addedInput = true;
+            }  
+            
+          }
+          if (!addedInput) {
+            var endDate = new Date(infos[0]["workTime"]["endWork"]);
+              console.log(endDate.getTime());
+              if (newdate.getTime() <= endDate.getTime()) {
 
-
-
-  router.post('/prevWeek', (req, res)=>{
-    console.log("prevWeek");
-    res.redirect('/table')
-  
-  });
-
-
-function formatDate(date) {
-  var d = new Date(date),
-      month = '' + (d.getMonth() + 1),
-      day = '' + d.getDate(),
-      year = d.getFullYear();
-
-  if (month.length < 2) 
-      month = '0' + month;
-  if (day.length < 2) 
-      day = '0' + day;
-
-  return [year, month, day].join('-');
+                if(nowDate > newdate){
+                  html += `<input style="background: gray; opacity: 0.3;" class="expertTime" data-date="${newdate}" name="eachtime" value="${unikTime.getHours()}:${unikTime.getMinutes()} - ${uniktime2.getHours()}:${uniktime2.getMinutes()}" disabled> `;
+                }else{
+                  html += `<input class="parttimes" data-date="${newdate}" name="eachtime" value="${unikTime.getHours()}:${unikTime.getMinutes()} - ${uniktime2.getHours()}:${uniktime2.getMinutes()}"> `;
+                  
+                }
+                
+              }else{
+                html += `<input style="background: gray; opacity: 0.3;" class="expertTime" data-date="${newdate}" name="eachtime" value="${unikTime.getHours()}:${unikTime.getMinutes()} - ${uniktime2.getHours()}:${uniktime2.getMinutes()}" disabled> `;
+                
+              }
+            
+          }
+          unikTime.setTime(unikTime.getTime()+(meetingT * 60 * 1000));
+      }
+    
+      html+= '</div>';
+      outPut+= html;
+    }
+  }
+  return [ today, todaysDay, firstDayinWeek, newdate];
 }
+
+
+// second function 
+
+function get_cookies_packag(cookie, pack_true_unpack_false){
+  /* cookies can be string or array, pack to pack dates to one string 
+      and unpack to unpacke dates to dic with list value {1: ["2020....", "23", "23", "2"]}
+  */
+ try {
+      if(!pack_true_unpack_false){ //unpack the string to dic with value of array
+          var list_of_records = cookie.split("'") 
+          var list_of_records_by_dic = {};
+          for (let i = 0; i < list_of_records.length; i++) {
+              const item = list_of_records[i];
+              list_of_records_by_dic[i+1] = item.split("|");
+          }
+          return list_of_records_by_dic;
+      }else{ // pack the list of dates to string
+          var list_to_string = [];
+          for (let i = 0; i < cookie.length; i++) {
+              const item = cookie[i];
+              
+              list_to_string.push(item.join("|"));
+          }
+          return list_to_string.join("'");
+      } 
+ } catch (error) {
+     console.log(error);
+     return null;
+ }
+
+}
+
+
 
 
 // Welcome Page
@@ -172,111 +252,197 @@ res.render('done',{
 }));
 
 
-router.get('/table', (req, res) => {
-  // year
+router.get('/changeD', (req, res)=>{
+  
   Time.find({},function(err, infos){
     if (err) {
       console.log(err)
     }else{
-      if (infos.length > 0) {
+      Appointment.find({}, function(err, AppFined){
+        if(err){
+          console.log("Appointments not found!");
+        }else{
+          
         
-        
-        var outPut = '';
-        var days = [];
-        var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-      ];
-      var daysName = ["Mön", "Tis", "Ons", "Tur", "Fre", "Lör", "Son"];
+          if (req.cookies.timeStamp == "true") {
+            var today = new Date(req.cookies.today);
+            var todaysDay = req.cookies.todaysDay;
+            var firstDayinWeek =  req.cookies.firstDayinWeek;
+            var newdate = new Date(req.cookies.newdate);
+            var redirekt_to = true;
+            var ended_of_work = false;
+            
+
+            if (req.query.change === "prevweek") {
+              // record the next weeek into the cookies. that later can go back each week backward.
+              var cookies_Record = 0;
+              var cookies_String = get_cookies_packag(req.cookies.StringCookie, false);
+              try {
+                cookies_Record = parseInt(req.cookies.RecordedNextWeek);
+              } catch (error) {
+                cookies_Record = 0;
+              }
+
+              
+              cookies_Record-=1;
+              if (cookies_Record >= 1) {
+                
+                    var prev_week = cookies_String[cookies_Record.toString()];
+                    try {
+                      today = new Date(prev_week[0]);
+                      todaysDay = parseInt(prev_week[1]);
+                      firstDayinWeek = parseInt(prev_week[2]);
+                      newdate = new Date(prev_week[3]);
+                      
+                    } catch (error) {
+                      res.cookie('timeStamp',"false");
+                      res.redirect('/changeD');
+                    }                    
+
+                    delete cookies_String[cookies_Record.toString()];
+                    res.cookie('RecordedNextWeek', cookies_Record.toString())
+                }else{
+                  redirekt_to = false;
+                }
+           
+            }
+
+            else if (req.query.change === "thisweek") {
+              today = new Date();
+              todaysDay = today.getDate();
+              firstDayinWeek =  todaysDay - today.getDay()+1;
+              newdate = new Date(today.getFullYear(), today.getMonth(), firstDayinWeek);
+
+              res.cookie('RecordedNextWeek', "0");
+              res.cookie('StringCookie', '');
+            
+            }
+            
+            if (req.query.change === "nextweek") {
+              var endDate = new Date(infos[0]["workTime"]["endWork"]);
+              console.log(endDate.getTime());
+              if (newdate.getTime() <= endDate.getTime()) {
+                
+                var getRecordCookie = 0; // next week counter
+                
+                try {
+                  getRecordCookie = parseInt(req.cookies.RecordedNextWeek);
+                } catch (error) {
+                  getRecordCookie = 0;
+                }
+                
+                getRecordCookie +=1;
+                res.cookie('RecordedNextWeek', getRecordCookie);
+
+                if (req.cookies.StringCookie) {
+                  var thisweekCookie = get_cookies_packag([[today.toString(), todaysDay.toString(),
+                    firstDayinWeek.toString(), newdate.toString()]], true);
+
+                  res.cookie("StringCookie", req.cookies.StringCookie + "'" + thisweekCookie);
+                  
+                }else{
+                  var thisweekCookie = get_cookies_packag([[today.toString(), todaysDay.toString(),
+                    firstDayinWeek.toString(), newdate.toString()]], true);
 
 
-        var today = new Date();
-        var todaysDay = today.getDate();
-        var firstDayinWeek =  todaysDay - today.getDay()+1;
-        newdate = new Date(today.getFullYear(), today.getMonth(), firstDayinWeek);
-        var maxDays = [31,28,31,30,31,30,31,31,30,31,30,31];
+                  res.cookie('StringCookie', thisweekCookie);
 
+                }
+              }else{
+                ended_of_work = true;
 
+              }
 
-        var time = new Date();
-        var timeYMD = [time.getFullYear(), time.getMonth()+1, time.getDate()];
-        var meetingT = 30;
-        var workTime2 = [7,6,2,4,7,0,3];
-        var workTime2inmin = [];
-        // console.log(infos);
-        meetingT = infos[0]["meeTing"]["meeting"];
-        workTime2 = [
-          infos[0]["time"]["monday"], 
-          infos[0]["time"]["tuesday"],
-          infos[0]["time"]["wednesday"],
-          infos[0]["time"]["thursday"],
-          infos[0]["time"]["friday"],
-          infos[0]["time"]["saturday"],
-          infos[0]["time"]["sunday"]
-      ];
-    // change week to minuts
-    for (let i = 0; i < workTime2.length; i++) {
-      const element = workTime2[i];
-      workTime2inmin.push(element*60);
-    };
-   
-    
-  
-    // divider times
-    for (let o = 0; o < workTime2.length; o++) {
-      if (firstDayinWeek > maxDays[newdate.getMonth()])  {
-        newdate.setDate(firstDayinWeek - maxDays[newdate.getMonth()] );  
-        firstDayinWeek = 1;
-        newdate.setMonth(newdate.getMonth()+1);
-        
-      }
-      if(firstDayinWeek <= 0){
-        
-        // newdate.setMonth(newdate.getMonth()+1);
-        firstDayinWeek = newdate.getDate();
-      }
-      newdate.setDate(firstDayinWeek++)
-      var html = '<div class="eachDay" >';
-      html += `<div class="tabled">${daysName[o]} / ${newdate.getDate()} / ${monthNames[newdate.getMonth()]}</div>`;
-
-
-      // TableTime.push(Date.now().toLocaleString('en-GB'));
-      var unikTime = new Date(timeYMD[0], timeYMD[1], timeYMD[2], 8, 0, 0);
-      var uniktime2 = new Date(timeYMD[0], timeYMD[1], timeYMD[2], 8, 0, 0);
-      for(let i = 0;i < (workTime2inmin[o]/meetingT); i++){
-          uniktime2.setTime(uniktime2.getTime()+(meetingT * 60 * 1000));
-          var nowDate = new Date();
-          if(nowDate > newdate){
-            html += `<input style="background: gray; opacity: 0.3;" class="expertTime" data-date="${newdate}" name="eachtime" value="${unikTime.getHours()}:${unikTime.getMinutes()} - ${uniktime2.getHours()}:${uniktime2.getMinutes()}" disabled> `;
+            }
+            var listOutPuts = [];
+            if (!ended_of_work) {
+              outPut = '';
+              listOutPuts = getInfos(today, todaysDay, firstDayinWeek, newdate, infos, AppFined);
+              
+            }
+            
+            today = listOutPuts[0];
+            todaysDay = listOutPuts[1];
+            firstDayinWeek = listOutPuts[2];
+            newdate = listOutPuts[3];
+            if (redirekt_to) {
+              res.cookie('timeStamp',"true");
+              
+            }else{
+              res.cookie('timeStamp',"false");
+              
+            }
+            
+            res.cookie('today', today);
+            res.cookie('todaysDay', todaysDay);
+            res.cookie('firstDayinWeek', firstDayinWeek);
+            res.cookie('newdate', newdate);
+            res.redirect('/table');
+            
+            
+            
+            
           }else{
-            html += `<input class="parttimes" data-date="${newdate}" name="eachtime" value="${unikTime.getHours()}:${unikTime.getMinutes()} - ${uniktime2.getHours()}:${uniktime2.getMinutes()}"> `;
+            outPut = '';
+
+            var today = new Date();
+            var todaysDay = today.getDate();
+            var firstDayinWeek =  todaysDay - today.getDay()+1;
+            var newdate = new Date(today.getFullYear(), today.getMonth(), firstDayinWeek);
+            var listOutPuts = getInfos(today, todaysDay, firstDayinWeek, newdate, infos, AppFined);
+            
+            today = listOutPuts[0];
+            todaysDay = listOutPuts[1];
+            firstDayinWeek = listOutPuts[2];
+            newdate = listOutPuts[3];
+            res.cookie('timeStamp',"true");
+            
+            res.cookie('today', today);
+            res.cookie('todaysDay', todaysDay);
+            res.cookie('firstDayinWeek', firstDayinWeek);
+            res.cookie('newdate', newdate);
+            console.log("second if");
+
+            res.cookie('RecordedNextWeek', "0");
+            res.cookie('StringCookie', '');
+
+
+            res.redirect('/table');
+
             
           }
-          unikTime.setTime(unikTime.getTime()+(meetingT * 60 * 1000));
-      }
-      
-      html+= '</div>';
-
-      outPut+= html;
-    }
-    
-    Appointment.find({}, function(err, AppFined){
-      if(err){
-        console.log("Appointments not found!");
-      }else{
-        
-
-          // render final step
-          res.render('table', {
-            title: 'Appointmen',
-            user: req.user,
-            class: 'active',
-            divs: outPut,
-            sclass: 'timeTaken'
-          })
         }
       });
-    }}
+    }
   })
+  
+});
+
+
+        // change date rout
+router.get('/table', (req, res) => {
+  if(req.cookies.timeStamp == "true"){
+    var xx = outPut;
+    // outPut = '';
+
+    if (xx.length > 0) {
+      res.render('table', {
+        title: 'Appointmen',
+        user: req.user,
+        class: 'active',
+        divs: xx,
+        sclass: 'timeTaken'
+      })  
+    }else{
+      res.cookie('timeStamp', 'false');
+      res.redirect('/changeD');
+      
+    }
+    
+  }else{
+    res.redirect('/changeD');
+  }
+
 });
 
 
@@ -319,7 +485,7 @@ router.post('/table',  function(req, res){
             );
             res.redirect('table');
           }else {
-            const output = `
+            const outputmail = `
               <p>Hej</p>
               <p>You have booked an appointment!</p>
               <h3>The appointments details</h3>
@@ -350,7 +516,7 @@ router.post('/table',  function(req, res){
             to: `${req.body.email}`, // list of receivers
             subject: 'New Appointment', // Subject line
             text: "Bookning", // plain text body
-            html: output
+            html: outputmail
           };
 
         // send mail with defined transport object
@@ -379,7 +545,7 @@ router.post('/table',  function(req, res){
 
 // user delete control router
 
-router.post('/delete',  function(req, res){
+router.post('/deleteUserAP',  function(req, res){
   console.log(req.body)
   var GoneThrough = true;
   try {

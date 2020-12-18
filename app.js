@@ -9,11 +9,6 @@ const path = require('path');
 const app = express();
 const cookieParser = require('cookie-parser');
 
-// expressdesign1121@gmail.com
-
-// ny made
-// main page
-
 // Passport Config
 require('./config/passport')(passport);
 

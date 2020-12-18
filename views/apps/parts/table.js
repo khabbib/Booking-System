@@ -1,39 +1,4 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ///////////
 ////////////// transpher value of inputs
 ///////////
@@ -93,6 +58,7 @@ transferValue();
 ///////////
 
 function dateChanges(){
+    
     var weekDays = document.getElementById("weekDays");
     
     var days = [];
@@ -110,24 +76,24 @@ function dateChanges(){
     console.log(firstDayinWeek);
     console.log(maxDays[newdate.getMonth()]);
     
-    for (let i = 0; i <= 6; i++) {
-        console.log(newdate);
-        if (firstDayinWeek > maxDays[newdate.getMonth()])  {
-            newdate.setDate(firstDayinWeek - maxDays[newdate.getMonth()] );  
-            firstDayinWeek = 1;
-            newdate.setMonth(newdate.getMonth()+1);
-            console.log("if stat");
+    // for (let i = 0; i <= 6; i++) {
+    //     console.log(newdate);
+    //     if (firstDayinWeek > maxDays[newdate.getMonth()])  {
+    //         newdate.setDate(firstDayinWeek - maxDays[newdate.getMonth()] );  
+    //         firstDayinWeek = 1;
+    //         newdate.setMonth(newdate.getMonth()+1);
+    //         console.log("if stat");
             
-        }else if(firstDayinWeek <= 0){
+    //     }else if(firstDayinWeek <= 0){
             
-            // newdate.setMonth(newdate.getMonth()+1);
-            firstDayinWeek = newdate.getDate();
-            console.log("if state")
-        }
+    //         // newdate.setMonth(newdate.getMonth()+1);
+    //         firstDayinWeek = newdate.getDate();
+    //         console.log("if state")
+    //     }
         
-        newdate.setDate(firstDayinWeek++)
-        weekDays.innerHTML += `<div class="weekdays" id='${i}'>${daysName[i]} / ${newdate.getDate()} / ${monthNames[newdate.getMonth()]}</div>`;
-    }
+    //     newdate.setDate(firstDayinWeek++)
+    //     weekDays.innerHTML += `<div class="weekdays" id='${i}'>${daysName[i]} / ${newdate.getDate()} / ${monthNames[newdate.getMonth()]}</div>`;
+    // }
  
 
 
