@@ -426,7 +426,7 @@ label{
 }
 .bg-size-container{
     height: 100%;
-    margin: auto;
+    margin: auto 1rem;
     width: 100%;
     display: flex;
     flex-direction: column;

@@ -102,3 +102,21 @@ function dateChanges(){
 }
 dateChanges();
 
+///////////
+////////////// close form
+///////////
+
+function closeForm(){
+    var formAPC = document.getElementById("formAPC"); // the whole form that pop up and pop down
+    var btn = document.querySelector(".closeFormBtn");
+    var selectedTime = document.querySelector(".selected");
+    
+    
+    btn.addEventListener("click", ()=> {
+        formAPC.style.display = "none";
+        document.querySelector(".selected").style.opacity = "1"
+    })
+}
+
+closeForm();
+

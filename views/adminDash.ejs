@@ -1,17 +1,20 @@
+<!-- animation background -->
 <%- include('partiallink/animatedbg'); -%>
 
+<!-- admin container -->
 <div class="admin-container">
+        
+    <!-- admin menu -->
     <div class="meno-admin">
         <div class="logout-men">
-            <a href="/admin/logoutA"> Logout </a>
+            <a href="/admin/logoutA"> <i class="fas fa-sign-out-alt"></i> </a>
         </div>
         <div class="logo-admin">
             <a class="admin-logo" href="/"><img src="/source/booker.svg" alt=""></a>
         </div>
     </div>
-    <div class="admin-title">
-        <h1> Admin Page <span class="admin-name-ttl"></span></h1>
-    </div>
+
+    <!-- admin contents -->
     <div class="admin-panel">
         <%- include('partials/messages');-%>
         <div class="ttls-data">
@@ -31,47 +34,16 @@
             
             <div class="alladmin" style="display: none;">
                 
-                <div class="add-new-admin">
-                    <a href="/adminReg">
-                        <button type="button" class="addNewAdmin" id="addNewAdmin">Add New Admin</button>
-                    </a>
-                </div>
+                
+                <h3>Edit the current admin information or register a new admin.</h3>
                 <div class="current-admin-container">
                     <div class="current-admin">
                         <div class="admin-infos">
-                            <h1 id="openPrg">Current Admin is: <span id="current-admin-name"> Admin.name</span></h1>
                             <div class="admin-info">
-                                <form class="update-form-admin-info" action="/updateA" method="POST">
-                                    <div>
-                                        <label for="name">Name:</label>
-                                        <input class="admin-info-input" type="text" value="admin.name" name="name" disabled>
-                                    </div>
-                                    <div>
-                                        <label for="name">Last Name: </label>
-                                        <input class="admin-info-input" type="text" value="admin.lastname" name="lastname" disabled>
-                                    </div>
-                                    <div>
-                                        <label for="name">Number: </label>
-                                        <input class="admin-info-input" type="text" value="admin.number" name="number" disabled>
-                                    </div>
-                                    <div>
-                                        <label for="name">Rul: </label>
-                                        <input class="admin-info-input" type="text" value="admin.rul" name="rul" disabled>
-                                    </div>
-                                    <div>
-                                        <label for="name">Id: </label>
-                                        <input class="admin-info-input" type="text" value="admin.id" name="id" disabled>
-                                    </div>
-                                    <div>
-                                        
-                                        <button type="button" id="edit-admin-info">Edit</button>
-                                        <div class="btns-edits">
-                                            <button type="button" id="cle-edit-admin-info" style="display: none;">Cancel</button>
-                                            <button type="submit" id="save-admin-info" style="display: none;">Save</button>
-                                        </div>
-                                    </div>
-
-                                </form>    
+                                
+                                <a class="editAdminInfo" href="/update_admin">Edit Admin Info</a>
+                                <a href="/adminReg" class="addNewAdmin" id="addNewAdmin">Add New Admin</a>
+                                
                             </div>
                         </div>
                         <div class="admin-img">
@@ -102,27 +74,27 @@
             </div>
             <div class="add-time-container" style="display: none;">
                 <form action="/addTime" method="POST">
-                    <p class="ttl-add-time">Fill all the work hours in each day</p>
+                    <p class="ttl-add-time">Each day work hours: </p>
                     <div class="add-days-hours">
                         <div class="mon">
                             <label for="mondag">Mån</label>
-                            <input class="add-hours-input" type="number" name="monday" value="0" required>
+                            <input class="add-hours-input" type="number" name="monday" value="8" required>
                         </div>
                         <div class="tis">
                             <label for="tisdag">Tis</label>
-                            <input class="add-hours-input" type="number" name="tuesday" value="0" required>
+                            <input class="add-hours-input" type="number" name="tuesday" value="8" required>
                         </div>
                         <div class="ons">
                             <label for="onsdag">Öns</label>
-                            <input class="add-hours-input" type="number" name="wednesday" value="0" required>
+                            <input class="add-hours-input" type="number" name="wednesday" value="8" required>
                         </div>
                         <div class="tur">
                             <label for="tursdag">Tur</label>
-                            <input class="add-hours-input" type="number" name="thursday" value="0"  required>
+                            <input class="add-hours-input" type="number" name="thursday" value="8"  required>
                         </div>
                         <div class="fre">
                             <label for="fredag">Fre</label>
-                            <input class="add-hours-input" type="number" name="friday" value="0" required>
+                            <input class="add-hours-input" type="number" name="friday" value="8" required>
                         </div>
                         <div class="lor">
                             <label for="lordag">Lör</label>
@@ -134,10 +106,24 @@
                         </div>
                         
                     </div>
-                    <input type="number" name="meetingTime" value="30">
-                    <input type="date" name="beginWork">
-                    <input type="date" name="endWork">
-                    <button type="submit" id="add-time">Add the new times</button>
+                    <div class="ruls-add-time">
+
+                        <label for="meetingTime">
+                            <p> Appointment minuts:</p>
+                        <input class="meetingTime design_add_time_input" type="number" name="meetingTime" value="30">
+                        </label>
+                        <label for="meetingTime">
+                            <p> Begin Work Date:</p>
+                            <input class="design_add_time_input" type="date" name="beginWork">
+                            
+                        </label>
+                        <label for="meetingTime">
+                            <p> Finish Work Date:</p>
+                            <input class="design_add_time_input" type="date" name="endWork">
+                            
+                        </label>
+                    </div>
+                    <button type="submit" id="add-time">Submit</button>
                 </form>
             </div>
             <div class="alluser" style="display: none;">
@@ -191,6 +177,9 @@
             </div>
         </div>
     </div>
+
+
 </div>
 
+<!-- scripts -->
 <script src="apps/parts/adminDash.js"></script>

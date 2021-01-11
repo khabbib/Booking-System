@@ -1,21 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
-const passport = require('passport');
 const md5encrypt = require('md5');
 // Load User model
 
 const Session = require('../models/session').Session;
 
 const Admin = require('../models/admin');
-const { forwardAuthenticated } = require('../config/auth');
-const { collection, find } = require('../models/admin');
 const db = require('../config/keys').mongoURI;
 const mongoose = require('mongoose');
-const { response } = require('express');
-const { password } = require('../config/emailkey');
-const { has } = require('browser-sync');
-const sessions = require('../models/session');
 
 function random(low, high) {
   return Math.random() * (high - low) + low
@@ -39,7 +32,7 @@ router.post('/registerA', (req, res) => {
   }
 
   if (errors.length > 0) {
-    res.render('admin', {
+    res.render('adminReg', {
       errors,
       name,
       Lastname,
@@ -51,7 +44,7 @@ router.post('/registerA', (req, res) => {
     Admin.findOne({ email: email }).then(admin => {
       if (admin) {
         errors.push({ msg: 'Email already exists' });
-        res.render('admin', {
+        res.render('adminReg', {
           errors,
           name,
           Lastname,
@@ -91,50 +84,66 @@ router.post('/registerA', (req, res) => {
 
 // Login
 router.post('/loginA', (req, res) => {
+  const {mail, pass} = req.body;
   let errors = [];
   mongoose.connect(db, (err, db)=>{
     if(err) {
       console.log("Cannot connect to database");
     } else {
-        console.log("Connected to database");
-    }
+      console.log("Connected to database");
+    
     
     var collection = db.collection('admins');
     collection.find({}).toArray(function(err, item) {
+      
       var list_of_client = [];
       for (x in item) {
         if (req.body.email === item[x].email) {
           list_of_client.push(item[x]);
+
           break;
         }
       }
-      if (list_of_client.length == 1) {
-        bcrypt.compare(req.body.password, list_of_client[0].password, (err, isMatch)=>{
-          if (isMatch) {
-          var rand = random(10, 1000);
-          var hashed = md5encrypt(list_of_client[0].password+rand)
-          Session[hashed] = [list_of_client[0], hashed];
-          res.cookie('AdminSess', hashed,{ maxAge: 900000, httpOnly: true });
-          res.redirect('/adminDash')
-          console.log(Session.ActivSession)
-          }else{
-            errors.push({ msg: 'Email or password' });
-            res.render('admin', {
-              title: 'Admin',
-              errors
-            });
-            
-          }
-          // res.cookie('AdminSess', '');
+      
+      if (list_of_client[0]) {
+
+        if (list_of_client.length == 1) {
+          bcrypt.compare(req.body.password, list_of_client[0].password, (err, isMatch)=>{
+            if (isMatch) {
+              var rand = random(10, 1000);
+              var hashed = md5encrypt(list_of_client[0].password+rand)
+              Session[hashed] = [list_of_client[0], hashed];
+              res.cookie('AdminSess', hashed,{ maxAge: 900000, httpOnly: true });
+              res.cookie('admin_email', list_of_client[0].email);
+              res.redirect('/adminDash')
+            }else{
+              errors.push({ msg: 'Email or password' });
+              res.render('admin', {
+                errors,
+                title: 'Admin',
+                mail,
+                pass
+              });
+              
+              
+            }
+          });
+        }else{
+          res.render('admin');
+          errors.push({ msg: 'Email or password' });
           
-          
-        })  
+        }
       }else{
-        res.render('admin');
-        
+        errors.push({ msg: 'Email or password' });
+        res.render('admin', {
+          errors,
+              title: 'Admin',
+              mail,
+              pass
+        });
       }
     }); 
-    
+  }
   })
  
     

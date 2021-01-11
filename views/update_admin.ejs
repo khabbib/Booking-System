@@ -1,0 +1,47 @@
+
+<%- include('partiallink/animatedbg'); -%>
+
+<a class="back-dash" style="position: absolute; color: white; margin: 1rem; background: var(--lightblue); padding: 0.5rem 1rem;" href="/adminDash" class="addNewAdmin" id="addNewAdmin"><- Dashboard</a>
+<div class="update-admin-container">
+    <div class="btn-back-adminDash">
+        <span class="back_adminDash" > -> Dashboard</a>
+
+    </div>
+    <form class="update-form-admin-info" action="/updateAdminInfo" method="POST">
+        <div>
+            <label for="name">Name:</label>
+            <input class="admin-info-input" type="text" value="" placeholder="Name" name="name" disabled>
+        </div>
+        <div>
+            <label for="name">Last Name: </label>
+            <input class="admin-info-input" type="text" value="" placeholder="Last Name" name="lastname" disabled>
+        </div>
+        <div>
+            <label for="name">Email: </label>
+            <input class="admin-info-input" type="text" value="" placeholder="Email" name="email" disabled>
+        </div>
+        <div>
+            <label for="name">Password: </label>
+            <input class="admin-info-input" type="text" value="" placeholder="Password" name="password" disabled>
+        </div>
+        <div>
+            <label for="name">Confirm Password: </label>
+            <input class="admin-info-input" type="text" value="" placeholder="Confirm Password" name="cf_password" disabled>
+        </div>
+        <div>
+            
+            <div class="btns-edits">
+                <button type="button" id="edit-admin-info">Edit</button>
+                <button type="button" id="cle-edit-admin-info" style="display: none;">Cancel</button>
+                <button type="submit" id="save-admin-info" style="display: none;">Save</button>
+            </div>
+        </div>
+        
+    </form>  
+    <%- include('partials/messages'); -%>
+    
+</div>
+
+
+
+<script src="./apps/parts/update_admin.js"></script>

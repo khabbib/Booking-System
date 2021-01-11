@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 const md5encrypt = require('md5');
 const db = require('../config/keys').mongoURI;
 ObjectID = require('mongodb').ObjectID;
@@ -10,6 +11,7 @@ const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 const nodemailer = require('nodemailer');
 const Pass = require('../config/emailkey');
 const Session = require('../models/session').Session;
+const Admin = require('../models/admin');
 
 
 var outPut = '';
@@ -237,14 +239,134 @@ router.post('/addTime', (req, res)=>{
     
   }));
   
+});
+
+// update admin infos
+router.get('/update_admin', (req, res) => {
+  if (req.cookies.AdminSess) {
+
+    if(Session[req.cookies.AdminSess]){
+        res.render('update_admin', {
+          title: 'Update infos'
+        })
+        console.log("Update Admin Page accessed ")
+      
+    }else{
+      res.render('admin');
+          
+    }
+  }else{
+    res.render('admin');  
+  }
+
+});
+// update admin info
+router.post('/updateAdminInfo', (req, res)=>{
+  
+  
+    var updateAdmin = {
+      name: req.body.name,
+      Lastname: req.body.lastname,
+      email: req.body.email,
+      password: req.body.password,
+      password2: req.body.cf_password
+    }
   
 
-})
+  // conditions
+    let errors = [];
 
-router.get('/adminReg', (req, res) => 
-res.render('adminReg',{
-  title: 'Admin Reg'
-}));
+    if (!updateAdmin.name || !updateAdmin.Lastname || !updateAdmin.email || !updateAdmin.password || !updateAdmin.password2) {
+      errors.push({ msg: 'Please enter all fields' });
+    }
+
+    if (updateAdmin.password != updateAdmin.password2) {
+      errors.push({ msg: 'Passwords do not match' });
+    }
+
+    if (updateAdmin.password.length < 6) {
+      errors.push({ msg: 'Password must be at least 6 characters' });
+    }
+
+    if (errors.length > 0) {
+      res.render('update_admin');
+    } else {
+      Admin.findOne({ email: req.cookies["admin_email"] }, (err, admin)=> {
+        
+        if(admin) {
+          console.log(admin)
+        
+          var updateAdmin = {
+            name: req.body.name,
+            Lastname: req.body.lastname,
+            email: req.body.email,
+            password: req.body.password,
+            password2: req.body.cf_password
+          }
+        
+          
+          bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash(updateAdmin.password, salt, (err, hash) => {
+              if (err) throw err;
+              updateAdmin.password = hash;
+              Admin.updateOne(admin, updateAdmin, (err, updated)=>{
+                if (err) {
+                  console.log(err, "not updated");
+                }else{
+                  console.log("Admin is updated!");
+                  req.logout();
+                  try {
+                    delete Session[req.cookies.AdminSess];
+                    
+                  } catch (err) {
+                    console.log(err)
+                  }
+                  res.cookie('AdminSess', '');
+                  req.flash('success_msg', 'You are now registered and can log in');
+                  console.log(Session);
+
+                  res.redirect('/admin');
+                  console.log(updated)
+                }
+              })
+            });
+          });
+        }else{
+          res.render('update_admin', {
+            errors
+          });
+          errors.push({ msg: 'Not Registred!'});
+          console.log("not found")
+        }
+      });
+
+
+
+
+    }
+
+
+  
+});
+
+router.get('/adminReg', (req, res) => {
+  if (req.cookies.AdminSess) {
+
+    if(Session[req.cookies.AdminSess]){
+        res.render('adminReg', {
+          title: 'Admin Registration'
+        })
+        console.log("New Admin registered")
+      
+    }else{
+      res.render('admin');
+          
+    }
+  }else{
+    res.render('admin');  
+  }
+
+});
 
 router.get('/done', (req, res) => 
 res.render('done',{
@@ -729,10 +851,10 @@ router.get('/dashboard', ensureAuthenticated, (req, res) =>{
 
 router.get('/adminDash', (req, res)=>{
   var redirectPage = false;
-  
+
+
   if (req.cookies.AdminSess) {
     if (req.cookies.AdminSess.length > 0) {
-      console.log(Session)
         if (Session[req.cookies.AdminSess]) {
           try {
             if (Session[req.cookies.AdminSess][1] == req.cookies.AdminSess) {
@@ -743,55 +865,67 @@ router.get('/adminDash', (req, res)=>{
                   
                 }
                 var adminCollection = db.collection('admins');
-               
-                adminCollection.findOne({password: req.cookies.AdminSess},(err, find)=>{
-                  if(err){
+                adminCollection.find({}).toArray( (err, adminFind)=>{
+                  if (err) {
                     console.log(err);
-                    res.redirect('/')
-                  }
-                  else{
-                    
-                    var uses = db.collection('users');
-                    uses.find({}).toArray(function(err, usr){
-                        var appointment = db.collection('appointments');
-                        appointment.find({}).toArray((err, appns)=>{
-                          res.render('adminDash',{
-                            title: 'Admin dashboard',
-                            user: usr,
-                            item: appns,
-                            admin: adminCollection
-                          })
-                        })
+                  }else{
+                    // take the current admin info from cookie 
+                      var list_of_admin = [];
+                      for (x in adminFind) {
+                        if (req.cookies["admin_email"] === adminFind[x].email) {
+                          list_of_admin.push(adminFind[x]);
+                          break;
+                        }
+                      }
+                      
+
+                      adminCollection.findOne({password: req.cookies.AdminSess},(err, find)=>{
                         
-                    });
-                  } 
-                  
+                        if(err){
+                          console.log(err);
+                          res.redirect('/')
+                        }
+                        else{
+                          
+                          var uses = db.collection('users');
+                          uses.find({}).toArray(function(err, usr){
+                              var appointment = db.collection('appointments');
+                              appointment.find({}).toArray((err, appns)=>{
+                                res.render('adminDash',{
+                                  title: 'Admin dashboard',
+                                  user: usr,
+                                  item: appns,
+                                  current_admin: list_of_admin[0],
+                                  admin: adminCollection
+                                })
+                              })
+                              
+                          });
+                        } 
+                      
+                      })
+                  }
                 })
               })
               }else{
               redirectPage = true;
-              console.log("1")
             }
           } catch (err) {
             redirectPage = true;
-            console.log("catch")
           }
           
         }
         else{
           redirectPage = true;
-          console.log("2")
         }
       
     }
     else{
       redirectPage = true;
-      console.log("4")
     }
   }
   else{
     redirectPage = true;
-    console.log("5")
     }
 
 if(redirectPage){

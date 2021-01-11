@@ -23,8 +23,9 @@
 }
 
 .profile-title{
+  width: 80%;
   font-size: 2rem;
-  text-align: center;
+  text-align: left;
   margin: 4rem auto;
   color: var(--whiteTableCC);
 }
@@ -178,12 +179,11 @@
       position: relative;
       border-top: 4px solid var(--meddleblue);
       padding: 20px;
-      background: url(../../source/parts/subscribe-widget-bg.svg) no-repeat center, var(--lightblue);
+      background:  var(--lightblue);
       box-shadow: 0 30px 50px -12px rgba(7, 114, 255, 0.075);
-      min-height: 460px;
+      min-height: 50vh;
       display: flex;
       justify-content: flex-start;
-      align-items: flex-start;
       width: 100%;
       overflow: auto;
       margin-bottom: 4rem;
@@ -195,7 +195,6 @@
       font-size: 2rem;
       margin: 2rem 0;
       padding-bottom: 0.8rem;
-      border-bottom: 1px solid var(--lightblue);
     }
 
     /*//////////////  table  //////////////////*/

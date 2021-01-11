@@ -72,11 +72,7 @@
 												<th>Name</th>
 												<th>Appointment</th>
 												<th>PhoneNo</th>
-												<th>User mail</th>
 												<th>Bookning Email</th>
-												<th>Address</th>
-												<th>PostNo</th>
-												<th>Date</th>
 												<th style="display: none;"></th>
 											</tr>
 									</table>
@@ -92,16 +88,12 @@
 												 <tr class="Rownm rowOnClick">
 													
 													<% if(item[i]){ %>
-														<% if(item[i].timeAP || item[i].nameAP || item[i].lastnameAP || item[i].emailAP || item[i].numberAP || item[i].addressAP || item[i].postAdressAP || item[i].streatAP || item[i].idAP || item[i].date){ %>
+														<% if(item[i].timeAP || item[i].nameAP || item[i].emailAP || item[i].numberAP  || item[i].idAP){ %>
 														  <td id="existent"><%= i+1%></td>
 														  <td><%= item[i].nameAP %> / <%= item[i].lastnameAP %></td>
-														  <td id="mentionCC"><%= item[i].timeAP %></td>
+														  <td id="mentionCC"><%= item[i].timeAP %> ( <%= item[i].dateAP %> ) </td>
 														  <td><%= item[i].numberAP %></td>
-														  <td><%= item[i].useremailAP %></td>
 														  <td><%= item[i].emailAP %></td>
-														  <td><%= item[i].addressAP %></td>
-														  <td><%= item[i].postAdressAP %></td>
-														  <td><%= item[i].date %></td>
 														  <td style="display: none;" class="idTakenFrom"> <input id="idTakenFrom"+i name="uniqueid<%= i %>" type="text" value="<%= item[i]._id %>"></td>
 														  <td style="display: none;" > <input id="bool<%= i %>" type="text" name="uniqueid<%= i %>" type="text" value="false"></td>
 														  <%}} else{%>
