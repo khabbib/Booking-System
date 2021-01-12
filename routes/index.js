@@ -34,7 +34,7 @@ function getInfos(today, todaysDay, firstDayinWeek, newdate, infos, AppFined){
     var meetingT = 30;
     var workTime2 = [7,6,2,4,7,0,3];
     var workTime2inmin = [];
-    // console.log(infos);
+    // //console.log(infos);
     meetingT = infos[0]["meeTing"]["meeting"];
     workTime2 = [
       infos[0]["time"]["monday"], 
@@ -92,7 +92,7 @@ function getInfos(today, todaysDay, firstDayinWeek, newdate, infos, AppFined){
           }
           if (!addedInput) {
             var endDate = new Date(infos[0]["workTime"]["endWork"]);
-              console.log(endDate.getTime());
+              //console.log(endDate.getTime());
               if (newdate.getTime() <= endDate.getTime()) {
 
                 if(nowDate > newdate){
@@ -144,7 +144,7 @@ function get_cookies_packag(cookie, pack_true_unpack_false){
           return list_to_string.join("'");
       } 
  } catch (error) {
-     console.log(error);
+     //console.log(error);
      return null;
  }
 
@@ -166,23 +166,23 @@ router.get('/admin', (req, res) => {
       if (Session[req.cookies.AdminSess][1] == req.cookies.AdminSess) {
         
         res.redirect('/adminDash')
-        console.log("adminDash loged in  ")
+        //console.log("adminDash loged in  ")
       }
       else{
-        console.log("admin run ")
+        //console.log("admin run ")
         res.render('admin');
             
       }
 
     }
     else{
-      console.log("admin run ")
+      //console.log("admin run ")
       res.render('admin');
           
     }
   }
   else{
-    console.log("admin run ")
+    //console.log("admin run ")
     res.render('admin');  
   }
 
@@ -217,19 +217,19 @@ router.post('/addTime', (req, res)=>{
   Time.find({},(function(err, items) {
     if (items.length > 0) {
       Time.find({}, function(err, findd){
-          console.log(findd);
+          //console.log(findd);
           Time.updateOne(findd[0], postTime, function(err, finddd){
             if(err){
-              console.log(err)
+              //console.log(err)
             }else{
-              console.log("updated");
+              //console.log("updated");
               res.redirect('/adminDash')
             }
           });
       
         });
     }else{
-      console.log("added");
+      //console.log("added");
       new Time(postTime)
       .save()
       .then(
@@ -249,7 +249,7 @@ router.get('/update_admin', (req, res) => {
         res.render('update_admin', {
           title: 'Update infos'
         })
-        console.log("Update Admin Page accessed ")
+        //console.log("Update Admin Page accessed ")
       
     }else{
       res.render('admin');
@@ -294,7 +294,7 @@ router.post('/updateAdminInfo', (req, res)=>{
       Admin.findOne({ email: req.cookies["admin_email"] }, (err, admin)=> {
         
         if(admin) {
-          console.log(admin)
+          //console.log(admin)
         
           var updateAdmin = {
             name: req.body.name,
@@ -311,22 +311,22 @@ router.post('/updateAdminInfo', (req, res)=>{
               updateAdmin.password = hash;
               Admin.updateOne(admin, updateAdmin, (err, updated)=>{
                 if (err) {
-                  console.log(err, "not updated");
+                  //console.log(err, "not updated");
                 }else{
-                  console.log("Admin is updated!");
+                  //console.log("Admin is updated!");
                   req.logout();
                   try {
                     delete Session[req.cookies.AdminSess];
                     
                   } catch (err) {
-                    console.log(err)
+                    //console.log(err)
                   }
                   res.cookie('AdminSess', '');
                   req.flash('success_msg', 'You are now registered and can log in');
-                  console.log(Session);
+                  //console.log(Session);
 
                   res.redirect('/admin');
-                  console.log(updated)
+                  //console.log(updated)
                 }
               })
             });
@@ -336,7 +336,7 @@ router.post('/updateAdminInfo', (req, res)=>{
             errors
           });
           errors.push({ msg: 'Not Registred!'});
-          console.log("not found")
+          //console.log("not found")
         }
       });
 
@@ -356,7 +356,7 @@ router.get('/adminReg', (req, res) => {
         res.render('adminReg', {
           title: 'Admin Registration'
         })
-        console.log("New Admin registered")
+        //console.log("New Admin registered")
       
     }else{
       res.render('admin');
@@ -378,11 +378,11 @@ router.get('/changeD', (req, res)=>{
   
   Time.find({},function(err, infos){
     if (err) {
-      console.log(err)
+      //console.log(err)
     }else{
       Appointment.find({}, function(err, AppFined){
         if(err){
-          console.log("Appointments not found!");
+          //console.log("Appointments not found!");
         }else{
           
         
@@ -442,7 +442,7 @@ router.get('/changeD', (req, res)=>{
             
             if (req.query.change === "nextweek") {
               var endDate = new Date(infos[0]["workTime"]["endWork"]);
-              console.log(endDate.getTime());
+              //console.log(endDate.getTime());
               if (newdate.getTime() <= endDate.getTime()) {
                 
                 var getRecordCookie = 0; // next week counter
@@ -523,7 +523,7 @@ router.get('/changeD', (req, res)=>{
             res.cookie('todaysDay', todaysDay);
             res.cookie('firstDayinWeek', firstDayinWeek);
             res.cookie('newdate', newdate);
-            console.log("second if");
+            //console.log("second if");
 
             res.cookie('RecordedNextWeek', "0");
             res.cookie('StringCookie', '');
@@ -575,7 +575,7 @@ router.post('/table',  function(req, res){
   var choosenDate = new Date(req.body.datadate);
   var formatDate = choosenDate.getFullYear()+"/"+choosenDate.getMonth()+"/"+choosenDate.getDate();
   if(user){
-    console.log("user");
+    //console.log("user");
     newAppointment.timeAP = req.body.time;
     newAppointment.dateAP = formatDate;
     
@@ -621,7 +621,7 @@ router.post('/table',  function(req, res){
               <h3 style="color: red;">Note!</h3>
               <p>Please make sure to be on time</p>
             `;
-            console.log(newAppointment)
+            //console.log(newAppointment)
         // create reusable transporter object using the default SMTP transport
         let transporter = nodemailer.createTransport({
           service: 'gmail',
@@ -644,9 +644,9 @@ router.post('/table',  function(req, res){
         // send mail with defined transport object
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
-                return console.log(error);
+                return //console.log(error);
             }
-            console.log("successfully insert the information")
+            //console.log("successfully insert the information")
             if(user){
               res.redirect('/dashboard')
             }
@@ -668,7 +668,7 @@ router.post('/table',  function(req, res){
 // user delete control router
 
 router.post('/deleteUserAP',  function(req, res){
-  console.log(req.body)
+  //console.log(req.body)
   var GoneThrough = true;
   try {
      // define the id 
@@ -683,10 +683,10 @@ router.post('/deleteUserAP',  function(req, res){
       mongoose.connect(db, (err, db)=>{
 
         if(err) {
-          console.log("Cannot connect to database");
+          //console.log("Cannot connect to database");
         } else {
             for (let x = 0; x <= todelete.length; x++) {
-              // console.log(todelete[x])
+              // //console.log(todelete[x])
               var obj = ObjectID(todelete[x])
               var collection = db.collection('appointments')
               collection.deleteOne({_id: obj});
@@ -720,7 +720,7 @@ router.post('/deleteUserAP',  function(req, res){
  
 // delete appointments from Admin
 router.post('/deleteA',  function(req, res){
-  console.log(req.body)
+  //console.log(req.body)
   var GoneThrough = true;
   try {
      // define the id 
@@ -735,10 +735,10 @@ router.post('/deleteA',  function(req, res){
       mongoose.connect(db, (err, db)=>{
 
         if(err) {
-          console.log("Cannot connect to database");
+          //console.log("Cannot connect to database");
         } else {
             for (let x = 0; x <= todelete.length; x++) {
-              // console.log(todelete[x])
+              // //console.log(todelete[x])
               var obj = ObjectID(todelete[x])
               var collection = db.collection('appointments')
               collection.deleteOne({_id: obj});
@@ -772,7 +772,7 @@ router.post('/deleteA',  function(req, res){
 
 // delete users from Admin
 router.post('/deleteUser',  function(req, res){
-  console.log(req.body)
+  //console.log(req.body)
   var GoneThrough = true;
   try {
      // define the id 
@@ -787,10 +787,10 @@ router.post('/deleteUser',  function(req, res){
       mongoose.connect(db, (err, db)=>{
 
         if(err) {
-          console.log("Cannot connect to database");
+          //console.log("Cannot connect to database");
         } else {
             for (let x = 0; x <= todelete.length; x++) {
-              // console.log(todelete[x])
+              // //console.log(todelete[x])
               var obj = ObjectID(todelete[x])
               var collection = db.collection('users')
               collection.deleteOne({_id: obj});
@@ -827,14 +827,14 @@ router.post('/deleteUser',  function(req, res){
 router.get('/dashboard', ensureAuthenticated, (req, res) =>{
   mongoose.connect(db, (err, db)=>{
     if(err) {
-      console.log("Cannot connect to database");
+      //console.log("Cannot connect to database");
     } else {
-        console.log("Connected to database");
+        //console.log("Connected to database");
     }
     var collection = db.collection('appointments');
     collection.find({useremailAP: req.user.email}).toArray(function(err, item) {
       if(err) {
-        console.log("There was a problem finding the ticket.");
+        //console.log("There was a problem finding the ticket.");
         res.redirect('/users/login');
       } 
         res.render('dashboard', {
@@ -860,14 +860,14 @@ router.get('/adminDash', (req, res)=>{
             if (Session[req.cookies.AdminSess][1] == req.cookies.AdminSess) {
               mongoose.connect(db, (err, db)=> {
                 if(err){
-                  console.log(err)
+                  //console.log(err)
                 }else{
                   
                 }
                 var adminCollection = db.collection('admins');
                 adminCollection.find({}).toArray( (err, adminFind)=>{
                   if (err) {
-                    console.log(err);
+                    //console.log(err);
                   }else{
                     // take the current admin info from cookie 
                       var list_of_admin = [];
@@ -882,7 +882,7 @@ router.get('/adminDash', (req, res)=>{
                       adminCollection.findOne({password: req.cookies.AdminSess},(err, find)=>{
                         
                         if(err){
-                          console.log(err);
+                          //console.log(err);
                           res.redirect('/')
                         }
                         else{

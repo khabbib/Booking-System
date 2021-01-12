@@ -90,7 +90,7 @@ router.post('/loginA', (req, res) => {
     if(err) {
       console.log("Cannot connect to database");
     } else {
-      console.log("Connected to database");
+      // console.log("Connected to database");
     
     
     var collection = db.collection('admins');
@@ -151,7 +151,7 @@ router.post('/loginA', (req, res) => {
 // Logout
 router.get('/logoutA', (req, res) => {
   req.logout();
-  console.log(Session);
+  // console.log(Session);
   try {
     delete Session[req.cookies.AdminSess];
     
@@ -160,7 +160,7 @@ router.get('/logoutA', (req, res) => {
   }
   res.cookie('AdminSess', '');
   req.flash('success_msg', 'You are logged out');
-  console.log(Session);
+  // console.log(Session);
 
   res.redirect('/admin');
 });

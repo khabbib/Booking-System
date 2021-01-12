@@ -9,6 +9,11 @@ const path = require('path');
 const app = express();
 const cookieParser = require('cookie-parser');
 
+var http = require('http');
+var https = require('https');
+
+http.globalAgent.maxSockets = Infinity;
+https.globalAgent.maxSockets = Infinity;
 // Passport Config
 require('./config/passport')(passport);
 
