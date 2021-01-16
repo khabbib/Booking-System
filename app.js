@@ -9,11 +9,7 @@ const path = require('path');
 const app = express();
 const cookieParser = require('cookie-parser');
 
-var http = require('http');
-var https = require('https');
 
-http.globalAgent.maxSockets = Infinity;
-https.globalAgent.maxSockets = Infinity;
 // Passport Config
 require('./config/passport')(passport);
 
@@ -66,19 +62,20 @@ app.use('/admin', require('./routes/admin.js'));
 
 const PORT = process.env.PORT || 3000;
 
-if(process.env.NODE_ENV === 'production'){
-  app.use(express.static('views'));
-  app.get('*', (req, res)=>{
-    res.sendFile(path.join(__dirname, 'views', 'ejs'));
-  })
-}
+// if(process.env.NODE_ENV === 'production'){
+//   app.use(express.static('views'));
+//   app.get('*', (req, res)=>{
+//     res.sendFile(path.join(__dirname, 'views', 'ejs'));
+//   })
+// }
 app.listen(PORT, console.log(`Server started on port ${PORT}`));
+// app.listen(300,"192.168.1.95", console.log(`Server started on port ${PORT}`));
 
 // live reload the server (auto refresh the browser)
-var livereload = require('livereload').createServer({
-  exts: ['js', 'html','css','ejs']
-});
+// var livereload = require('livereload').createServer({
+//   exts: ['js', 'html','css','ejs']
+// });
 
-livereload.watch(path.join(__dirname, 'views'));
+// livereload.watch(path.join(__dirname, 'views'));
 
 
