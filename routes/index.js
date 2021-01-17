@@ -611,7 +611,7 @@ router.post('/table',  function(req, res){
               <p>Hej</p>
               <p>You have booked an appointment!</p>
               <h3>The appointments details</h3>
-              <h3>Du har tid hos oss den ...  kl: <span style="color: red;"> ${req.body.time}</span></h3>
+              <h3>Du har tid hos oss den ${req.body.formatDate}  kl: <span style="color: red;"> ${req.body.time}</span></h3>
               <h3>Mer information angående bookning</h3>
                 <ul>  
                   <li>Name: ${req.body.name}</li>
