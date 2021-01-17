@@ -21,14 +21,11 @@
     "express": "^4.17.1",
     "express-ejs-layouts": "^2.5.0",
     "express-session": "^1.17.1",
-    "livereload": "^0.9.1",
     "md5": "^2.3.0",
     "mongoose": "^5.10.6",
     "nodemailer": "^6.4.14",
     "passport": "^0.4.1",
-    "passport-local": "^1.0.0",
-    "sweetalert": "^2.1.2",
-    "sweetalert2": "^10.4.0"
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
