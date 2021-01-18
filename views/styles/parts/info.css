@@ -212,13 +212,6 @@ label{
     border-bottom: 1px solid var(--meddleblue);
 }
 
-.times{
-    width: 100%;
-    flex: 1;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
 #year{
     position: relative;
     margin-left: 1rem;
@@ -272,6 +265,7 @@ label{
     align-items: center;
     justify-content: center;
     color: var(--darkfont);
+    font-size: 1rem;
 }
 
 .div:hover{
@@ -283,7 +277,11 @@ label{
 .div i{
     margin: 0 5px;
     color: var(--darkfont);
-    font-size: 1.5rem;
+    font-size: 1rem;
+}
+.this-week i{
+    font-size: 1rem;
+    padding: 0;
 }
 .div:hover > i{
     color: var(--whiteTableCC);
@@ -297,6 +295,18 @@ label{
     box-shadow: 0 1px 5px #3333;
 }
 
+.tabled{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border: none;
+    background: var(--lightblue);
+    color: var(--whiteTableCC);
+    padding: 1rem 0;
+    margin-bottom: 1rem;
+  }
+  
 
 .table{
     position: relative;
@@ -359,6 +369,8 @@ label{
     width: 100%;
 }
 
+
+
 .divess:first-child{
     padding-top: 1rem;
 }
@@ -372,12 +384,13 @@ label{
     border-right: 1px solid var(--lightblue);
 }
 .parttimes, .expertTime{
-    width: 70%;
+    width: 50%;
     text-align: center;
     margin: auto;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 50px;
     color: var(--darkblue);
     background: var(--darkgreen);
     border: 4px solid var(--lightgreen);
@@ -592,20 +605,18 @@ label{
 }
 #btn-link-AP-s,
 #btn-link-AP{
-    margin: 1rem;
-    background: var(--whiteTableCC);
-    padding: 10px 10px 10px 20px;
-    border-radius: 10px;
-    color: var(--darkfont);
-    text-decoration: none;
-    transition: 0.3s;
+background: linear-gradient(90deg, #F073C8 0%, #FF6A95 99%);
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  color: white;
+  border-radius: 5px;
+  transition: 0.3s;
 }
 
 #btn-link-AP-s:hover{
-    padding: 10px 30px;
-    border-radius: 50px;
-    transition: 0.3s;
-    color: #333;
+    background: linear-gradient(90deg, #FF6A95 0%, #F073C8 99%);
+  transition: 0.3s;
+  border-radius: 50px;
 }
 #btn-link-AP-s:hover > i{
     opacity: 1;
@@ -670,6 +681,7 @@ label{
 ///////////
 ///////
 */
+
 @keyframes flow {
     0%{
         opacity: 0;
@@ -681,6 +693,119 @@ label{
     }
 }
 
+/*
+///////
+///////////
+        query media
+///////////
+///////
+*/
 
 
-/*  expert time */
+@media only screen and (max-width: 667px){
+    .freespace{
+        height: 5%;
+    }
+    #inputs{
+        width: 100%;
+        justify-content: center;
+        padding: 1rem;
+        height: auto;
+        
+    }
+    .change-year-btn{
+        flex: auto;
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .change-year-btn .div{
+        color: var(--whiteTableCC);
+        font-size: 0.7rem;
+    }
+    .change-year-btn .div i{
+        color: var(--white);
+    }
+
+
+    /* table */
+    .parttimes, .expertTime{
+        width: 98%;
+        text-align: center;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0.1rem;
+        color: var(--darkblue);
+        background: var(--darkgreen);
+        border: 1px solid var(--lightgreen);
+        box-shadow: 0 0px 5px var(--lightgreen);
+        font-size: 0.6rem;
+        margin-bottom: 5px;
+    }
+    .table{
+        position: relative;
+        overflow: scroll;
+        width: 98%;
+        padding: 0.5rem;
+    }
+    .table-dtl{
+        height: 100vh;
+    }
+    
+    
+.tabled{
+    background: var(--lightblue);
+    color: var(--whiteTableCC);
+    margin:0 0 1rem 0;
+    padding: 0;
+    font-size: 0.7rem;
+    border-right: 1px solid var(--meddleblue);
+  }
+  
+
+  /* form */
+
+  #formAP{
+      width: 100%;
+      height: 60vh;
+      overflow: scroll;
+      margin: 1rem 0;
+  }
+  #formAP h1{
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      padding: 0;
+      border: 0;
+      background: none;
+  }
+  #hourmin{
+    font-size: 1rem;
+  }
+  #varning-msg{
+      padding: 0;
+  }
+  .btn-formAP{
+      /* height: auto; */
+  }
+  .info-collector-AP{
+      position: relative;
+      margin: 0;
+      right: 0;
+      height: auto;
+  }
+
+  /*  done page */
+  .btnss{
+    display: flex;
+    flex-direction: column;
+  }
+  .btnss a{
+      margin: 0.5rem 0;
+  }
+}
+
+
+
+

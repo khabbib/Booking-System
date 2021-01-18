@@ -5,6 +5,11 @@
 <div class="admin-container">
         
     <!-- admin menu -->
+    <div class="mobile-menu">
+        <div class="logout-men">
+            <a href="/admin/logoutA"> <i class="fas fa-sign-out-alt"></i> </a>
+        </div>
+    </div>
     <div class="meno-admin">
         <div class="logout-men">
             <a href="/admin/logoutA"> <i class="fas fa-sign-out-alt"></i> </a>
@@ -35,7 +40,7 @@
             <div class="alladmin" style="display: none;">
                 
                 
-                <h3>Edit the current admin information or register a new admin.</h3>
+                <h1>Edit the current admin information or register a new admin.</h1>
                 <div class="current-admin-container">
                     <div class="current-admin">
                         <div class="admin-infos">
@@ -74,7 +79,7 @@
             </div>
             <div class="add-time-container" style="display: none;">
                 <form action="/addTime" method="POST">
-                    <p class="ttl-add-time">Each day work hours: </p>
+                    <h1 class="ttl-add-time">Week days </h1>
                     <div class="add-days-hours">
                         <div class="mon">
                             <label for="mondag">Mån</label>
@@ -109,21 +114,21 @@
                     <div class="ruls-add-time">
 
                         <label for="meetingTime">
-                            <p> Appointment minuts:</p>
+                            <h1 class="ttl-add-time"> Meeting/min:</h1>
                         <input class="meetingTime design_add_time_input" type="number" name="meetingTime" value="30">
                         </label>
                         <label for="meetingTime">
-                            <p> Begin Work Date:</p>
+                            <h1 class="ttl-add-time"> Begin Work Date:</h1>
                             <input class="design_add_time_input" type="date" name="beginWork">
                             
                         </label>
                         <label for="meetingTime">
-                            <p> Finish Work Date:</p>
+                            <h1 class="ttl-add-time"> Finish Work Date:</h1>
                             <input class="design_add_time_input" type="date" name="endWork">
                             
                         </label>
                     </div>
-                    <button type="submit" id="add-time">Submit</button>
+                    <button type="submit" id="add-time">Save <i class="fas fa-history"></i> </button>
                 </form>
             </div>
             <div class="alluser" style="display: none;">

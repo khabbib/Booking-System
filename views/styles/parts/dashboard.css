@@ -1,6 +1,7 @@
 
 .bg-dash{
     height: 100vh;
+    width: 100%;
     display: flex;
     flex-direction: column;
     background: url(/source/dashbordbg.svg)no-repeat var(--darkblue);
@@ -235,7 +236,8 @@
 
 .warning-delete-ap{
   position: absolute;
-  background: black;
+  background: rgba(0, 0, 0, 0.459);
+  backdrop-filter: blur(5px);
   height: 100%;
   width: 100%;
   top: 0;
@@ -276,16 +278,79 @@
 }
 
 #open-warning-btn-delete{
-  background: none;
-  border: none;
-  color: var(--darkfont);
-  background: var(--whiteTableCC);
-  padding: 10px 20px;
+  background: var(--meddleblue);
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  color: white;
   border-radius: 50px;
-  margin: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  transition: 0.3s;
   cursor: pointer;
+  margin: 1rem 0;
+}
+#open-warning-btn-delete:hover{
+  background: linear-gradient(90deg, #FF6A95 0%, #F073C8 99%);
+  transition: 0.3s;
+  border-radius: 10px;
 }
 
+
+.ver3 th {
+  font-size: 15px;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--whiteTableCC);
+  background-color: var(--meddleblue);
+}
+
+
+/* .same-btn{
+  background: linear-gradient(90deg, #F073C8 0%, #FF6A95 99%);
+  padding: 12px 20px;
+  font-size: 1.2rem;
+  color: white;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+.same-btn:hover{
+  background: linear-gradient(90deg, #FF6A95 0%, #F073C8 99%);
+  transition: 0.3s;
+  border-radius: 50px;
+} */
+
+/* 
+//////
+//////
+
+        User dashboard Query Media
+
+//////
+//////
+*/
+
+@media only screen and (max-width: 667px){
+  .profile{
+    width: 100%;
+  }
+  .profile-sidebar{
+    display: none;
+  }
+  .col-md-2{
+    display: none;
+  }
+  .profile-title{
+    font-size: 1rem;
+    margin: 1rem;
+  }
+
+  .col-md-9{
+    width: 100%;
+    padding: 0;
+  }
+  .title-bookningInfo{
+    font-size: 1rem;
+    margin: 1rem 0;
+  }
+.ver3 th{
+    font-size: 0.5rem;
+  }
+}

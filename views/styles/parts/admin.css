@@ -20,6 +20,7 @@
 
 .admin-pages-container{
     height: 100vh;
+    margin: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -49,12 +50,15 @@
     width: fit-content;
     border-radius: 5px;
     padding: 2rem;
+    width: fit-content;
+}
+.admin-inputs-login{
+    width: 400px;
 }
 
 .login-admin-page h1{
     margin-bottom: 1rem;
 }
-
 
 
 .login-admin-page h1{
@@ -65,6 +69,7 @@
 .admin-container{
     display: flex;
     height: 100vh;
+    width: 100%;
     justify-content: center;
     align-items: center;
     flex-direction: column; 
@@ -104,3 +109,16 @@
 /////////// 
 /////// 
 */
+
+
+
+@media only screen and (max-width: 667px){
+    .login-admin-page{
+        width: 90%;
+    }
+    .admin-pages-container{
+        width: 100%;
+    }
+
+    
+}

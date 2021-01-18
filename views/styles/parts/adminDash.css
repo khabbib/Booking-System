@@ -186,7 +186,7 @@
     flex-direction: row-reverse;
     justify-content: center;
     align-items: center;
-    width: 95%;
+    width: 100%;
     height: 10vh;
     margin: auto;
 }
@@ -222,6 +222,26 @@
     width: 150px;
 }
 
+.mobile-menu{
+    display: none;
+}
+
+@media only screen and (max-width: 667px){
+    /* header */
+    .meno-admin{
+        display: none;
+
+    }
+    .mobile-menu{
+        display: flex;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 2;
+    }
+    /* admin menu links */
+
+}
 /*////////
 
     Default welcome page admin
@@ -251,6 +271,7 @@
 
 
 
+
 /*////////
 
     search bar
@@ -258,22 +279,22 @@
 ////////*/
 
 .searchBtn i{
+    display: none;
     font-size: 1rem;
     font-weight: 600;
     color: var(--whiteTableCC);
 }
 .searchMenu{
     position: absolute;
+    top: 50%; 
+    left: 50%; 
+    height: 20%;
+    transform: translate(-50%, -50%);
     z-index: 4;
-    left: 0;
-    right: 0;
-    top:10%;
+    flex-direction: column;
     background: var(--meddleblue);
     padding: 1rem;
     display: none;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-end;
     border-radius: 5px;
     width: 95%;
     margin: auto;
@@ -325,6 +346,18 @@
     flex-direction: column;
     margin: auto;
 }
+.back-dash{
+    top: 2%;
+    position: absolute; 
+    border-radius: 5px; 
+    color: white;  
+    background: var(--lightblue); 
+    padding: 0.5rem 1rem;
+    margin: 1rem;
+}
+.back-dash i{
+    transform: rotate(180deg);
+}
 .alladmin{
     height: 40%;
     width: 100%;
@@ -335,9 +368,9 @@
     align-items:center;
     
 }
-.alladmin h3{
-    color: var(--whiteTableCC);
-    font-weight: 300;
+.admin-info{
+    flex-direction: column;
+    
 }
 .current-admin-container{
     display: flex;
@@ -500,6 +533,11 @@
     background: var(--meddledblue);
     padding: 1rem;
 }
+.ttl-add-time{
+    font-size: 1rem;
+    margin: 1rem 0;
+    font-weight: 400;
+}
 .add-hours-input{
     width: 60px;
     height: 60px;
@@ -533,6 +571,7 @@
     transition: 0.2s;
 }
 
+
 /* 
 ////////
 
@@ -552,6 +591,199 @@
     border: 1px solid var(--lightgreen);
     box-shadow: 0 0 3px var(--lightgreen);
     background: var(--meddledblue);
+    
     color: var(--whiteTableCC);
     transition: 0.3s;
+}
+
+
+/* 
+//////
+//////
+
+        Queryy
+
+//////
+//////
+*/
+
+
+@media only screen and (max-width: 667px){
+    
+    
+    /* menu links */
+
+    .admin-container{
+        height: auto;
+    }
+    .admin-panel{
+        width: 95%;
+        height: auto;  
+        position: unset;  
+    }
+    .ttls-data{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        position: relative;
+        justify-content: flex-start;
+        flex-direction: column;
+        width: 100%;
+        padding-bottom: 1rem;
+        margin: 1rem 0;
+
+        border-bottom: 1px solid var(--lightblue);
+    }
+    .styled{
+        font-size: 0.8rem;
+        padding: 0.5rem;
+        margin: 0 1rem 0 0;
+        text-align: left;
+        width: fit-content;
+
+    }
+
+    /*
+    ///////
+            data secttion 
+    ///////
+    */
+    .data-collection{
+        height: auto;
+        margin-bottom: 4rem;
+    }
+    /* ////////// dashboard */
+
+    .welcomeAdmin{
+        width: 90%;
+        margin: 2rem;
+    }
+    .welcomeAdmin h1{
+        font-size: 1rem;
+        width: 100%;
+        line-height: 1.5rem;
+        color: var(--white);
+    }
+    .infoa {
+        color: var(--darkgray);
+    }
+    .admin-dash-btns{
+        display: none;
+    }
+
+
+    /* ////////////   appointment */
+    .allappns form{
+        display: block;
+    }
+
+    /* ////////////   Change work hours */
+    .add-time-container {
+        align-items: stretch;
+    }
+    .add-time-container form{
+        padding: 1rem;
+    }
+    .ttl-add-time{
+        margin: 1rem 0;
+        font-size: 1rem;
+    }
+
+    input[type='date'] {
+        -webkit-appearance: none;
+        -webkit-min-logical-width: calc(100% - 16px);
+    }
+    .add-days-hours{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 1rem;
+
+        margin: auto;
+    }
+    .add-days-hours div{
+        width: 100%;
+        margin: auto;
+    }
+
+    .ruls-add-time{
+        display: flex;
+        flex-direction: column;
+        margin: 1rem 0;
+    }
+    #add-time i{
+        margin-left: 1rem;
+    }
+
+
+    /* users */
+
+    .alluser form{
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* admins info */
+    .alladmin{
+        height: auto;
+        padding: 2rem;
+    }
+
+    .alladmin h1{
+        font-size: 1rem;
+        width: 100%;
+        line-height: 1.5rem;
+        color: var(--white);
+        margin-bottom: 1rem;
+    }
+    .addNewAdmin, .editAdminInfo{
+        font-size: 0.7rem;
+        margin-top: 1rem;
+        width: fit-content;
+    }
+    .current-admin-container{
+        width: 90%;
+    }
+    .current-admin{
+        width: 100%;
+    }
+    .admin-infos{
+        background: none;
+        width: 100%;
+    }
+    .admin-info{
+        width: 100%;
+        justify-content: flex-start;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* search  admin */
+
+/*     
+    .searchMenu{
+        position: absolute;
+        top: 50%; 
+        left: 50%; 
+        height: 10%;
+        transform: translate(-50%, -50%);
+        z-index: 4;
+        flex-direction: column;
+        background: var(--meddleblue);
+        padding: 1rem;
+        display: none;
+        border-radius: 5px;
+        width: 95%;
+        margin: auto;
+    } */
+
+
+
+
+    /* update admin infos */
+    .update-admin-container{
+        width: 90%;
+    }
+    .back-dash{
+        
+        margin: 0;
+    }
 }

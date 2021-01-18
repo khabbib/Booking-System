@@ -2,7 +2,7 @@
 <%- include('partiallink/animatedbg'); -%>
 <div class="admin-pages-container">
   <div class="login-admin-page" style="display: flex;">
-    <h1>Admin Login Page</h1>
+    <h1>Loging for Admin</h1>
     <%- include('partials/messages'); -%>
       <form action="/admin/loginA" method="POST">
         <div class="form-group">
@@ -11,7 +11,7 @@
             type="email"
             id="email"
             name="email"
-            class="form-control"
+            class="form-control admin-inputs-login"
             placeholder="Enter Email"
           />
         </div>
@@ -21,7 +21,7 @@
             type="password"
             id="password"
             name="password"
-            class="form-control"
+            class="form-control admin-inputs-login"
             placeholder="Enter Password"
           />
         </div>

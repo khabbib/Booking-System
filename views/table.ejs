@@ -131,24 +131,17 @@
       <!-- date now -->
       <%- include('partials/messages');-%>
       <div id="inputs">
-        <div class="times">
-          <a href="/changeD/?change=thisweek" class=" btnRestweek">This Week</a>
-          <p id="year">4</p>
-        </div>
         <!-- change week buttons -->
-
         <div class="change-year-btn">
-          
             <a href="/changeD/?change=nextweek" >
               <button type="submit" class="div btnFarward"> Next Week <i class="fas fa-chevron-right"></i></button>
             </a>
+            <a href="/changeD/?change=prevweek" >
+              <button type="submit" class="div btnBackward"><i class="fas fa-chevron-left"></i> Pre Week</button>
+            </a>
             
-              <a href="/changeD/?change=prevweek" >
-                <button type="submit" class="div btnBackward"><i class="fas fa-chevron-left"></i> Pre Week</button>
-              </a>
-          
+            <a href="/changeD/?change=thisweek"><button class="div this-week"><i class="fas fa-thumbtack"></i> This Week</button></a>
         </div>
-        
       </div>
 
       <!-- time table -->

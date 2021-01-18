@@ -72,14 +72,6 @@ button:focus
     justify-content: center;
     align-items: center;
 }
-.card-body{
-    flex: none;
-    width: fit-content;
-    margin: auto;
-}
-.form-control{
-    width: 400px;
-}
 .container{
     width: 100%;
     margin: auto;

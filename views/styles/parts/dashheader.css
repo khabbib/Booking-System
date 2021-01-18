@@ -111,3 +111,51 @@
     opacity: 0.4;
     display: none;
 }
+
+  
+.container-table100 {
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+ 
+ 
+  .ver3 td {
+    font-size: 15px;
+    color: var(--whiteTableCC);
+    line-height: 1.4;
+    border-bottom: 4px solid var(--lightblue);
+  }
+@media only screen and (max-width: 667px){
+
+    .header-dash{
+        width: 95%;
+        height: 10vh;
+    }
+    .hamburger .lines{
+        background: var(--white);
+    }
+    .hamburger{
+        margin: 0;
+    }
+    .headmt-4{
+        padding: 0;
+    }
+    .headmt-4 h1{
+        font-size: 1rem;
+        color: var(--white);
+    }
+    .setting-list{
+        width: 50%;
+    }
+    .ver3 td {
+        font-size: 10px;
+    }
+  
+  }

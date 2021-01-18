@@ -158,11 +158,13 @@ section two
     padding: 25px;
   }
   
-.contents div p {
+  .contents div p {
     font-size: 12px;
+    color: var(--whiteTableCC);
   }
   
-.contents div h4 {
+  .contents div h4 {
+  color: var(--whiteTableCC);
     margin-bottom: 40px;
   }
   
@@ -198,7 +200,7 @@ section two
     color: white;
     background: #FF6A95;
     border-radius: 5px;
-    box-shadow: 0 30px 50px #F073C8;
+    box-shadow: 0 30px 50px #f073c879;
     animation: middle-window 1s ease;
   }
   
@@ -214,3 +216,51 @@ section two
     transform: scale(1.05);
   }
   
+
+@media only screen and (max-width: 1024px){
+
+}
+
+@media only screen and (max-width: 667px){
+  .introduce-home-content{
+    width: 90%;
+    margin: auto;
+  }
+  #title-home{
+    font-size: 1.5rem;
+    text-align: left;
+  }
+  .texts-details-home p{
+    font-size: 0.8rem;
+  }
+  header{
+    width: 100%;
+    margin: auto;
+  }
+  .logo-container img{
+    height: 50px;
+  }
+
+  /* sections */
+  #ss{
+    height: auto;
+  }
+  .bg-ss{
+    background-size: 100%;
+  }
+  .presentation-ss{
+    width: 100%;
+  }
+  .contents{
+    flex-direction: column;
+  }
+  .bg-thome{
+    flex-direction: column-reverse;
+    width: 90%;
+    margin: auto;
+  }
+  .copyRight{
+    margin: 1rem;
+    
+  }
+}
