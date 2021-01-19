@@ -338,13 +338,24 @@
     display: none;
   }
   .profile-title{
+    position: absolute;
+    top: 0;
+    left: 5%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     font-size: 1rem;
-    margin: 1rem;
+    margin: 1rem 0;
   }
 
   .col-md-9{
-    width: 100%;
+    width: 90%;
     padding: 0;
+  }
+  .profile-content{
+    border-top: 0;
+    border-radius: 10px;
+    margin-top: 10%;
   }
   .title-bookningInfo{
     font-size: 1rem;
@@ -353,4 +364,6 @@
 .ver3 th{
     font-size: 0.5rem;
   }
+
+  
 }

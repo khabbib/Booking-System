@@ -384,13 +384,13 @@ label{
     border-right: 1px solid var(--lightblue);
 }
 .parttimes, .expertTime{
-    width: 50%;
+    width: 70%;
     text-align: center;
     margin: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 50px;
+    border-radius: 5px;
     color: var(--darkblue);
     background: var(--darkgreen);
     border: 4px solid var(--lightgreen);
@@ -704,7 +704,7 @@ background: linear-gradient(90deg, #F073C8 0%, #FF6A95 99%);
 
 @media only screen and (max-width: 667px){
     .freespace{
-        height: 5%;
+        height: 3%;
     }
     #inputs{
         width: 100%;
@@ -803,6 +803,9 @@ background: linear-gradient(90deg, #F073C8 0%, #FF6A95 99%);
   }
   .btnss a{
       margin: 0.5rem 0;
+  }
+  #btn-link-AP-s, #btn-link-AP{
+    font-size: 0.7rem;
   }
 }
 

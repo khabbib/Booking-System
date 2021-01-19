@@ -135,16 +135,18 @@
 @media only screen and (max-width: 667px){
 
     .header-dash{
-        width: 95%;
+        width: 90%;
         height: 10vh;
     }
     .hamburger .lines{
+        width: 5px;
         background: var(--white);
     }
     .hamburger{
-        margin: 0;
+        margin: 0 1rem;
     }
     .headmt-4{
+        display: none;
         padding: 0;
     }
     .headmt-4 h1{

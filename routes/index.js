@@ -607,6 +607,9 @@ router.post('/table',  function(req, res){
             );
             res.redirect('table');
           }else {
+            if(req.body.email){
+
+            }
             const outputmail = `
               <p>Hej</p>
               <p>You have booked an appointment!</p>
@@ -622,41 +625,54 @@ router.post('/table',  function(req, res){
               <p>Please make sure to be on time</p>
             `;
             //console.log(newAppointment)
-        // create reusable transporter object using the default SMTP transport
-        let transporter = nodemailer.createTransport({
-          service: 'gmail',
-          auth: {
-              user: Pass.epost, // generated ethereal user
-              pass: Pass.password  // generated ethereal password
-          }
-          
-        });
+            // create reusable transporter object using the default SMTP transport
+            let transporter = nodemailer.createTransport({
+              service: 'gmail',
+              auth: {
+                  user: Pass.epost, // generated ethereal user
+                  pass: Pass.password  // generated ethereal password
+              }
+              
+            });
 
-        // setup email data with unicode symbols
-        let mailOptions = {
-            from: '"DevPakdel" <habib.pakdel1121@gmail.com>', // sender address
-            to: `${req.body.email}`, // list of receivers
-            subject: 'New Appointment', // Subject line
-            text: "Bookning", // plain text body
-            html: outputmail
-          };
+            // setup email data with unicode symbols
+            let mailOptions = {
+                from: '"DevPakdel" <habib.pakdel1121@gmail.com>', // sender address
+                to: `${req.body.email}`, // list of receivers
+                subject: 'New Appointment', // Subject line
+                text: "Bookning", // plain text body
+                html: outputmail
+              };
 
-        // send mail with defined transport object
-        transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-                return //console.log(error);
-            }
-            //console.log("successfully insert the information")
-            if(user){
-              res.redirect('/dashboard')
-            }
-            res.redirect('/done')
-            
-        });
-        req.flash(
-          'success_msg',
-          `You'r appointment successfully booked!`
-        );
+            // send mail with defined transport object
+            transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                  if(user){
+                    res.redirect('/dashboard')
+                    
+                  }
+                  
+                  res.redirect('/done')
+                  return
+                }
+                //console.log("successfully insert the information")
+                if(user){
+                  res.redirect('/dashboard')
+                }
+                res.redirect('/done')
+                
+              });
+              req.flash(
+                'success_msg',
+                `You'r appointment successfully booked!`
+              );
+              
+              if(user){
+                res.redirect('/dashboard')
+              }else{
+                res.redirect('/done')
+                
+              }
 
           }
         })

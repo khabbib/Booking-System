@@ -21,7 +21,7 @@
   .shape2{
     opacity: 1;
     animation: shapeAroundHomw 7s infinite;
-    right: 2%;
+    right: 5%;
     bottom: 5%;
     width: 500px;
     height: 500px;
@@ -52,7 +52,7 @@
     opacity: 0.5;
     animation: shapeAroundHomw 8s infinite;
     top: 0;
-    right: 2%;
+    right: 7%;
     width: 250px;
     height: 250px;
   }

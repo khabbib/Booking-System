@@ -79,11 +79,8 @@
 
 .linkToReg{
     margin: 1rem 0;
-    color: var(--whiteTableCC);
-    background: var(--pinky);
+    color: var(--pink);
     width: fit-content;
-    padding: 0.5rem 1rem;
-    border-radius: 50px;
 }
 
 
