@@ -43,7 +43,7 @@ function transferValue(){
         var chosendate = new Date(dateTaken);
 
         showTime.style.opacity = "1";
-        showTime.innerHTML = `Your chosen time is:<br> <span id="hourmin">${chosendate.getFullYear()}/${chosendate.getMonth()}/${chosendate.getDate()} <br> kl. ${li.value} </span>`;
+        showTime.innerHTML = `Your chosen time is:<br> <span id="hourmin">${chosendate.getFullYear()}/${chosendate.getMonth() + 1}/${chosendate.getDate()} <br> kl. ${li.value} </span>`;
         
     }
 

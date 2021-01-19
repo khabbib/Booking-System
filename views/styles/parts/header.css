@@ -1,21 +1,9 @@
 
-header{
-    position: fixed;
-    left: 0;
-    right: 0;
-    display: flex;
-    width: 90%;
-    margin: auto;
-    height: 10vh;
-    justify-content: center;
-    align-items: center;
-    background: none;
-    z-index: 2;
-}
 
 /* logo */
 .logo-container{
-    flex: 1;
+    position: fixed;
+    float: left;
 }
 .logo-container img{
     height: 80px;
@@ -23,7 +11,7 @@ header{
 
 }
 
-/* menu header */
+/* menu header
 .menu-container{
     flex: 1;
     margin: auto;
@@ -54,7 +42,7 @@ header{
 
 .active{
     color: red;
-}
+} */
 
 
 

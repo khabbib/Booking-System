@@ -77,7 +77,7 @@ function getInfos(today, todaysDay, firstDayinWeek, newdate, infos, AppFined){
           
           uniktime2.setTime(uniktime2.getTime()+(meetingT * 60 * 1000));
           var nowDate = new Date();
-          var compareDate = newdate.getFullYear() + "/" + newdate.getMonth() + "/" + newdate.getDate()
+          var compareDate = newdate.getFullYear() + "/" + (newdate.getMonth() + 1) + "/" + newdate.getDate()
                             + " " + unikTime.getHours() + ":"+ unikTime.getMinutes()+ " - " + uniktime2.getHours() + ":"+ uniktime2.getMinutes();
           
           var addedInput = false;
@@ -96,14 +96,14 @@ function getInfos(today, todaysDay, firstDayinWeek, newdate, infos, AppFined){
               if (newdate.getTime() <= endDate.getTime()) {
 
                 if(nowDate > newdate){
-                  html += `<input style="background: gray; opacity: 0.3;" class="expertTime" data-date="${newdate}" name="eachtime" value="${unikTime.getHours()}:${unikTime.getMinutes()} - ${uniktime2.getHours()}:${uniktime2.getMinutes()}" disabled> `;
+                  html += `<input style="background: gray; opacity: 0.3; border: none; box-shadow: none; background: var(--lightblue); text-decoration: line-through; color:var(--whiteTableCC);" class="expertTime" data-date="${newdate}" name="eachtime" value="${unikTime.getHours()}:${unikTime.getMinutes()} - ${uniktime2.getHours()}:${uniktime2.getMinutes()}" disabled> `;
                 }else{
                   html += `<input class="parttimes" data-date="${newdate}" name="eachtime" value="${unikTime.getHours()}:${unikTime.getMinutes()} - ${uniktime2.getHours()}:${uniktime2.getMinutes()}"> `;
                   
                 }
                 
               }else{
-                html += `<input style="background: gray; opacity: 0.3;" class="expertTime" data-date="${newdate}" name="eachtime" value="${unikTime.getHours()}:${unikTime.getMinutes()} - ${uniktime2.getHours()}:${uniktime2.getMinutes()}" disabled> `;
+                html += `<input  class="expertTime" data-date="${newdate}" name="eachtime" value="${unikTime.getHours()}:${unikTime.getMinutes()} - ${uniktime2.getHours()}:${uniktime2.getMinutes()}" disabled> `;
                 
               }
             
@@ -543,6 +543,7 @@ router.get('/changeD', (req, res)=>{
 
         // change date rout
 router.get('/table', (req, res) => {
+ 
   if(req.cookies.timeStamp == "true"){
     var xx = outPut;
     // outPut = '';
@@ -573,7 +574,7 @@ router.post('/table',  function(req, res){
   let user = req.user;
   let errors = [];
   var choosenDate = new Date(req.body.datadate);
-  var formatDate = choosenDate.getFullYear()+"/"+choosenDate.getMonth()+"/"+choosenDate.getDate();
+  var formatDate = (choosenDate.getFullYear()) +"/"+ (choosenDate.getMonth() + 1 )+"/"+ (choosenDate.getDate());
   if(user){
     //console.log("user");
     newAppointment.timeAP = req.body.time;
