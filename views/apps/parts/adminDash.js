@@ -178,3 +178,34 @@ function deleterUser(){
 deleterUser();
 
 
+
+msgs = ()=> {
+    setTimeout(() => {
+        
+    }, 2000);
+    var btnClose = document.getElementsByClassName("btn-close-msg-admin");
+    var msgContent = document.getElementsByClassName("each-msg");
+    setTimeout(() => {
+        for (let i = 0; i < msgContent.length; i++) {
+            msgContent[i].style.cssText = "transform: translateX(0%); transition: 1s cubic-bezier(0.68, -0.25, 0.165, 2);";
+            console.log("added class")
+            
+        }
+    }, 2000);
+    for (let i = 0; i < btnClose.length; i++) {
+        btnClose[i].addEventListener("click", (e)=>{
+            var target = e.currentTarget;
+            console.log(target);
+            if(target.className === "btn-close-msg-admin"){
+                msgContent[i].style.cssText = "transform: translateX(300%); transition: 0.5s cubic-bezier(0.68, -0.85, 0.165, 2);";
+
+                   
+            }
+            })
+            
+        }
+    
+}
+
+msgs();
+

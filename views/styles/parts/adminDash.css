@@ -74,6 +74,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 /*  panel buttons */
@@ -200,6 +201,7 @@
     color: white;
     background: var(--lightblue);
     padding: 1rem;
+    margin: 0 1rem;
     border-radius: 5px;
     display: flex;
     justify-content: flex-end;
@@ -517,11 +519,18 @@
 ////////*/
 
 .add-time-container{
-    width: 100%;
+    width: 80%;
+    margin: auto;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
+    
+}
+.add-time-container form{
+    background: var(--meddleblue);
+    padding: 1rem 3rem;
+    border-radius: 5px;
 }
 .add-days-hours{
     display: flex;
@@ -530,19 +539,22 @@
     display: flex;
     flex-direction: column;
     margin: 1rem 5px;
-    background: var(--meddledblue);
     padding: 1rem;
 }
+.add-days-hours div label{
+    color: var(--fontblue);
+}
 .ttl-add-time{
+    color: var(--fontblue);
     font-size: 1rem;
     margin: 1rem 0;
     font-weight: 400;
 }
 .add-hours-input{
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     margin: 1rem 0;
-    padding: 0.5rem;
+    padding: 0.5rem 0 0.5rem 0.5rem;
     background: var(--lightblue);
     text-align: center;
     display: flex;
@@ -556,13 +568,14 @@
 }
 
 #add-time{
-    float: right;
+    float: left;
     background: var(--lightgreen);
     border: none;
     color: var(--darkfont);
     padding: 0.5rem 1rem;
     border-radius: 50px;
     transition: 0.2s;
+    margin: 1rem 0;
 
 }
 #add-time:hover,
@@ -589,9 +602,8 @@
     padding: 0.5rem;
     border-radius: 50px;
     border: 1px solid var(--lightgreen);
-    box-shadow: 0 0 3px var(--lightgreen);
     background: var(--meddledblue);
-    
+    font-weight: 400;
     color: var(--whiteTableCC);
     transition: 0.3s;
 }
@@ -641,7 +653,10 @@
         width: fit-content;
 
     }
-
+    .logout-men a{
+        margin: 1rem;
+        
+    }
     /*
     ///////
             data secttion 
@@ -650,6 +665,8 @@
     .data-collection{
         height: auto;
         margin-bottom: 4rem;
+        background-size: contain;
+        background-position: bottom;
     }
     /* ////////// dashboard */
 
@@ -679,6 +696,10 @@
     /* ////////////   Change work hours */
     .add-time-container {
         align-items: stretch;
+        width: 90%;
+    }
+    .add-time-container form{
+        background: none;
     }
     .add-time-container form{
         padding: 1rem;
@@ -695,7 +716,7 @@
     .add-days-hours{
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-gap: 1rem;
+        grid-gap: 0.2rem;
 
         margin: auto;
     }

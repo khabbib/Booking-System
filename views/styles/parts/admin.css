@@ -24,6 +24,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 .register-admin-page{
     display: flex;
@@ -32,6 +33,9 @@
     width: fit-content;
     border-radius: 5px;
     padding: 2rem;
+    width: 400px;
+    height: auto;
+    position: relative;
 }
 
 .register-admin-page h1{
@@ -50,6 +54,8 @@
     border-radius: 5px;
     padding: 2rem;
     width: fit-content;
+    position: relative;
+
 }
 .admin-inputs-login{
     width: 400px;
@@ -83,6 +89,74 @@
 }
 
 
+
+/* msg admin iform */
+.msg_admin{
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+
+}
+.each-msg{
+    transform: translateX(300%);
+    background: var(--whiteTableCC);
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    height: 10vh;
+    align-items: center;
+    position: relative;
+}
+.each-nm-msg{
+    height: 100%;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.each-msg-info{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    padding: 0 0.5rem;
+}
+
+.btns-admin-msg{
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.btns-admin-msg button{
+    background: var(--fontblue);
+    border: 0;
+    height: 100%;
+    padding: 0 2rem;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    color: var(--pink);
+    font-size: 1.5rem;
+}
+.btns-admin-msg button:hover{
+    background: var(--lightblue);
+}
+
+.msg_ttl{
+    color: var(--meddleblue);
+    width: 90%;
+    align-items: flex-start;
+    text-align: left;
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+.msg_name, .msg_time, .msg_date{
+    color: var(--pink);
+}
 /*
 /////// 
 ///////////
@@ -118,3 +192,5 @@
 
     
 }
+
+

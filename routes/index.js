@@ -69,6 +69,10 @@ function getInfos(today, todaysDay, firstDayinWeek, newdate, infos, AppFined){
       var html = '<div class="eachDay" >';
       html += `<div class="tabled">${daysName[o]} / ${newdate.getDate()} / ${monthNames[newdate.getMonth()]} <input type="hidden" value="${newdate}" /></div>`;
 
+
+
+      // delete appointment from database when the time is over
+
       // TableTime.push(Date.now().toLocaleString('en-GB'));
       
       var unikTime = new Date(timeYMD[0], timeYMD[1], timeYMD[2], 8, 0, 0);
@@ -85,9 +89,12 @@ function getInfos(today, todaysDay, firstDayinWeek, newdate, infos, AppFined){
           for (let b = 0; b < AppFined.length; b++) {
             var exportedTime = AppFined[b]["dateAP"] + " " + AppFined[b]["timeAP"];
             if(compareDate == exportedTime){
-              html += `<input style="background: gray; opacity: 0.3;" class="expertTime" data-date="${newdate}" name="eachtime" value="${unikTime.getHours()}:${unikTime.getMinutes()} - ${uniktime2.getHours()}:${uniktime2.getMinutes()}" disabled> `;
-              addedInput = true;
-            }  
+              if(nowDate < newdate){
+
+                html += `<input style="background: gray; opacity: 0.3;" class="expertTime" data-date="${newdate}" name="eachtime" value="${unikTime.getHours()}:${unikTime.getMinutes()} - ${uniktime2.getHours()}:${uniktime2.getMinutes()}" disabled> `;
+                addedInput = true;
+              }
+            }
             
           }
           if (!addedInput) {
@@ -103,7 +110,7 @@ function getInfos(today, todaysDay, firstDayinWeek, newdate, infos, AppFined){
                 }
                 
               }else{
-                html += `<input  class="expertTime" data-date="${newdate}" name="eachtime" value="${unikTime.getHours()}:${unikTime.getMinutes()} - ${uniktime2.getHours()}:${uniktime2.getMinutes()}" disabled> `;
+                html += `<input style="opacity: 0.3; color: var(--darkblue);"  class="expertTime" data-date="${newdate}" name="eachtime" value="${unikTime.getHours()}:${unikTime.getMinutes()} - ${uniktime2.getHours()}:${uniktime2.getMinutes()}" disabled> `;
                 
               }
             
@@ -867,7 +874,6 @@ router.get('/dashboard', ensureAuthenticated, (req, res) =>{
 router.get('/adminDash', (req, res)=>{
   var redirectPage = false;
 
-
   if (req.cookies.AdminSess) {
     if (req.cookies.AdminSess.length > 0) {
         if (Session[req.cookies.AdminSess]) {
@@ -904,15 +910,59 @@ router.get('/adminDash', (req, res)=>{
                           
                           var uses = db.collection('users');
                           uses.find({}).toArray(function(err, usr){
+                            
                               var appointment = db.collection('appointments');
                               appointment.find({}).toArray((err, appns)=>{
-                                res.render('adminDash',{
-                                  title: 'Admin dashboard',
-                                  user: usr,
-                                  item: appns,
-                                  current_admin: list_of_admin[0],
-                                  admin: adminCollection
-                                })
+                                if(err){
+                                  console.log(err)
+                                }else{
+                                  var toDay = new Date();
+                                  var formatDate = (toDay.getFullYear()) +"/"+ (toDay.getMonth() + 1 )+"/"+ (toDay.getDate());
+                                  var inform_msg_date = (toDay.getFullYear()) +"/"+ (toDay.getMonth() + 1 )+"/"+ (toDay.getDate() + 1);
+                                  var expired_times = [];
+                                  var appo_for_tomarrow = [];
+                                  
+                                  //to delete the expired appoinments
+                                  for(x in appns){
+                                    // console.log(appns[x].dateAP);
+                                    if(formatDate >= appns[x].dateAP){
+                                      // console.log("its the match: " + appns[x].dateAP);
+                                      expired_times.push(appns[x].dateAP);
+                                    }
+                                  }
+
+
+                                  // to see if any appointment is booked for tomarrow
+                                  for(x in appns){
+                                    // console.log(appns[x].dateAP);
+                                    if(inform_msg_date == appns[x].dateAP){
+                                      // console.log("its the match: " + appns[x].dateAP);
+                                      appo_for_tomarrow.push(appns[x]);
+                                    }
+                                  }
+                                  if(expired_times){
+                                    const toDeleteExpiredAppo = {dateAP: {$in: expired_times}};
+                                    appointment.deleteMany(toDeleteExpiredAppo, (err, de)=>{
+                                      if(err){
+                                        console.log("Not deleted" + err);
+                                      }else {
+                                        res.render('adminDash',{
+                                          title: 'Admin dashboard',
+                                          user: usr,
+                                          item: appns,
+                                          msg_appo: appo_for_tomarrow,
+                                          current_admin: list_of_admin[0],
+                                          admin: adminCollection
+                                      })
+
+                                      }
+                                      
+                                    })
+                                    
+                                  }
+                                  
+                                }
+                                
                               })
                               
                           });

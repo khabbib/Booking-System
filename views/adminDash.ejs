@@ -73,7 +73,7 @@
                     </div>
                 </div>
                 <div class="admin-dash-btns">
-                    <button class="styled users">Schedule</button>
+                    <a href="/table" class="styled users">Schedule</a>
                     <button class="styled users">Close</button>
                 </div>
 
@@ -182,7 +182,27 @@
             </form>
             </div>
         </div>
+        <div class="msg_admin">
+
+            <% if(msg_appo){ %>
+            <% for(let i = 0; i < msg_appo.length; i++){ %>
+                <div class="each-msg">
+                    <div class="each-nm-msg"><%= [i+1] %></div>
+                    <div class="each-msg-info">
+                        <div class="msg_ttl"> <span class="hightlight-msg"> You have a meeting tomarrow <span class="msg_date"> ( <%= msg_appo[i].dateAP %> ) </span>with </span> <span class="msg_name"> <%= msg_appo[i].nameAP %></span></div>
+                        <div class="msg_time"> <span class="hightlight-msg"> At: </span><%= msg_appo[i].timeAP %></div>
+                        
+                    </div>
+                    <div class="btns-admin-msg">
+                        <button class="btn-close-msg-admin"><i class="fas fa-times"></i></button>
+                    </div>
+                </div>
+                
+                <%}%>
+            <%}%>
+        </div>
     </div>
+    
 
 
 </div>

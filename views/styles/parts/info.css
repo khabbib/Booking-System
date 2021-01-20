@@ -957,6 +957,7 @@ background: linear-gradient(90deg, #F073C8 0%, #FF6A95 99%);
   }
   .intro-guid-table{
     background: url(../../source/frontpage-blur.svg)no-repeat, var(--meddleblue);
+    background-position: right;
   }
   .suport-number{
     display: none;

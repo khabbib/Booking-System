@@ -60,7 +60,7 @@ app.use('/', require('./routes/index.js'));
 app.use('/users', require('./routes/users.js'));
 app.use('/admin', require('./routes/admin.js'));
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT ||  8080;
 
 // if(process.env.NODE_ENV === 'production'){
 //   app.use(express.static('views'));
