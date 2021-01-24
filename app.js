@@ -8,9 +8,6 @@ const session = require('express-session');
 const path = require('path');
 const app = express();
 const cookieParser = require('cookie-parser');
-const scroll = require('smooth-scrollbar');
-// scroll.init(document.querySelector(".scroll"))
-// Passport Config
 require('./config/passport')(passport);
 
 // DB Config
@@ -60,7 +57,7 @@ app.use('/', require('./routes/index.js'));
 app.use('/users', require('./routes/users.js'));
 app.use('/admin', require('./routes/admin.js'));
 
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 
 // if(process.env.NODE_ENV === 'production'){
 //   app.use(express.static('views'));
@@ -72,10 +69,10 @@ app.listen(PORT, console.log(`Server started on port ${PORT}`));
 // app.listen(300,"192.168.1.95", console.log(`Server started on port ${PORT}`));
 
 // live reload the server (auto refresh the browser)
-var livereload = require('livereload').createServer({
-  exts: ['js', 'html','css','ejs']
-});
+// var livereload = require('livereload').createServer({
+//   exts: ['js', 'html','css','ejs']
+// });
 
-livereload.watch(path.join(__dirname, 'views'));
+// livereload.watch(path.join(__dirname, 'views'));
 
 
