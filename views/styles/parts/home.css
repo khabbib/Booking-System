@@ -52,13 +52,27 @@
 .btn-details-home{
     margin-top: 1rem;
 }
-.btn-details-home a{
-    background: linear-gradient(90deg, #F073C8 0%, #FF6A95 99%);
-    padding: 12px 20px;
-    font-size: 1.2rem;
-    color: white;
-    border-radius: 5px;
-    transition: 0.3s;
+
+.availabletime{
+  background: var(--darkgreen);
+  padding: 12px 20px;
+  font-size: 1.2rem;
+  color: white;
+  border-radius: 5px;
+  transition: 0.3s;
+  font-weight: 500;
+}
+.home-target{
+  color: var(--darkgreen);
+  font-weight: 700;
+}
+.login-home{
+  background: linear-gradient(90deg, #F073C8 0%, #FF6A95 99%);
+  padding: 12px 20px;
+  font-size: 1.2rem;
+  color: var(--black);
+  border-radius: 5px;
+  transition: 0.3s;
 }
 .btn-details-home a i{
   opacity: 0;
@@ -66,9 +80,9 @@
 .btn-details-home a:hover,
 .btn-details-home a:active,
 .btn-details-home a:focus{
-  background: linear-gradient(90deg, #FF6A95 0%, #F073C8 99%);
   transition: 0.3s;
   border-radius: 50px;
+  text-decoration: none;
 }
 
 .btn-details-home a:hover > i{
@@ -77,9 +91,51 @@
   margin-left: 20px;
 }
 
+.texts-details-home p{
+  font-weight: 300;
+  color: var(--white);
+}
+
+
 
 /* 
+///////
+///////
 
+§§§§§§§§§§§§  case show included  §§§§§§§§§§§§§§
+
+///////
+///////
+*/
+#case-app-cont{
+  width: 100%;
+  height: auto;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 100px;
+}
+
+.case-app-bg{
+  width: 60%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -100px;
+}
+
+.case-app-bg video{
+  border: none;
+  /* box-shadow: 0 30px 50px -22px #6c19ca33; */
+  border-radius: 10px;
+  outline: none;
+}
+
+
+
+/* 
 section two
 
 */
@@ -216,7 +272,11 @@ section two
     transform: scale(1.05);
   }
   
-
+  .copyRight{
+    margin: 1rem;
+    font-weight: 300;
+    
+  }
 @media only screen and (max-width: 1024px){
 
 }
@@ -226,11 +286,18 @@ section two
     width: 90%;
     margin: auto;
   }
+  .case-app-bg{
+    width: 90%;
+  }
   #title-home{
     font-size: 1.5rem;
     text-align: left;
   }
   .texts-details-home p{
+    font-size: 0.8rem;
+    text-align: center;
+  }
+  .btn-details-home a{
     font-size: 0.8rem;
   }
   header{
@@ -260,6 +327,7 @@ section two
     margin: auto;
   }
   .copyRight{
+    font-size: 0.7rem;
     margin: 1rem;
     
   }

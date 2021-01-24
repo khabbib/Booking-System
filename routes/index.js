@@ -99,10 +99,13 @@ function getInfos(today, todaysDay, firstDayinWeek, newdate, infos, AppFined){
           }
           if (!addedInput) {
             var endDate = new Date(infos[0]["workTime"]["endWork"]);
+            var startDate = new Date(infos[0]["workTime"]["beginWork"]);
               //console.log(endDate.getTime());
               if (newdate.getTime() <= endDate.getTime()) {
-
-                if(nowDate > newdate){
+                if(newdate.getTime() <= startDate.getTime()){
+                  html += `<input style="background: gray; opacity: 0.3; border: none; box-shadow: none; background: var(--lightblue); text-decoration: line-through; color:var(--whiteTableCC);" class="expertTime" data-date="${newdate}" name="eachtime" value="${unikTime.getHours()}:${unikTime.getMinutes()} - ${uniktime2.getHours()}:${uniktime2.getMinutes()}" disabled> `;
+                  
+                }else if(nowDate > newdate){
                   html += `<input style="background: gray; opacity: 0.3; border: none; box-shadow: none; background: var(--lightblue); text-decoration: line-through; color:var(--whiteTableCC);" class="expertTime" data-date="${newdate}" name="eachtime" value="${unikTime.getHours()}:${unikTime.getMinutes()} - ${uniktime2.getHours()}:${uniktime2.getMinutes()}" disabled> `;
                 }else{
                   html += `<input class="parttimes" data-date="${newdate}" name="eachtime" value="${unikTime.getHours()}:${unikTime.getMinutes()} - ${uniktime2.getHours()}:${uniktime2.getMinutes()}"> `;

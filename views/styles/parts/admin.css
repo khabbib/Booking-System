@@ -190,6 +190,25 @@
         width: 100%;
     }
 
+    .msg_admin{
+        right: 0;
+        bottom: 0;
+    }
+    .msg_ttl{
+        font-size: 0.7rem;
+        line-height: 1rem;
+    }
+    .msg_name, .msg_time, .msg_date{
+        font-size: 0.8rem;
+    }
+    .each-msg{
+        background: var(--lightgreen);
+    }
+    .btns-admin-msg button{
+        background: var(--white);
+        font-size: 1rem;
+    }
+
     
 }
 

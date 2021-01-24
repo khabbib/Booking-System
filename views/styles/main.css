@@ -15,7 +15,7 @@
 
 :root{
     --lightgreen: lightgreen;
-    --darkgreen: rgb(105, 223, 105);
+    --darkgreen: #00e472;
     --lightgray: #f0f0f0;
     --darkgray: #dbdbdb;
     --darkfont: #222831;
@@ -41,7 +41,7 @@
   
 *{
     outline: none;
-    scroll-behavior: smooth;
+    /* scroll-behavior: smooth; */
     box-sizing: border-box;
     font-family: 'Quicksand', sans-serif;
     padding: 0;

@@ -177,6 +177,7 @@
                         </div>
                     </div>
                 <button id="adminDeleteBtn" class="deleteBtn" type="submit" name="deleteA" value="deleteA"><i class="fas fa-trash-alt"></i><span> Delete</span></button>
+                <!-- <button id="adminEdit" class="editBtn" type="submit" name="editA" value="editA">Edit</button> -->
 
                 <%}%>
             </form>
@@ -189,7 +190,7 @@
                 <div class="each-msg">
                     <div class="each-nm-msg"><%= [i+1] %></div>
                     <div class="each-msg-info">
-                        <div class="msg_ttl"> <span class="hightlight-msg"> You have a meeting tomarrow <span class="msg_date"> ( <%= msg_appo[i].dateAP %> ) </span>with </span> <span class="msg_name"> <%= msg_appo[i].nameAP %></span></div>
+                        <div class="msg_ttl"> <span class="hightlight-msg">  Meeting tomarrow <span class="msg_date"> <%= msg_appo[i].dateAP %> </span>with </span> <span class="msg_name"> <%= msg_appo[i].nameAP %></span></div>
                         <div class="msg_time"> <span class="hightlight-msg"> At: </span><%= msg_appo[i].timeAP %></div>
                         
                     </div>
