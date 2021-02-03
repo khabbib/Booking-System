@@ -20,7 +20,7 @@ function ss(){
         dashMenu[i].addEventListener("click", (e)=>{
             var target = e.currentTarget;
             if(target.innerHTML === "Users"){
-                userBtn.style.cssText = "background: var(--lightblue);";
+                userBtn.style.cssText = "background: linear-gradient(90deg, #F073C8 0%, #FF6A95 99%); box-shadow: 0 0 120px #FF6A95; color: var(--whiteTableCC); transition: 0.2s;";
                 appnBtn.style.cssText = "background: none;";
                 dashBtn.style.cssText = "background: none;";
                 adminBtn.style.cssText = "background: none;";
@@ -37,7 +37,7 @@ function ss(){
             if(target.innerHTML === "Dashboard"){
                 userBtn.style.cssText = "background: none;";
                 appnBtn.style.cssText = "background: none;";
-                dashBtn.style.cssText = "background: var(--lightblue);";
+                dashBtn.style.cssText = "background: linear-gradient(90deg, #F073C8 0%, #FF6A95 99%); box-shadow: 0 0 120px #FF6A95; color: var(--whiteTableCC); transition: 0.2s;";
                 adminBtn.style.cssText = "background: none;";
                 searchBtn.style.cssText = "background: none;";
                 chnageHBtn.style.cssText = "background: none;";
@@ -52,7 +52,7 @@ function ss(){
             }
             if(target.innerHTML === "Appointments"){
                 userBtn.style.cssText = "background: none;";
-                appnBtn.style.cssText = "background: var(--lightblue);";
+                appnBtn.style.cssText = "background: linear-gradient(90deg, #F073C8 0%, #FF6A95 99%); box-shadow: 0 0 120px #FF6A95; color: var(--whiteTableCC); transition: 0.2s;";
                 dashBtn.style.cssText = "background: none;";
                 adminBtn.style.cssText = "background: none;";
                 searchBtn.style.cssText = "background: none;";
@@ -70,7 +70,7 @@ function ss(){
                 userBtn.style.cssText = "background: none;";
                 appnBtn.style.cssText = "background: none;";
                 dashBtn.style.cssText = "background: none;";
-                adminBtn.style.cssText = "background: var(--lightblue);";
+                adminBtn.style.cssText = "background: linear-gradient(90deg, #F073C8 0%, #FF6A95 99%); box-shadow: 0 0 120px #FF6A95; color: var(--whiteTableCC); transition: 0.2s;";
                 searchBtn.style.cssText = "background: none;";
                 chnageHBtn.style.cssText = "background: none;";
 
@@ -88,7 +88,7 @@ function ss(){
                 appnBtn.style.cssText = "background: none;";
                 dashBtn.style.cssText = "background: none;";
                 adminBtn.style.cssText = "background: none;";
-                searchBtn.style.cssText = "background: var(--lightblue);";
+                searchBtn.style.cssText = "background: linear-gradient(90deg, #F073C8 0%, #FF6A95 99%); box-shadow: 0 0 120px #FF6A95; color: var(--whiteTableCC); transition: 0.2s;";
                 chnageHBtn.style.cssText = "background: none;";
 
                 userPage.style.display = "none";
@@ -105,7 +105,7 @@ function ss(){
                 dashBtn.style.cssText = "background: none;";
                 adminBtn.style.cssText = "background: none;";
                 searchBtn.style.cssText = "background: none;";
-                chnageHBtn.style.cssText = "background: var(--lightblue);";
+                chnageHBtn.style.cssText = "background: linear-gradient(90deg, #F073C8 0%, #FF6A95 99%); box-shadow: 0 0 120px #FF6A95; color: var(--whiteTableCC); transition: 0.2s;";
 
                 userPage.style.display = "none";
                 appnPage.style.display = "none";

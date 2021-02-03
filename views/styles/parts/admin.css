@@ -100,6 +100,7 @@
 .each-msg{
     transform: translateX(300%);
     background: var(--whiteTableCC);
+    box-shadow: 0 10px 50px -12px #FF6A95;
     border-radius: 5px;
     margin-bottom: 1rem;
     display: flex;
@@ -132,17 +133,20 @@
     height: 100%;
 }
 .btns-admin-msg button{
-    background: var(--fontblue);
+    background: linear-gradient(90deg, #F073C8 99%, #FF6A95 0%);
     border: 0;
     height: 100%;
     padding: 0 2rem;
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
-    color: var(--pink);
+    color: var(--darkblue);
+    transition: 0.2s;
     font-size: 1.5rem;
 }
 .btns-admin-msg button:hover{
-    background: var(--lightblue);
+    color: var(--white);
+    background: linear-gradient(90deg, #F073C8 0%, #FF6A95 99%);
+    transition: 0.2s;
 }
 
 .msg_ttl{

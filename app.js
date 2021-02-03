@@ -58,6 +58,7 @@ app.use('/users', require('./routes/users.js'));
 app.use('/admin', require('./routes/admin.js'));
 
 const PORT = process.env.PORT || 8080;
+// const PORT = 8080;
 
 // if(process.env.NODE_ENV === 'production'){
 //   app.use(express.static('views'));
@@ -68,7 +69,7 @@ const PORT = process.env.PORT || 8080;
 app.listen(PORT, console.log(`Server started on port ${PORT}`));
 // app.listen(300,"192.168.1.95", console.log(`Server started on port ${PORT}`));
 
-// live reload the server (auto refresh the browser)
+
 // var livereload = require('livereload').createServer({
 //   exts: ['js', 'html','css','ejs']
 // });

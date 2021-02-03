@@ -29,27 +29,23 @@
 }
 
 
-#adminDeleteBtn{
+#adminDeleteBtn, #adminDeleteUserBtn{
     position: absolute;
     right: 11%;
     bottom: 12%;
     color: white;
-    background:var(--warning);
+    background: linear-gradient(90deg, rgb(240, 115, 200) 0%, rgb(255, 106, 149) 99%);
+    box-shadow: rgb(255 106 149) 0px 0px 120px;
     padding: 1rem 2rem;
     border-radius: 50px;
     display: none;
     position: fixed;
+    transition: 0.2s;
 }
-#adminDeleteUserBtn{
-    position: absolute;
-    right: 11%;
-    bottom: 12%;
-    color: white;
-    background:var(--warning);
-    padding: 1rem 2rem;
-    border-radius: 50px;
-    display: none;
-    position: fixed;
+#adminDeleteUserBtn:hover, #adminDeleteBtn:hover{
+    background: linear-gradient(0deg, rgb(240, 115, 200) 0%, rgb(255, 106, 149) 99%);
+    box-shadow: rgb(255 106 149) 0px 0px 50px;
+    transition: 0.2s;
 }
 
 
@@ -86,7 +82,7 @@
     width: 100%;
 }
 .styled{
-    color: var(--whiteTableCC);
+    color: var(--white);
     margin: 5px;
     border-radius: 5px;
     background: none;
@@ -206,6 +202,10 @@
     display: flex;
     justify-content: flex-end;
     text-decoration: none;
+}
+.logout-men a:hover{
+    background: var(--meddleblue);
+    transition: 0.2s;
 }
 .logo-admin{
     flex: 1;

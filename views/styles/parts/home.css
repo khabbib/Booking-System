@@ -68,6 +68,7 @@
 }
 .login-home{
   background: linear-gradient(90deg, #F073C8 0%, #FF6A95 99%);
+  box-shadow: 0 0 120px #FF6A95;
   padding: 12px 20px;
   font-size: 1.2rem;
   color: var(--black);
