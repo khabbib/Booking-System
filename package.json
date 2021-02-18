@@ -1,12 +1,11 @@
 {
-  "name": "lollll",
+  "name": "abs",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js",
-    "heroku-build": "npm install && npm run build"
+    "dev": "nodemon app.js"
   },
   "keywords": [],
   "author": "",
