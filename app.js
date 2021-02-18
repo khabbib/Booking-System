@@ -9,7 +9,7 @@ const path = require('path');
 const app = express();
 const cookieParser = require('cookie-parser');
 require('./config/passport')(passport);
-
+require('dotenv').config();
 // DB Config
 const db = require('./config/keys').mongoURI;
 
@@ -66,7 +66,7 @@ const PORT = process.env.PORT || 8080;
 //     res.sendFile(path.join(__dirname, 'views', 'ejs'));
 //   })
 // }
-app.listen(PORT, console.log(`Server started on port ${PORT}`));
+app.listen(PORT, console.log(`Server is runing on port: ${PORT}`));
 // app.listen(300,"192.168.1.95", console.log(`Server started on port ${PORT}`));
 
 

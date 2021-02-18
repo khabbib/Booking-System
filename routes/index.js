@@ -14,6 +14,7 @@ const Session = require('../models/session').Session;
 const Admin = require('../models/admin');
 
 
+
 var outPut = '';
 
 function getInfos(today, todaysDay, firstDayinWeek, newdate, infos, AppFined){
@@ -625,58 +626,60 @@ router.post('/table',  function(req, res){
             res.redirect('table');
           }else {
             
-            // const outputmail = `
-            //   <p>Hej</p>
-            //   <p>Du har en ny bokat tid!</p>
-            //   <h3>Boknings information</h3>
-            //   <h3>Du har tid hos oss den ${formatDate}  kl: <span style="color: red;"> ${req.body.time}</span></h3>
-            //   <h3>Mer information angående bookning</h3>
-            //     <ul>  
-            //       <li>Name: ${req.body.name}  ${req.body.Lastname}</li>
-            //       <li>Appointment: ${req.body.time}</li>
-            //       <li>Appointment: ${formatDate}</li>
-            //     </ul>
-            //   <h3 style="color: red;">Kom ihåg!</h3>
-            //   <p>Avbokning måste ske innan 24 timmar.</p>
-            // `;
-            // //console.log(newAppointment)
-            // // create reusable transporter object using the default SMTP transport
-            // let transporter = nodemailer.createTransport({
-            //   service: 'gmail',
-            //   auth: {
-            //       user: Pass.epost, // generated ethereal user
-            //       pass: Pass.password  // generated ethereal password
-            //   }
+            const outputmail = `
+              <p>Hej</p>
+              <p>Du har en ny bokat tid!</p>
+              <h3>Boknings information</h3>
+              <h3>Du har tid hos oss den ${formatDate}  kl: <span style="color: red;"> ${req.body.time}</span></h3>
+              <h3>Mer information angående bookning</h3>
+                <ul>  
+                  <li>Name: ${req.body.name}  ${req.body.Lastname}</li>
+                  <li>Appointment: ${req.body.time}</li>
+                  <li>Appointment: ${formatDate}</li>
+                </ul>
+              <h3 style="color: red;">Kom ihåg!</h3>
+              <p>Avbokning måste ske innan 24 timmar.</p>
+            `;
+            //console.log(newAppointment)
+            // create reusable transporter object using the default SMTP transport
+            let transporter = nodemailer.createTransport({
+              service: 'gmail',
+              port:8080,
+              secure: true,
+              auth: {
+                  user: Pass.epost, // generated ethereal user
+                  pass: Pass.password  // generated ethereal password
+              }
               
-            // });
+            });
 
-            // // setup email data with unicode symbols
-            // let mailOptions = {
-            //     from: '"DevPakdel" <habib.pakdel1121@gmail.com>', // sender address
-            //     to: `${req.body.email}`, // list of receivers
-            //     subject: 'New Appointment', // Subject line
-            //     text: "Bookning", // plain text body
-            //     html: outputmail
-            //   };
+            // setup email data with unicode symbols
+            let mailOptions = {
+                from: '"DevPakdel" <habib.pakdel1121@gmail.com>', // sender address
+                to: `${req.body.email}`, // list of receivers
+                subject: 'New Appointment', // Subject line
+                text: "Bookning", // plain text body
+                html: outputmail
+              };
 
-            // // send mail with defined transport object
-            // transporter.sendMail(mailOptions, (error, info) => {
-            //     if (error) {
-            //       if(user){
-            //         res.redirect('/dashboard')
+            // send mail with defined transport object
+            transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                  if(user){
+                    res.redirect('/dashboard')
                     
-            //       }
+                  }
                   
-            //       res.redirect('/done')
-            //       return
-            //     }
-            //     //console.log("successfully insert the information")
-            //     if(user){
-            //       res.redirect('/dashboard')
-            //     }
-            //     res.redirect('/done')
+                  res.redirect('/done')
+                  return
+                }
+                //console.log("successfully insert the information")
+                if(user){
+                  res.redirect('/dashboard')
+                }
+                res.redirect('/done')
                 
-            //   });
+              });
               req.flash(
                 'success_msg',
                 `You'r appointment successfully booked!`

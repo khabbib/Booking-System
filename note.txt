@@ -1,2 +1,0 @@
-// this vertion is hosted on heroku.com
-// url: https://memeeeeee.herokuapp.com/ 

@@ -1,10 +1,12 @@
+const Mail = require("nodemailer/lib/mailer");
 
-pass = 'HApakdel1121#me';
-email = 'habib.pakdel1121@gmail.com';
+const MAIL_KEY = process.env.E_PASS;
+const MAIL = process.env.EMAIL;
+
 
 
 module.exports ={
-    password: pass,
-    epost: email
+    password: MAIL_KEY,
+    epost: MAIL
 
 } 
