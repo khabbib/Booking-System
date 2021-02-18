@@ -1,1 +1,2 @@
-web: npm run start
+
+web: NODE_DEBUG=* node server.js
