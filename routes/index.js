@@ -628,10 +628,11 @@ router.post('/table',  function(req, res){
           }else {
             
             const outputmail = `
-              <p>Hej</p>
-              <p>Du har en ny bokat tid!</p>
-              <h3>Boknings information</h3>
-              <h3>Du har tid hos oss den ${formatDate}  kl: <span style="color: red;"> ${req.body.time}</span></h3>
+              <p>Du har ny bokat tid!</p>
+              
+              <h3>Hej <br> <p> ${req.body.name} ${req.body.Lastname}</p></h3>
+              <h3>Tiden har bokat den ${formatDate} , kl: <span style="color: red;"> ${req.body.time}</span></h3>
+              <br>
               <h3>Mer information angående bookning</h3>
                 <ul>  
                   <li>Name: ${req.body.name}  ${req.body.Lastname}</li>
@@ -640,6 +641,8 @@ router.post('/table',  function(req, res){
                 </ul>
               <h3 style="color: red;">Kom ihåg!</h3>
               <p>Avbokning måste ske innan 24 timmar.</p>
+              <br>
+              <p>Varmt välkommen!</p>
             `;
             //console.log(newAppointment)
             // create reusable transporter object using the default SMTP transport
@@ -658,7 +661,7 @@ router.post('/table',  function(req, res){
             let mailOptions = {
                 from: '"DevStud" <habib.pakdel1121@gmail.com>', // sender address
                 to: `${req.body.email}`, // list of receivers
-                subject: 'New Appointment', // Subject line
+                subject: 'Bokat Besök', // Subject line
                 text: "Bookning", // plain text body
                 html: outputmail
               };
