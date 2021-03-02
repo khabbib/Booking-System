@@ -11,10 +11,10 @@ const cookieParser = require('cookie-parser');
 require('./config/passport')(passport);
 require('dotenv').config();
 // DB Config
-const db = require('./config/keys').mongoURI;
+// const db = require('./config/keys').mongoURI;
 
 // Connect to MongoDB
-mongoose.connect( db, { useNewUrlParser: true ,useUnifiedTopology: true})
+mongoose.connect( process.env.DB, { useNewUrlParser: true ,useUnifiedTopology: true})
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err));
 
@@ -30,11 +30,13 @@ app.use(express.urlencoded({ extended: false }));
 // Express session
 app.use(
   session({
-    secret: 'secret',
-    resave: true,
-    saveUninitialized: true
+    secret: 'sicurity',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true }
   })
 );
+
 
 // Passport middleware
 app.use(passport.initialize());
@@ -57,8 +59,9 @@ app.use('/', require('./routes/index.js'));
 app.use('/users', require('./routes/users.js'));
 app.use('/admin', require('./routes/admin.js'));
 
-const PORT = process.env.PORT || 3000;
-// const PORT = 8080;
+// const PORT = 81;
+// const PORT = 81;
+const PORT = process.env.PORT || 8080;
 
 // if(process.env.NODE_ENV === 'production'){
 //   app.use(express.static('views'));
@@ -66,7 +69,7 @@ const PORT = process.env.PORT || 3000;
 //     res.sendFile(path.join(__dirname, 'views', 'ejs'));
 //   })
 // }
-app.listen(PORT, console.log(`Server is runing on port: ${PORT}`));
+app.listen(PORT, console.log(`Server is runing on port:`));
 // app.listen(300,"192.168.1.95", console.log(`Server started on port ${PORT}`));
 //new chanfsdfsdf
 

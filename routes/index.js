@@ -9,9 +9,10 @@ const Appointment = require('../models/appointment');
 const Time = require('../models/time');
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 const nodemailer = require('nodemailer');
-const Pass = require('../config/emailkey');
+// const Pass = require('../config/emailkey');
 const Session = require('../models/session').Session;
 const Admin = require('../models/admin');
+require('dotenv').config();
 
 
 
@@ -647,15 +648,15 @@ router.post('/table',  function(req, res){
               port:8080,
               secure: true,
               auth: {
-                  user: Pass.epost, // generated ethereal user
-                  pass: Pass.password  // generated ethereal password
+                  user: process.env.EMAIL, // generated ethereal user
+                  pass: process.env.E_PASS  // generated ethereal password
               }
               
             });
 
             // setup email data with unicode symbols
             let mailOptions = {
-                from: '"DevPakdel" <habib.pakdel1121@gmail.com>', // sender address
+                from: '"DevStud" <habib.pakdel1121@gmail.com>', // sender address
                 to: `${req.body.email}`, // list of receivers
                 subject: 'New Appointment', // Subject line
                 text: "Bookning", // plain text body
