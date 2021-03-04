@@ -560,8 +560,8 @@ router.get('/changeD', (req, res)=>{
 
         // change date rout
 router.get('/table', (req, res) => {
- 
   if(req.cookies.timeStamp == "true"){
+
     var xx = outPut;
     // outPut = '';
 
@@ -606,7 +606,9 @@ router.post('/table',  function(req, res){
     newAppointment.numberAP = req.body.number;
     newAppointment.addressAP = req.body.address;
     newAppointment.postAdressAP = req.body.postAdress;
-  }
+  }else{
+
+  
     newAppointment.dateAP = formatDate;
     newAppointment.timeAP = req.body.time;
     newAppointment.nameAP = req.body.name;
@@ -617,8 +619,33 @@ router.post('/table',  function(req, res){
     newAppointment.numberAP = req.body.number;
     newAppointment.addressAP = req.body.address;
     newAppointment.postAdressAP = req.body.postAdress;
+    
+    
+    Appointment.find({}, (err, find)=>{
       
-    newAppointment.save(function(err, sent){
+      var check_to_booded_time = true;
+      var dateToCmp = formatDate;
+      var timeToCmp = req.body.time;
+      
+      for (let i = 0; i < find.length; i++) {
+        if(dateToCmp == find[i].dateAP){
+          if ( timeToCmp == find[i].timeAP) {
+            check_to_booded_time = true;
+            res.redirect("/table");
+            // console.log("time is already booked!"); 
+            // console.log("frue now")
+          }else{
+            // write code 
+            check_to_booded_time = false;
+            // console.log("false now")
+            }
+          }
+        
+        }
+      
+    if (check_to_booded_time == false) { 
+      // console.log("went to saving app")
+      newAppointment.save(function(err, sent){
           if(err){
             req.flash(
               'error_msg',
@@ -670,35 +697,45 @@ router.post('/table',  function(req, res){
             transporter.sendMail(mailOptions, (error, info) => {
                 if (error) {
                   if(user){
+                    req.flash(
+                      'error_msg',
+                      `You'r appointment not booked!`
+                    );
                     res.redirect('/dashboard')
-                    
+                    console.log( error + "user 1")
                   }
-                  
-                  res.redirect('/done')
-                  return
+                  console.log("not user not sent mail!");
+                  res.redirect('/table');
                 }
                 //console.log("successfully insert the information")
-                if(user){
-                  res.redirect('/dashboard')
+                else if(user){
+                  req.flash(
+                    'success_msg',
+                    `You'r appointment successfully booked!`
+                  );
+                  res.redirect('/dashboard');
                 }
+
+                req.flash(
+                  'success_msg',
+                  `You'r appointment successfully booked!`
+                );
+                console.log("mail sent!")
                 res.redirect('/done')
                 
               });
-              req.flash(
-                'success_msg',
-                `You'r appointment successfully booked!`
-              );
               
-              if(user){
-                res.redirect('/dashboard')
-              }else{
-                res.redirect('/done')
-                
-              }
+              
+              
 
           }
-        })
+      })
+    }else{
 
+      // console.log("not went to saving app")
+    }
+  })
+  }
 })
    
 
