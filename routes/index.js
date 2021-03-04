@@ -654,7 +654,7 @@ router.post('/table',  function(req, res){
         newAppointment.save(function(err, sent){
             if(err){
               console.log(err + "from saving info");
-              res.redirect('table');
+              res.redirect('/home');
             }else {
               
               const outputmail = `
@@ -704,7 +704,7 @@ router.post('/table',  function(req, res){
                       'error_msg',
                       `You'r appointment not booked!`
                       );
-                    res.redirect('/table');
+                    res.redirect('/admin');
 
                   }
                   if (info) {
@@ -732,10 +732,10 @@ router.post('/table',  function(req, res){
 
       }else{
         req.flash(
-                        'success_msg',
-                        `You'r appointment successfully bookeddddddddddddd!`
-                        );
-        res.redirect('/table')
+          'success_msg',
+          `You'r appointment successfully booked!`
+          );
+        res.redirect('/home')
         console.log("not went to saving app")
       }
     }
