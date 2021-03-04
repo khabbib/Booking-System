@@ -620,119 +620,120 @@ router.post('/table',  function(req, res){
     newAppointment.addressAP = req.body.address;
     newAppointment.postAdressAP = req.body.postAdress;
     
+    let check_to_booded_time = false;
     
     Appointment.find({}, (err, find)=>{
-      
-      var check_to_booded_time = true;
-      var dateToCmp = formatDate;
-      var timeToCmp = req.body.time;
-      
-      for (let i = 0; i < find.length; i++) {
-        if(dateToCmp == find[i].dateAP){
-          if ( timeToCmp == find[i].timeAP) {
-            check_to_booded_time = true;
-            res.redirect("/table");
-            // console.log("time is already booked!"); 
-            // console.log("frue now")
-          }else{
-            // write code 
-            check_to_booded_time = false;
-            // console.log("false now")
+      if (err) {
+        console.log(err)
+      }
+      if (find) {
+        
+        var dateToCmp = formatDate;
+        var timeToCmp = req.body.time;
+        
+        for (let i = 0; i < find.length; i++) {
+          if(dateToCmp == find[i].dateAP){
+            if ( timeToCmp == find[i].timeAP) {
+              check_to_booded_time = true;
+              res.redirect("/table");
+              // console.log("time is already booked!"); 
+              console.log("frue now")
+              
+            }else{
+              // write code 
+              check_to_booded_time = false;
+              console.log("false now")
+              break;
+              }
             }
+          
           }
         
-        }
-      
-    if (check_to_booded_time == false) { 
-      // console.log("went to saving app")
-      newAppointment.save(function(err, sent){
-          if(err){
-            req.flash(
-              'error_msg',
-              "You'r appointment hasn't booked successfully! Please fill all the sheets"
-            );
-            res.redirect('table');
-          }else {
-            
-            const outputmail = `
-              <p>Du har ny bokat tid!</p>
+        if (check_to_booded_time == false) { 
+        // console.log("went to saving app")
+        newAppointment.save(function(err, sent){
+            if(err){
               
-              <h3>Hej <br> <p> ${req.body.name} ${req.body.Lastname}</p></h3>
-              <h3>Tiden har bokat den ${formatDate} , kl: <span style="color: red;"> ${req.body.time}</span></h3>
-              <br>
-              <h3>Mer information angående bookning</h3>
-                <ul>  
-                  <li>Name: ${req.body.name}  ${req.body.Lastname}</li>
-                  <li>Appointment: ${req.body.time}</li>
-                  <li>Appointment: ${formatDate}</li>
-                </ul>
-              <h3 style="color: red;">Kom ihåg!</h3>
-              <p>Avbokning måste ske innan 24 timmar.</p>
-              <br>
-              <p>Varmt välkommen!</p>
-            `;
-            //console.log(newAppointment)
-            // create reusable transporter object using the default SMTP transport
-            let transporter = nodemailer.createTransport({
-              service: 'gmail',
-              port:8080,
-              secure: true,
-              auth: {
-                  user: process.env.EMAIL, // generated ethereal user
-                  pass: process.env.E_PASS  // generated ethereal password
-              }
+              res.redirect('table');
+            }else {
               
-            });
+              const outputmail = `
+                <p>Du har ny bokat tid!</p>
+                
+                <h3>Hej <br> <p> ${req.body.name} ${req.body.Lastname}</p></h3>
+                <h3>Tiden har bokat den ${formatDate} , kl: <span style="color: red;"> ${req.body.time}</span></h3>
+                <br>
+                <h3>Mer information angående bookning</h3>
+                  <ul>  
+                    <li>Name: ${req.body.name}  ${req.body.Lastname}</li>
+                    <li>Appointment: ${req.body.time}</li>
+                    <li>Appointment: ${formatDate}</li>
+                  </ul>
+                <h3 style="color: red;">Kom ihåg!</h3>
+                <p>Avbokning måste ske innan 24 timmar.</p>
+                <br>
+                <p>Varmt välkommen!</p>
+              `;
+              //console.log(newAppointment)
+              // create reusable transporter object using the default SMTP transport
+              let transporter = nodemailer.createTransport({
+                service: 'gmail',
+                port:8080,
+                secure: true,
+                auth: {
+                    user: process.env.EMAIL, // generated ethereal user
+                    pass: process.env.E_PASS  // generated ethereal password
+                }
+                
+              });
 
-            // setup email data with unicode symbols
-            let mailOptions = {
-                from: '"DevStud" <habib.pakdel1121@gmail.com>', // sender address
-                to: `${req.body.email}`, // list of receivers
-                subject: 'Bokat Besök', // Subject line
-                text: "Bookning", // plain text body
-                html: outputmail
-              };
+              // setup email data with unicode symbols
+              let mailOptions = {
+                  from: '"DevStud" <habib.pakdel1121@gmail.com>', // sender address
+                  to: `${req.body.email}`, // list of receivers
+                  subject: 'Bokat Besök', // Subject line
+                  text: "Bookning", // plain text body
+                  html: outputmail
+                };
 
-            // send mail with defined transport object
-            transporter.sendMail(mailOptions, (error, info) => {
-                if (error) {
-                  if(user){
+              // send mail with defined transport object
+              transporter.sendMail(mailOptions, (error, info) => {
+                  if (error) {
                     req.flash(
                       'error_msg',
                       `You'r appointment not booked!`
-                    );
-                    res.redirect('/dashboard')
-                    console.log( error + "user 1")
+                      );
+                    res.redirect('/table');
+
                   }
-                  console.log("not user not sent mail!");
-                  res.redirect('/table');
-                }
-                //console.log("successfully insert the information")
-                else if(user){
-                  req.flash(
-                    'success_msg',
-                    `You'r appointment successfully booked!`
-                  );
-                  res.redirect('/dashboard');
-                }
-
-                req.flash(
-                  'success_msg',
-                  `You'r appointment successfully booked!`
-                );
-                console.log("mail sent!")
-                res.redirect('/done')
+                  if (info) {
+                    
+                    //console.log("successfully insert the information")
+                    if(user){
+                      req.flash(
+                        'success_msg',
+                        `You'r appointment successfully booked!`
+                        );
+                        res.redirect('/dashboard');
+                      } 
+                    
+                    console.log("mail sent!")
+                    res.redirect('/done')
+                  }
+                  
+                });
                 
-              });
-              
-              
-              
+            }
+            
+        })
 
-          }
-      })
-    }else{
 
-      // console.log("not went to saving app")
+
+      }else{
+        
+        res.redirect('/table')
+        console.log("not went to saving app")
+      }
     }
   })
   }
