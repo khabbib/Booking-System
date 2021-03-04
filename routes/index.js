@@ -653,7 +653,7 @@ router.post('/table',  function(req, res){
         // console.log("went to saving app")
         newAppointment.save(function(err, sent){
             if(err){
-              
+              console.log(err + "from saving info");
               res.redirect('table');
             }else {
               
@@ -699,6 +699,7 @@ router.post('/table',  function(req, res){
               // send mail with defined transport object
               transporter.sendMail(mailOptions, (error, info) => {
                   if (error) {
+                    console.log(error +  "from sendMail")
                     req.flash(
                       'error_msg',
                       `You'r appointment not booked!`
@@ -730,7 +731,10 @@ router.post('/table',  function(req, res){
 
 
       }else{
-        
+        req.flash(
+                        'success_msg',
+                        `You'r appointment successfully bookeddddddddddddd!`
+                        );
         res.redirect('/table')
         console.log("not went to saving app")
       }
