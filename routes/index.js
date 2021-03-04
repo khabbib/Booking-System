@@ -704,7 +704,7 @@ router.post('/table',  function(req, res){
                       'error_msg',
                       `You'r appointment not booked!`
                       );
-                    res.redirect('/admin');
+                    res.redirect('/done');
 
                   }
                   if (info) {
