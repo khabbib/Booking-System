@@ -940,8 +940,6 @@ router.get('/adminDash', (req, res)=>{
               mongoose.connect(db, (err, db)=> {
                 if(err){
                   //console.log(err)
-                }else{
-                  
                 }
                 var adminCollection = db.collection('admins');
                 adminCollection.find({}).toArray( (err, adminFind)=>{
@@ -979,16 +977,38 @@ router.get('/adminDash', (req, res)=>{
                                   var inform_msg_date = (toDay.getFullYear()) +"/"+ (toDay.getMonth() + 1 )+"/"+ (toDay.getDate() + 1);
                                   var expired_times = [];
                                   var appo_for_tomarrow = [];
+                                  var deleteTodaysApp = [];
                                   
+                                  var todaysDay = new Date().getDate();
+                                  // console.log("FormateDate: " +formatDate);
+                                  console.log(todaysDay)
+
                                   //to delete the expired appoinments
                                   for(x in appns){
-                                    // console.log(appns[x].dateAP);
-                                    if(formatDate >= appns[x].dateAP){
-                                      // console.log("its the match: " + appns[x].dateAP);
+                                    // console.log("Database date " + appns[x].date.getDate());
+                                    if(formatDate == appns[x].dateAP){
+                                      // var dataBaseDate = appns[x].date.getDate();
                                       expired_times.push(appns[x].dateAP);
+                                      // console.log("appo to delete: " + appns[x].dateAP);
                                     }
                                   }
 
+                                  // console.log(parseInt(appns[x].dateAP));
+
+                                  
+                                  // choose those appos if they are equal to today
+                                  for (let i = 0; i < expired_times.length; i++) {
+                                    if (formatDate == expired_times[i]) {
+                                      console.log("arrays - " + expired_times[i]);
+                                      deleteTodaysApp.push(expired_times[i]);
+                                      
+                                    }
+                                    
+                                  }
+
+                                  console.log(deleteTodaysApp);
+
+                                  
 
                                   // to see if any appointment is booked for tomarrow
                                   for(x in appns){
@@ -998,12 +1018,23 @@ router.get('/adminDash', (req, res)=>{
                                       appo_for_tomarrow.push(appns[x]);
                                     }
                                   }
-                                  if(expired_times){
-                                    const toDeleteExpiredAppo = {dateAP: {$in: expired_times}};
+                                  console.log("appo for tomarrow" + appo_for_tomarrow);
+
+                                //   res.render('adminDash',{
+                                //     title: 'Admin dashboard',
+                                //     user: usr,
+                                //     item: appns,
+                                //     msg_appo: appo_for_tomarrow,
+                                //     current_admin: list_of_admin[0],
+                                //     admin: adminCollection
+                                // })
+                                  if(deleteTodaysApp){
+                                    const toDeleteExpiredAppo = {dateAP: {$in: deleteTodaysApp}};
                                     appointment.deleteMany(toDeleteExpiredAppo, (err, de)=>{
                                       if(err){
                                         console.log("Not deleted" + err);
                                       }else {
+                                        // console.log("deleted")
                                         res.render('adminDash',{
                                           title: 'Admin dashboard',
                                           user: usr,
