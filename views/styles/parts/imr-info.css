@@ -1,0 +1,85 @@
+/* alarm info */
+
+.imer-info{
+    background: var(--meddleblue);
+    position: absolute;
+    border-radius: 5px;
+    top: 10%;
+    right: 0;
+    width: 400px;
+    padding: 2rem;
+    z-index: 4;
+  }
+  .alarm{
+    width: 100%;
+  }
+  
+  .alarm h1{
+    font-weight: 600;
+    color: var(--pink);
+  }
+  .alarm h3{
+    color: var(--whiteTableCC);
+    font-weight: 400;
+  }
+  
+  .u-a-part{
+    padding: 1rem;
+    border-radius: 5px;
+    display: flex;
+  }
+  
+  .admin-tt, .user-tt{
+    color: var(--whiteTableCC);
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  
+  .user-info{
+    border-right: 2px solid rgba(23, 31, 107, 0.219);
+  
+  }
+  
+  .user-info:last-child{
+    border: none;
+  }
+  
+  .user-info{
+    padding: 0.5rem;
+  }
+  .psw, .usw{
+    color: var(--lightgreen);
+  }
+  
+  
+  
+@media only screen and (max-width: 667px){
+
+    .imer-info{
+        width: 70%;
+        margin: auto;
+        position: absolute;
+        height: 20vh;
+        /* bottom: 0; */
+        right: 0;
+        top: 0;
+        padding: 0;
+        background: rgba(32, 32, 88, 0.904);
+    }
+    .hide-on-phone{
+        display: none;
+    }
+
+    .u-a-part{
+        padding: 0.2rem;
+      }
+
+      .imer-info p{
+          margin-bottom: 0;
+      }
+      .alarm h1{
+        margin: 0.5rem;
+      }
+
+
+}

@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90vh;
+    height: 80vh;
     width: 100%;
     margin: auto;
     position: relative;
@@ -24,7 +24,7 @@
 .introduce-home-content{
     width: 70%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     height: 100%;
     margin: auto;
@@ -33,18 +33,18 @@
   position: absolute;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 .texts-details-home{
   display: flex;
   justify-content: center;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
 }
 #title-home{
     font-size: 3rem;
-    text-align: center;
+    text-align: left;
     color: var(--whiteTableCC);
 
   }
@@ -63,6 +63,7 @@
   font-weight: 500;
 }
 .home-target{
+  font-size: 3.5rem;
   color: var(--darkgreen);
   font-weight: 700;
 }
@@ -93,9 +94,13 @@
 }
 
 .texts-details-home p{
-  font-weight: 300;
-  color: var(--white);
+  font-weight: 500;
+  color: var(--whiteTableCC);
+  text-align: left;
 }
+
+
+
 
 
 
@@ -110,21 +115,35 @@
 */
 #case-app-cont{
   width: 100%;
-  height: auto;
+  height: 70vh;
+  position: relative;
   margin: auto;
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
   margin-bottom: 100px;
 }
 
+.video-intro-title{
+  position: absolute;
+  width: 100%;
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  /* background: red; */
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .case-app-bg{
   width: 60%;
   margin: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: -100px;
 }
 
 .case-app-bg video{
@@ -307,6 +326,10 @@ section two
   }
   .logo-container img{
     height: 50px;
+  }
+
+  .video-intro-title{
+    font-size: 1.5rem;
   }
 
   /* sections */

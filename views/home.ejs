@@ -17,12 +17,14 @@
             <section id="one-home">
                 <%- include('partiallink/animatedbg'); -%>
             <div class="bg-home">
+                <%- include('partials/info'); -%>
                 <div class="introduce-home-content">
                     <div class="intro-text-home">
                         <div class="texts-details-home">
-                            <h1 id="title-home">With <span class="home-target">Appointment booker </span> <br>grow your Business.</h1>
-                            <p>People should see exactly when & what time you have available.</p>
+                            <h1 id="title-home">With <br><span class="home-target">Online Appointment Booker </span> <br>grow your Business.</h1>
+                            <p>People should see exactly what time <br> you have available.</p>
                         </div>
+                        
                         <div class="btn-details-home">
                             <a class="availabletime" href="/changeD/?change=thisweek">Availabe times <i class="fas fa-long-arrow-alt-right"></i></a>
                             <a class="login-home" href="/users/login">sign in/sign up <i class="fas fa-long-arrow-alt-right"></i></a>
@@ -33,6 +35,7 @@
             </div>
         </section>
         <section id="case-app-cont">
+            <h1 class="video-intro-title">The feature of this app.</h1>
             <div class="case-app-bg">
                 <video data-aos="zoom-out" width="100%" controls>
                     <source src="./source/review-apt-app.mp4" type="video/mp4">

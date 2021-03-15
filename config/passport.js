@@ -16,11 +16,13 @@ const User = require('../models/User');
           if (!user) {
             return done(null, false, { message: 'That email is not registered' });
           }
-  
           // Match password
           bcrypt.compare(password, user.password, (err, isMatch) => {
-            if (err) throw err;
+            if (err){
+              console.log("Not match" + err);
+            }
             if (isMatch) {
+              console.log("went throu");
               return done(null, user);
             } else {
               return done(null, false, { message: 'Password incorrect' });
@@ -32,11 +34,13 @@ const User = require('../models/User');
   
     passport.serializeUser(function(user, done) {
       done(null, user.id);
+      console.log("serialized User" + user.id)
     });
   
     passport.deserializeUser(function(id, done) {
       User.findById(id, function(err, user) {
         done(err, user);
+        console.log("deserialized User")
       });
     });
   };

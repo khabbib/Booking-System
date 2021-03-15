@@ -907,14 +907,14 @@ router.post('/deleteUser',  function(req, res){
 router.get('/dashboard', ensureAuthenticated, (req, res) =>{
   mongoose.connect(db, (err, db)=>{
     if(err) {
-      //console.log("Cannot connect to database");
+      // console.log("Cannot connect to database");
     } else {
-        //console.log("Connected to database");
+        // console.log("Connected to database");
     }
     var collection = db.collection('appointments');
     collection.find({useremailAP: req.user.email}).toArray(function(err, item) {
       if(err) {
-        //console.log("There was a problem finding the ticket.");
+        // console.log("There was a problem finding the ticket.");
         res.redirect('/users/login');
       } 
         res.render('dashboard', {
