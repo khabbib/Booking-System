@@ -699,10 +699,10 @@ router.post('/table',  function(req, res){
               // send mail with defined transport object
               transporter.sendMail(mailOptions, (error, info) => {
                   if (error) {
-                    console.log(error +  "from sendMail")
+                    console.log(error +  " from sendMail")
                     req.flash(
                       'error_msg',
-                      `You'r appointment not booked!`
+                      `You'r appointment booked but not sent the mail!`
                       );
                     res.redirect('/done');
 
@@ -905,16 +905,17 @@ router.post('/deleteUser',  function(req, res){
 
 // Dashboard
 router.get('/dashboard', ensureAuthenticated, (req, res) =>{
+  // console.log("the dashboard get in touch");
   mongoose.connect(db, (err, db)=>{
     if(err) {
       // console.log("Cannot connect to database");
     } else {
-        // console.log("Connected to database");
+        console.log("Connected to database");
     }
     var collection = db.collection('appointments');
     collection.find({useremailAP: req.user.email}).toArray(function(err, item) {
       if(err) {
-        // console.log("There was a problem finding the ticket.");
+        console.log("There was a problem finding the ticket.");
         res.redirect('/users/login');
       } 
         res.render('dashboard', {

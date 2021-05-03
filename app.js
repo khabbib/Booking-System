@@ -32,8 +32,7 @@ app.use(
   session({
     secret: 'sicurity',
     resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true }
+    saveUninitialized: true
   })
 );
 
@@ -69,14 +68,14 @@ const PORT = process.env.PORT || 8080;
 //     res.sendFile(path.join(__dirname, 'views', 'ejs'));
 //   })
 // }
-app.listen(PORT, console.log(`Server is runing on port:`));
+app.listen(PORT, console.log(`Server is runing on port: ${PORT}`));
 // app.listen(300,"192.168.1.95", console.log(`Server started on port ${PORT}`));
-//new chanfsdfsdf
 
-// var livereload = require('livereload').createServer({
-//   exts: ['js', 'html','css','ejs']
-// });
 
-// livereload.watch(path.join(__dirname, 'views'));
+// live reload the server (auto refresh the browser)
+var livereload = require('livereload').createServer({
+  exts: ['js', 'html','css','ejs']
+});
 
+livereload.watch(path.join(__dirname, 'views'));
 
