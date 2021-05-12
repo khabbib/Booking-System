@@ -15,6 +15,7 @@
     "browser-sync": "^2.26.12",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.5",
+    "dotenv": "^9.0.2",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "express-ejs-layouts": "^2.5.0",
@@ -28,7 +29,6 @@
     "smooth-scrollbar": "^8.5.3"
   },
   "devDependencies": {
-    "dotenv": "^9.0.0",
     "nodemon": "^2.0.4"
   }
 }
