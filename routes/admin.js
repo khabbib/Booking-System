@@ -90,12 +90,11 @@ router.post('/loginA', (req, res) => {
     if(err) {
       console.log("Cannot connect to database");
     } else {
-      // console.log("Connected to database");
-    
-    
-    var collection = db.collection('admins');
-    collection.find({}).toArray(function(err, item) {
       
+      var colln = db.collection('admins');
+      colln.find({}).toArray(function(err, item) {
+      
+      console.log(item);
       var list_of_client = [];
       for (x in item) {
         if (req.body.email === item[x].email) {
@@ -104,7 +103,6 @@ router.post('/loginA', (req, res) => {
           break;
         }
       }
-      
       if (list_of_client[0]) {
 
         if (list_of_client.length == 1) {
@@ -117,7 +115,7 @@ router.post('/loginA', (req, res) => {
               res.cookie('admin_email', list_of_client[0].email);
               res.redirect('/adminDash')
             }else{
-              errors.push({ msg: 'Email or password' });
+              errors.push({ msg: 'Email or password 3' });
               res.render('admin', {
                 errors,
                 title: 'Admin',
@@ -130,11 +128,11 @@ router.post('/loginA', (req, res) => {
           });
         }else{
           res.render('admin');
-          errors.push({ msg: 'Email or password' });
+          errors.push({ msg: 'Email or password 2' });
           
         }
       }else{
-        errors.push({ msg: 'Email or password' });
+        errors.push({ msg: 'Email or password 1' });
         res.render('admin', {
           errors,
               title: 'Admin',

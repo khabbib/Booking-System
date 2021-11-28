@@ -15,7 +15,7 @@ require('dotenv').config();
 
 // Connect to MongoDB
 mongoose.connect( process.env.DB, { useNewUrlParser: true ,useUnifiedTopology: true})
-  .then(() => console.log('MongoDB Connected'))
+  .then(console.log("Connected to mongoDB"))
   .catch(err => console.log(err));
 
 
