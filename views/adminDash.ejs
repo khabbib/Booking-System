@@ -23,15 +23,15 @@
     <div class="admin-panel">
         <%- include('partials/messages');-%>
         <div class="ttls-data">
-            <button class="styled dashboardBtn" style="background: linear-gradient(90deg, rgb(240, 115, 200) 0%, rgb(255, 106, 149) 99%);box-shadow: rgb(255 106 149) 0px 0px 120px; color: var(--whiteTableCC);">Dashboard</button>
-            <button class="styled users">Users</button>
-            <button class="styled appns">Appointments</button>
-            <button class="styled admins">Admins</button>
-            <button class="styled workhours">Change Work Hours</button>
+            <button class="styled dashboardBtn" style="background: linear-gradient(90deg, rgb(240, 115, 200) 0%, rgb(255, 106, 149) 99%);box-shadow: rgb(255 106 149) 0px 0px 120px; color: var(--whiteTableCC);">Hem</button>
+            <button class="styled users">Kunder</button>
+            <button class="styled appns">Bokade tider</button>
+            <button class="styled admins">Administratör</button>
+            <button class="styled workhours">Ändra på tidtabellen</button>
             <button class="styled workhours">Help?</button>
             <button class="styled searchBtn"><i class="fas fa-search"></i></button>
             <div class="searchMenu">
-                <label for="search">What are you searching for?</label>
+                <label for="search">Sök</label>
                 <input type="text" name="search" id="searchInput" placeholder="Search users informations">
             </div>
         </div>
@@ -41,14 +41,14 @@
             <div class="alladmin" style="display: none;">
                 
                 
-                <h1>Edit the current admin information or register a new admin.</h1>
+                <h1>Ändra administratörs information.</h1>
                 <div class="current-admin-container">
                     <div class="current-admin">
                         <div class="admin-infos">
                             <div class="admin-info">
                                 
-                                <a class="editAdminInfo" href="/update_admin">Edit Admin Info</a>
-                                <a href="/adminReg" class="addNewAdmin" id="addNewAdmin">Add New Admin</a>
+                                <a class="editAdminInfo" href="/update_admin">Ändra</a>
+                                <a href="/adminReg" class="addNewAdmin" id="addNewAdmin">Lägga till ny administratör</a>
                                 
                             </div>
                         </div>
@@ -59,17 +59,25 @@
                 </div>
             </div>
             <div class="welcomeAdmin" style="display: flex;">
-                <h1>Welcome to Admin Page, <br>Here you can do the following things:</h1>
+                <h1> Administratör sida, <br>Grund information angående administratör sida:</h1>
                 <div class="infoa">
-                    <div> User
+                    <div> kunder
                         <li>Delete User</li>
                         <li>Upadate User</li>
                         <li>Add User</li>
+                        <li>Mera...</li>
                     </div>
-                    <div> Appointment
+                    <div> Tider
                         <li>Delete </li>
                         <li>Upadate </li>
                         <li>Add </li>
+                        <li>Mera...</li>
+                    </div>
+                    <div> Lägga ut ny schema & tider
+                        <li>Updatera nuvarande tider </li>
+                        <li>Ta bort </li>
+                        <li>Boka specifika bokningar </li>
+                        <li>Mera...</li>
                     </div>
                 </div>
                 <!-- <div class="admin-dash-btns">
@@ -80,7 +88,7 @@
             </div>
             <div class="add-time-container" style="display: none;">
                 <form action="/addTime" method="POST">
-                    <h1 class="ttl-add-time">Week days </h1>
+                    <h1 class="ttl-add-time">Veckodagar </h1>
                     <div class="add-days-hours">
                         <div class="mon">
                             <label for="mondag">Mån</label>
@@ -115,7 +123,7 @@
                     <div class="ruls-add-time">
 
                         <label for="meetingTime">
-                            <h1 class="ttl-add-time"> Meeting/min:</h1>
+                            <h1 class="ttl-add-time"> Mötestid "min":</h1>
                         <input class="meetingTime design_add_time_input" type="number" name="meetingTime" value="30">
                         </label>
                         <label for="meetingTime">

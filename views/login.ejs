@@ -4,11 +4,11 @@
 <div class="login-container">
   <div class="col-md-6 m-auto">
     <div class="card card-body">
-      <h1 class="text-center mb-3"><i class="fas"></i> User Dashboard</h1>
+      <h1 class="text-center mb-3"><i class="fas"></i> Min sida</h1>
       <%- include('partials/messages'); -%>
       <form action="/users/login" method="POST">
         <div class="form-group">
-          <label for="email">Email</label>
+          <label for="email">E-postadress</label>
           <input
             type="email"
             id="email"
@@ -18,7 +18,7 @@
           />
         </div>
         <div class="form-group">
-          <label for="password">Password</label>
+          <label for="password">Lösenord</label>
           <input
             type="password"
             id="password"
@@ -27,10 +27,10 @@
             placeholder="Enter Password"
           />
         </div>
-        <button type="submit" class="btn btn-primary btn-block">Login <i class="fas fa-long-arrow-alt-right"></i></button>
+        <button type="submit" class="btn btn-primary btn-block">Loga in <i class="fas fa-long-arrow-alt-right"></i></button>
       </form>
       <p class="lead mt-4">
-        No Account? <a href="/users/register">Register</a>
+        Inget konto? <a href="/users/register">Registerera</a>
         Admin? <a href="/admin">Admin</a>
         
       </p>

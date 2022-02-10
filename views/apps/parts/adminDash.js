@@ -19,7 +19,7 @@ function ss(){
     for (let i = 0; i < dashMenu.length; i++) {
         dashMenu[i].addEventListener("click", (e)=>{
             var target = e.currentTarget;
-            if(target.innerHTML === "Users"){
+            if(target.innerHTML === "Kunder"){
                 userBtn.style.cssText = "background: linear-gradient(90deg, #F073C8 0%, #FF6A95 99%); box-shadow: 0 0 120px #FF6A95; color: var(--whiteTableCC); transition: 0.2s;";
                 appnBtn.style.cssText = "background: none;";
                 dashBtn.style.cssText = "background: none;";
@@ -34,7 +34,7 @@ function ss(){
                 userPage.style.display = "flex";
                 addTimePage.style.display = "none";
             }
-            if(target.innerHTML === "Dashboard"){
+            if(target.innerHTML === "Hem"){
                 userBtn.style.cssText = "background: none;";
                 appnBtn.style.cssText = "background: none;";
                 dashBtn.style.cssText = "background: linear-gradient(90deg, #F073C8 0%, #FF6A95 99%); box-shadow: 0 0 120px #FF6A95; color: var(--whiteTableCC); transition: 0.2s;";
@@ -50,7 +50,7 @@ function ss(){
                 addTimePage.style.display = "none";
 
             }
-            if(target.innerHTML === "Appointments"){
+            if(target.innerHTML === "Bokade tider"){
                 userBtn.style.cssText = "background: none;";
                 appnBtn.style.cssText = "background: linear-gradient(90deg, #F073C8 0%, #FF6A95 99%); box-shadow: 0 0 120px #FF6A95; color: var(--whiteTableCC); transition: 0.2s;";
                 dashBtn.style.cssText = "background: none;";
@@ -66,7 +66,7 @@ function ss(){
                 addTimePage.style.display = "none";
 
             }
-            if(target.innerHTML === "Admins"){
+            if(target.innerHTML === "Administratör"){
                 userBtn.style.cssText = "background: none;";
                 appnBtn.style.cssText = "background: none;";
                 dashBtn.style.cssText = "background: none;";
@@ -99,7 +99,7 @@ function ss(){
                 addTimePage.style.display = "none";
 
             }
-            if(target.innerHTML === 'Change Work Hours'){
+            if(target.innerHTML === 'Ändra på tidtabellen'){
                 userBtn.style.cssText = "background: none;";
                 appnBtn.style.cssText = "background: none;";
                 dashBtn.style.cssText = "background: none;";

@@ -3,7 +3,7 @@
     <%- include('partiallink/dashheader');-%>
     
     
-	<p class="profile-title">Welcome, <span id="name-cc"><%= user.name %></span></p>
+	<p class="profile-title">Hej, <span id="name-cc"><%= user.name %></span></p>
 	<div class="msgdisplay">
 		<%- include('partials/messages');-%>
 
@@ -30,8 +30,8 @@
 				<!-- END SIDEBAR USER TITLE -->
 				<!-- SIDEBAR BUTTONS -->
 				<div class="profile-userbuttons">
-					<button type="button" class="btn btnEdit btn-sm">Edit</button>
-					<a href="/users/logout" class="btn btnBooklist btn-sm" id="logoutbtn"> Logout <i class="fas fa-long-arrow-alt-right"></i></a>
+					<button type="button" class="btn btnEdit btn-sm">Redigera</button>
+					<a href="/users/logout" class="btn btnBooklist btn-sm" id="logoutbtn"> Loga ut <i class="fas fa-long-arrow-alt-right"></i></a>
 				</div>
 				<!-- END SIDEBAR BUTTONS -->
 				<!-- SIDEBAR MENU -->
@@ -39,18 +39,18 @@
 					
 						
 							<a href="/dashboard" id="menus-link" class="active">
-							Appointments </a>
+							Mina bokningar </a>
 						
                         <a href="/dashboard" id="menus-link">
 						
                         Information </a>
 						
 							<a href="/dashboard" id="menus-link">
-							Setting </a>
+							Inställning </a>
 						
 					
 							<a href="/dashboard" target="_blank" id="menus-link">
-							Help </a>
+							Hälp </a>
 				
 				
 				</div>
@@ -61,7 +61,7 @@
 		<div class="col-md-9">
 			<div class="profile-content">
 				<div class="bookningInfo">
-					<h1 class="title-bookningInfo">Your Appointments</h1>
+					<h1 class="title-bookningInfo">Dina bokade tider</h1>
 					<div class="container-table100">
 						<div class="wrap-table100">
 							<div class="table100 ver3 m-b-110">
@@ -69,10 +69,10 @@
 									<table>
 											<tr class="row100 head">
 												<th></th>
-												<th>Name</th>
-												<th>Appointment</th>
-												<th>PhoneNo</th>
-												<th>Bookning Email</th>
+												<th>Namn</th>
+												<th>Tid & datum</th>
+												<th>Telefonnummer</th>
+												<th>E-postadress</th>
 												<th style="display: none;"></th>
 											</tr>
 									</table>
@@ -109,15 +109,15 @@
 												</table>
 												<div class="edits-btn-AP">
 													<!-- <input id="transferValueForDeleteBtn" name="uniqueid" style="display: none;" value="" /> -->
-													<a id="open-warning-btn-delete">Delete</a>
+													<a id="open-warning-btn-delete">Ta bort</a>
 												</div>
 												<div class="warning-delete-ap">
 													<div class="bgw-warning">
 														<h1>Are you sure you want to delete the appointment?</h1>
 														<div class="icon-warning"></div>
 														<div class="btnsss">
-															<button id="deleteBtn" class="deleteBtn" type="submit" name="delete" value="delete" style="display: block;"><i class="fas fa-trash-alt"></i><span> Yes</span></button>
-															<a id="cancelBtn">No</a>
+															<button id="deleteBtn" class="deleteBtn" type="submit" name="delete" value="delete" style="display: block;"><i class="fas fa-trash-alt"></i><span> Ja</span></button>
+															<a id="cancelBtn">Nej</a>
 														</div>	
 													</div>
 												</div>
@@ -129,10 +129,10 @@
 					
 				</div>
 				</div>
-				<h1 style="display: none;" id="ifNoAP"> <span id="userNameDisplay"> <i class="fas fa-exclamation-circle"></i></span> <span id="mellanDivider"> | </span> <span> You have no appointment.<br> Would you like to book one?</span></h1>
+				<h1 style="display: none;" id="ifNoAP"> <span id="userNameDisplay"> <i class="fas fa-exclamation-circle"></i></span> <span id="mellanDivider"> | </span> <span> Du har ingen bokade tider.<br> Vill du boka en tid hos oss?</span></h1>
 				<div class="btns-link-AP">
-					<a style="display: none;" href="/table" id="btn-link-AP">Yes <i class="fas fa-long-arrow-alt-right"></i></a>
-					<a style="display: block;" href="/table" id="btn-link-AP-s">BOOK A NEW APPOINTMENT <i class="fas fa-long-arrow-alt-right"></i></a>
+					<a style="display: none;" href="/table" id="btn-link-AP">Boka en tid <i class="fas fa-long-arrow-alt-right"></i></a>
+					<a style="display: block;" href="/table" id="btn-link-AP-s">Boka en tid. <i class="fas fa-long-arrow-alt-right"></i></a>
 				</div>
 		</div>
 	</div>
