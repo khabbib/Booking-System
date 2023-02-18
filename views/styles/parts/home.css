@@ -161,16 +161,17 @@ section two
 */
 
 #two-home{
-    height: 100vh;
+    height: 50vh;
     background: var(--bgp);
 }
 .bg-thome{
+  height: 100%;
+  width: 80%;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: row-reverse;
-    height: 100%;
-}
+    margin: auto;
+  }
 
 .intro-text-thome{
     flex: 1;
@@ -302,6 +303,9 @@ section two
 }
 
 @media only screen and (max-width: 667px){
+  #one-home{
+    height: 90vh;
+  }
   .introduce-home-content{
     width: 90%;
     margin: auto;
@@ -315,7 +319,6 @@ section two
   }
   .texts-details-home p{
     font-size: 0.8rem;
-    text-align: center;
   }
   .btn-details-home a{
     font-size: 0.8rem;
