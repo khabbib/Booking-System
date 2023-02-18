@@ -10,8 +10,6 @@ const app = express();
 const cookieParser = require('cookie-parser');
 require('./config/passport')(passport);
 require('dotenv').config();
-// DB Config
-// const db = require('./config/keys').mongoURI;
 
 // Connect to MongoDB
 mongoose.connect( process.env.DB, { useNewUrlParser: true ,useUnifiedTopology: true})
@@ -58,7 +56,6 @@ app.use('/', require('./routes/index.js'));
 app.use('/users', require('./routes/users.js'));
 app.use('/admin', require('./routes/admin.js'));
 
-// const PORT = 81;
 // const PORT = 81;
 const PORT = process.env.PORT || 8080;
 
