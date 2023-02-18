@@ -29,7 +29,6 @@
 .register-admin-page{
     display: flex;
     flex-direction: column;
-    background: var(--lightblue);
     width: fit-content;
     border-radius: 5px;
     padding: 2rem;

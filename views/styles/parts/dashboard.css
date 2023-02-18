@@ -4,7 +4,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    background: url(/source/dashbordbg.svg)no-repeat var(--darkblue);
+    /* background: url(/source/dashbordbg.svg)no-repeat var(--darkblue); */
     background-size: cover;
     background-position: center;
 }
