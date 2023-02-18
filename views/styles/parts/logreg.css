@@ -24,11 +24,10 @@
 
 .card{
     padding: 1rem 2rem;
-    box-shadow: 0 30px 50px -12px rgba(11, 198, 255, 0.096);
     border: none;
     border-radius: 5px;
     width: 100%;
-    background: var(--lightblue);
+    background: none;
 }
 
 .mb-3{

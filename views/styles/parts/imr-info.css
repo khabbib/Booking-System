@@ -5,7 +5,7 @@
     position: absolute;
     border-radius: 5px;
     top: 10%;
-    right: 0;
+    right: 10%;
     width: 400px;
     padding: 2rem;
     z-index: 4;
@@ -56,15 +56,18 @@
 @media only screen and (max-width: 667px){
 
     .imer-info{
-        width: 70%;
-        margin: auto;
+        width: 100%;
         position: absolute;
-        height: 20vh;
-        /* bottom: 0; */
-        right: 0;
-        top: 0;
-        padding: 0;
+        left: 0;
+        top: unset;
+        bottom: 0;
+        padding: 1rem;
         background: rgba(32, 32, 88, 0.904);
+    }
+    .alarm h1,p{
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: var(--pink);
     }
     .hide-on-phone{
         display: none;
@@ -72,14 +75,12 @@
 
     .u-a-part{
         padding: 0.2rem;
-      }
+    }
 
-      .imer-info p{
-          margin-bottom: 0;
-      }
-      .alarm h1{
-        margin: 0.5rem;
-      }
+    .imer-info p{
+      font-size: 0.8rem;
+        margin-bottom: 0;
+    }
 
 
 }
