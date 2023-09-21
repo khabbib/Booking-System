@@ -7,7 +7,8 @@ const md5encrypt = require('md5');
 const Session = require('../models/session').Session;
 
 const Admin = require('../models/admin');
-const db = require('../config/keys').mongoURI;
+// const db = require('../config/keys').mongoURI;
+const db = 'mongodb+srv://habib1:habib1121@clusterone.cskl3.mongodb.net/cluster?retryWrites=true&w=majority';
 const mongoose = require('mongoose');
 
 function random(low, high) {
