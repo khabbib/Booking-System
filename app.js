@@ -1,5 +1,6 @@
 
 const express = require('express');
+const ip = require('ip');
 const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
 const passport = require('passport');
@@ -65,7 +66,11 @@ const PORT = process.env.PORT || 8080;
 //     res.sendFile(path.join(__dirname, 'views', 'ejs'));
 //   })
 // }
-app.listen(PORT, console.log(`Server is runing on port: ${PORT}`));
+app.listen(PORT, () => {
+    console.log("Ip: ", ip.address());
+    console.log(`Server is runing on port: ${PORT}`)
+  } 
+);
 // app.listen(300,"192.168.1.95", console.log(`Server started on port ${PORT}`));
 
 
