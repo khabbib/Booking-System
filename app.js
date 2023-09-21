@@ -12,7 +12,7 @@ require('./config/passport')(passport);
 require('dotenv').config();
 
 // Connect to MongoDB
-mongoose.connect( process.env.DB, { useNewUrlParser: true ,useUnifiedTopology: true})
+mongoose.connect('mongodb+srv://habib1:habib1121@clusterone.cskl3.mongodb.net/cluster?retryWrites=true&w=majority', { useNewUrlParser: true ,useUnifiedTopology: true})
   .then(console.log("Connected to mongoDB"))
   .catch(err => console.log(err));
 
