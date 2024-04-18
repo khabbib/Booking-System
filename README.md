@@ -1,3 +1,3 @@
 # OBS (Online Booking System)
 
-Online bookingsystem gives you this ability to impliment your booking system into an online platform where everyone can check available times and book them easily.
+The online booking system gives you the ability to implement your booking system into an online platform where everyone can check available times and book.
